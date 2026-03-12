@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriela & Luiz — Casamento</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7a8c6e;
+            --sage-light: #a8b89a;
+            --sage-pale: #dde5d8;
+            --moss: #4a5c40;
+            --forest: #2e3d28;
+            --terracotta: #c47a5a;
+            --terra-light: #e8a888;
+            --cream: #faf6ef;
+            --warm: #f2ead8;
+            --linen: #ede4d0;
+            --text: #2c3522;
+            --text-soft: #6b7a5e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* DECORATIVE SVG LEAVES */
+        .leaf-deco {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.12;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            z-index: 100;
+            padding: 1.5rem 5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(250,246,239,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(122,140,110,0.15);
+        }
+        .nav-date {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--sage);
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--moss); }
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--forest);
+            letter-spacing: 2px;
+        }
+
+        /* HERO — full split layout */
+        #home {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            padding-top: 0;
+        }
+
+        .hero-left {
+            background: var(--forest);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10rem 5rem 6rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Botanical pattern on dark side */
+        .hero-left::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 80%, rgba(122,140,110,0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 80% at 80% 20%, rgba(74,92,64,0.2) 0%, transparent 60%);
+        }
+
+        .hero-botanical {
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            opacity: 0.08;
+        }
+
+        .hero-tag {
+            font-size: 0.65rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--sage-light);
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-tag::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--sage);
+        }
+        .hero-main-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(4.5rem, 8vw, 8rem);
+            font-weight: 400;
+            color: var(--cream);
+            line-height: 0.95;
+            position: relative;
+            z-index: 1;
+            animation: slideRight 1.2s ease both;
+        }
+        .hero-main-name .first { display: block; }
+        .hero-main-name .connector {
+            display: block;
+            font-style: italic;
+            font-size: 0.3em;
+            color: var(--sage-light);
+            letter-spacing: 4px;
+            margin: 0.6rem 0;
+            font-size: clamp(1.4rem, 2.5vw, 2.4rem);
+        }
+
+        .hero-date-block {
+            margin-top: 3.5rem;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .hero-date-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 5rem;
+            color: var(--sage);
+            line-height: 1;
+            opacity: 0.4;
+        }
+        .hero-date-text {
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--sage-light);
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+            background: var(--linen);
+        }
+        .hero-right-photo {
+            position: absolute;
+            inset: 0;
+            background-image: url('img/casal/hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-right-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(46,61,40,0.3), transparent 50%, rgba(46,61,40,0.2));
+        }
+
+        /* Floating date card on image */
+        .hero-card {
+            position: absolute;
+            bottom: 3rem;
+            left: -2rem;
+            background: var(--cream);
+            padding: 2rem 2.5rem;
+            z-index: 5;
+            box-shadow: 0 20px 60px rgba(46,61,40,0.2);
+            animation: slideRight 1.5s 0.5s ease both;
+        }
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--sage);
+        }
+        .hero-card-label {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            margin-bottom: 0.5rem;
+        }
+        .hero-card-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--forest);
+        }
+        .hero-card-date {
+            font-size: 0.75rem;
+            color: var(--sage);
+            margin-top: 0.3rem;
+        }
+
+        /* PLANT SVG decorations */
+        .plant-divider {
+            text-align: center;
+            color: var(--sage);
+            font-size: 1.8rem;
+            opacity: 0.4;
+            letter-spacing: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        /* HISTÓRIA section */
+        #casal {
+            background: var(--warm);
+            padding: 8rem 0;
+            overflow: hidden;
+        }
+        .casal-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        .casal-text .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(122,140,110,0.12);
+            border: 1px solid rgba(122,140,110,0.25);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--moss);
+            margin-bottom: 2rem;
+        }
+        .casal-text .section-badge::before { content: '🌿'; font-size: 0.9rem; }
+
+        .casal-heading {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 400;
+            color: var(--forest);
+            line-height: 1.05;
+            margin-bottom: 2.5rem;
+        }
+        .casal-heading em {
+            font-style: italic;
+            color: var(--terracotta);
+        }
+        .casal-text p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--text-soft);
+            margin-bottom: 1.4rem;
+            font-weight: 300;
+        }
+
+        /* Photo mosaic */
+        .casal-mosaic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 12px;
+            height: 560px;
+        }
+        .mosaic-main {
+            grid-column: 1;
+            grid-row: 1 / 3;
+            border-radius: 120px 120px 20px 20px;
+            overflow: hidden;
+            background: var(--sage-pale);
+            position: relative;
+        }
+        .mosaic-top {
+            grid-column: 2;
+            grid-row: 1;
+            border-radius: 20px 120px 20px 20px;
+            overflow: hidden;
+            background: var(--linen);
+            position: relative;
+        }
+        .mosaic-bottom {
+            grid-column: 2;
+            grid-row: 2;
+            border-radius: 20px 20px 120px 20px;
+            overflow: hidden;
+            background: var(--sage-pale);
+            position: relative;
+        }
+        .mosaic-main img, .mosaic-top img, .mosaic-bottom img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .mosaic-main:hover img, .mosaic-top:hover img, .mosaic-bottom:hover img { transform: scale(1.04); }
+        .mosaic-placeholder {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; opacity: 0.2;
+        }
+
+        /* COUNTDOWN — organic style */
+        .countdown-strip {
+            background: var(--forest);
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .countdown-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 100% at 50% 50%, rgba(122,140,110,0.1), transparent);
+        }
+        .countdown-label {
+            font-size: 0.65rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--sage-light);
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .countdown-units {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .countdown-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .countdown-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4.5rem;
+            color: var(--cream);
+            line-height: 1;
+        }
+        .countdown-unit-label {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--sage);
+        }
+        .countdown-sep {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--sage);
+            opacity: 0.3;
+            align-self: center;
+            margin-top: -0.5rem;
+        }
+
+        /* EVENTOS */
+        #cerimonia {
+            background: var(--cream);
+            padding: 8rem 0;
+        }
+        #recepcao {
+            background: var(--linen);
+            padding: 8rem 0;
+        }
+        .event-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        #recepcao .event-inner { grid-template-columns: 1.2fr 1fr; }
+        #recepcao .event-img-block { order: 2; }
+        #recepcao .event-text-block { order: 1; }
+
+        .event-img-block {
+            position: relative;
+        }
+        .event-img-frame {
+            border-radius: 50% 50% 20px 20px / 40% 40% 20px 20px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background: var(--sage-pale);
+            position: relative;
+        }
+        .event-img-frame img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .event-img-badge {
+            position: absolute;
+            bottom: -1.5rem;
+            right: 2rem;
+            background: var(--terracotta);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            box-shadow: 0 8px 24px rgba(196,122,90,0.35);
+        }
+
+        .event-text-block {
+            padding: 2rem 0;
+        }
+        .event-number-bg {
+            font-family: 'DM Serif Display', serif;
+            font-size: 10rem;
+            color: var(--sage-pale);
+            line-height: 0.9;
+            margin-bottom: -2.5rem;
+            display: block;
+        }
+        .event-text-block h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--forest);
+            margin-bottom: 2.5rem;
+            line-height: 1;
+        }
+        .event-text-block h2 em { font-style: italic; color: var(--terracotta); }
+
+        .event-detail-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.8rem 1.5rem;
+            align-items: baseline;
+            margin-bottom: 3rem;
+        }
+        .detail-key {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--sage);
+            font-weight: 500;
+        }
+        .detail-val {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--forest);
+            font-style: italic;
+        }
+
+        .btn-organic {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--forest);
+            color: var(--cream);
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(46,61,40,0.2);
+        }
+        .btn-organic:hover {
+            background: var(--moss);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(46,61,40,0.25);
+        }
+        .btn-organic-outline {
+            background: transparent;
+            color: var(--forest);
+            border: 2px solid var(--forest);
+            box-shadow: none;
+        }
+        .btn-organic-outline:hover {
+            background: var(--forest);
+            color: var(--cream);
+        }
+
+        /* PRESENTES */
+        #presentes {
+            background: var(--warm);
+            padding: 8rem 0;
+        }
+        .presentes-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+        .presentes-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: end;
+            margin-bottom: 4rem;
+        }
+        .presentes-top h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            color: var(--forest);
+            line-height: 1.05;
+        }
+        .presentes-top h2 em { font-style: italic; color: var(--terracotta); }
+        .presentes-top p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-soft);
+            font-weight: 300;
+        }
+        .sort-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .sort-label-text {
+            font-size: 0.7rem;
+            color: var(--text-soft);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-right: 0.5rem;
+        }
+        .sort-btn {
+            background: transparent;
+            border: 1.5px solid rgba(122,140,110,0.3);
+            color: var(--text-soft);
+            padding: 0.5rem 1.4rem;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            letter-spacing: 1px;
+        }
+        .sort-btn:hover { border-color: var(--moss); color: var(--moss); }
+        .sort-btn.active { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+
+        .gifts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .gift-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(46,61,40,0.06);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .gift-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 48px rgba(46,61,40,0.12);
+        }
+        .gift-img {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: var(--sage-pale);
+            position: relative;
+        }
+        .gift-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gift-card:hover .gift-img img { transform: scale(1.06); }
+        .gift-img-ph { width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.2; }
+
+        .gift-body { padding: 1.5rem 1.8rem 2rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .gift-tag {
+            display: inline-block;
+            background: rgba(122,140,110,0.12);
+            color: var(--moss);
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+        .gift-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.35rem;
+            color: var(--forest);
+            margin-bottom: 0.3rem;
+        }
+        .gift-price {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--terracotta);
+            margin-bottom: 0.8rem;
+        }
+        .gift-desc {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-soft);
+            flex-grow: 1;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        .gift-btn {
+            display: block;
+            width: 100%;
+            background: var(--forest);
+            color: var(--cream);
+            border: none;
+            padding: 0.9rem;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .gift-btn:hover { background: var(--moss); transform: scale(1.02); }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(46,61,40,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: var(--cream);
+            padding: 3.5rem;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 24px;
+            position: relative;
+            animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 40px 100px rgba(46,61,40,0.3);
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: var(--sage-pale);
+            border: none;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--forest);
+            transition: all 0.2s;
+        }
+        .modal-close:hover { background: var(--forest); color: var(--cream); transform: rotate(90deg); }
+
+        .modal-leaf { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+        .modal-gift-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--forest);
+            margin-bottom: 0.3rem;
+        }
+        .modal-gift-price {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--terracotta);
+            margin-bottom: 2rem;
+        }
+
+        .modal-field-label {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .modal-input {
+            width: 100%;
+            background: var(--warm);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--forest);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .modal-input:focus { border-color: var(--sage); }
+        .modal-input::placeholder { color: rgba(44,53,34,0.3); }
+        .modal-error {
+            font-size: 0.8rem;
+            color: var(--terracotta);
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        .modal-payments {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+        .payment-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid var(--sage-pale);
+            border-radius: 14px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .payment-btn:hover { border-color: var(--sage); background: var(--sage-pale); }
+        .payment-btn-icon { font-size: 1.6rem; }
+        .payment-btn-text { flex: 1; text-align: left; }
+        .payment-btn-text strong { display: block; font-size: 0.9rem; color: var(--forest); font-weight: 500; }
+        .payment-btn-text span { font-size: 0.78rem; color: var(--text-soft); }
+        .payment-btn-arrow { color: var(--sage); font-size: 1.1rem; }
+
+        /* FOOTER */
+        footer {
+            background: var(--forest);
+            padding: 5rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 200px;
+            background: radial-gradient(ellipse at 50% 100%, rgba(122,140,110,0.15), transparent);
+        }
+        .footer-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-leaf { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; opacity: 0.4; }
+        .footer-names {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            font-style: italic;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+        .footer-names .amp { color: var(--sage-light); }
+        .footer-tagline {
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--sage-light);
+            opacity: 0.6;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            nav { padding: 1.2rem 2rem; }
+            .nav-date, .nav-logo { display: none; }
+            .nav-links { gap: 1.2rem; }
+            .nav-links a { font-size: 0.7rem; }
+            #home { grid-template-columns: 1fr; }
+            .hero-left { padding: 8rem 2rem 4rem; }
+            .hero-right { height: 60vw; min-height: 300px; }
+            .hero-card { display: none; }
+            .casal-inner { grid-template-columns: 1fr; padding: 0 2rem; }
+            .casal-mosaic { display: none; }
+            .event-inner { grid-template-columns: 1fr; padding: 0 2rem; gap: 3rem; }
+            #recepcao .event-img-block { order: 1; }
+            #recepcao .event-text-block { order: 2; }
+            .presentes-top { grid-template-columns: 1fr; }
+            .presentes-inner { padding: 0 2rem; }
+            .countdown-units { gap: 1.5rem; flex-wrap: wrap; }
+            .countdown-sep { display: none; }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>(function(){ emailjs.init("olKndLr0o-xTTVzun"); })();</script>
+</head>
+<body>
+
+<nav>
+    <span class="nav-date">13 · 06 · 2026</span>
+    <ul class="nav-links">
+        <li><a href="#casal">História</a></li>
+        <li><a href="#cerimonia">Cerimônia</a></li>
+        <li><a href="#recepcao">Recepção</a></li>
+        <li><a href="#presentes">Presentes</a></li>
+    </ul>
+    <span class="nav-logo">M & P</span>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+    <div class="hero-left">
+        <span class="hero-tag">Save the Date</span>
+        <div class="hero-main-name">
+            <span class="first">Gabriela</span>
+            <span class="connector">e também</span>
+            Luiz
+        </div>
+        <div class="hero-date-block">
+            <span class="hero-date-num">13</span>
+            <span class="hero-date-text">de Junho de 2026</span>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="hero-right-photo"></div>
+        <div class="hero-right-overlay"></div>
+        <div class="hero-card">
+            <div class="hero-card-label">Você está convidado</div>
+            <div class="hero-card-name">Gabriela & Luiz</div>
+            <div class="hero-card-date">🌿 13 de Junho · Sorocaba, SP</div>
+        </div>
+    </div>
+</section>
+
+<!-- COUNTDOWN -->
+<div class="countdown-strip">
+    <div class="countdown-label">Contagem Regressiva</div>
+    <div class="countdown-units">
+        <div class="countdown-unit">
+            <div class="countdown-num" id="cd-days">—</div>
+            <div class="countdown-unit-label">Dias</div>
+        </div>
+        <div class="countdown-sep">·</div>
+        <div class="countdown-unit">
+            <div class="countdown-num" id="cd-hours">—</div>
+            <div class="countdown-unit-label">Horas</div>
+        </div>
+        <div class="countdown-sep">·</div>
+        <div class="countdown-unit">
+            <div class="countdown-num" id="cd-min">—</div>
+            <div class="countdown-unit-label">Minutos</div>
+        </div>
+        <div class="countdown-sep">·</div>
+        <div class="countdown-unit">
+            <div class="countdown-num" id="cd-sec">—</div>
+            <div class="countdown-unit-label">Segundos</div>
+        </div>
+    </div>
+</div>
+
+<!-- HISTÓRIA -->
+<section id="casal">
+    <div class="casal-inner">
+        <div class="casal-text reveal">
+            <span class="section-badge">Nossa História</span>
+            <h2 class="casal-heading">Uma história de <em>amor genuíno</em></h2>
+            <p>Cada história de amor é única, e a nossa é especial porque começou com uma amizade sincera, que cresceu e se transformou em algo muito maior.</p>
+            <p>Ao longo dos anos, compartilhamos sonhos, superamos desafios e construímos memórias inesquecíveis. E agora, estamos prontos para dar o próximo passo juntos.</p>
+            <p>Este é o dia em que uniremos nossas vidas oficialmente, cercados pelas pessoas que amamos. Queremos você ao nosso lado neste momento tão especial!</p>
+        </div>
+        <div class="casal-mosaic reveal reveal-delay-1">
+            <div class="mosaic-main">
+                <img data-src="img/casal/foto1.jpg" alt="Nós" onerror="this.parentNode.innerHTML='<div class=\'mosaic-placeholder\'>📸</div>'">
+            </div>
+            <div class="mosaic-top">
+                <img data-src="img/casal/foto2.jpg" alt="Nós" onerror="this.parentNode.innerHTML='<div class=\'mosaic-placeholder\'>📸</div>'">
+            </div>
+            <div class="mosaic-bottom">
+                <img data-src="img/casal/foto3.jpg" alt="Nós" onerror="this.parentNode.innerHTML='<div class=\'mosaic-placeholder\'>🌿</div>'">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CERIMÔNIA -->
+<section id="cerimonia">
+    <div class="event-inner">
+        <div class="event-img-block reveal">
+            <div class="event-img-frame">
+                <img src="img/cerimonia.jpg" alt="Cerimônia" onerror="this.src=''; this.style.display='none'">
+            </div>
+            <span class="event-img-badge">17h30 · Igreja</span>
+        </div>
+        <div class="event-text-block reveal reveal-delay-1">
+            <span class="event-number-bg">01</span>
+            <h2>Cerimônia <em>religiosa</em></h2>
+            <div class="event-detail-grid">
+                <span class="detail-key">Data</span>
+                <span class="detail-val">13 de Junho de 2026</span>
+                <span class="detail-key">Horário</span>
+                <span class="detail-val">17h30</span>
+                <span class="detail-key">Local</span>
+                <span class="detail-val">Santuário São Judas Tadeu</span>
+                <span class="detail-key">Endereço</span>
+                <span class="detail-val">Rua Walter Luis D'avilla, 171</span>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Walter+Luis+D'avilla,+171" target="_blank" class="btn-organic">
+                🗺 Como Chegar
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- RECEPÇÃO -->
+<section id="recepcao">
+    <div class="event-inner">
+        <div class="event-img-block reveal">
+            <div class="event-img-frame">
+                <img src="img/recepcao.jpg" alt="Recepção" onerror="this.src=''; this.style.display='none'">
+            </div>
+            <span class="event-img-badge">19h30 · Festa</span>
+        </div>
+        <div class="event-text-block reveal reveal-delay-1">
+            <span class="event-number-bg">02</span>
+            <h2>Recepção <em>& Festa</em></h2>
+            <div class="event-detail-grid">
+                <span class="detail-key">Data</span>
+                <span class="detail-val">13 de Junho de 2026</span>
+                <span class="detail-key">Horário</span>
+                <span class="detail-val">19h30</span>
+                <span class="detail-key">Local</span>
+                <span class="detail-val">Giraclub Buffet e Eventos</span>
+                <span class="detail-key">Endereço</span>
+                <span class="detail-val">Rua Augusto Lipel, 10365</span>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Augusto+Lipel,+10365" target="_blank" class="btn-organic btn-organic-outline">
+                🗺 Como Chegar
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- PRESENTES -->
+<section id="presentes">
+    <div class="presentes-inner">
+        <div class="presentes-top reveal">
+            <h2>Lista de <em>Presentes</em></h2>
+            <p>Sua presença já é nosso maior presente! Mas se desejar nos presentear, preparamos algumas opções para ajudar a começar nossa nova vida juntos.</p>
+        </div>
+        <div class="sort-bar">
+            <span class="sort-label-text">Ordenar:</span>
+            <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+            <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor → Maior</button>
+            <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior → Menor</button>
+        </div>
+        <div class="gifts-grid"></div>
+    </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closePaymentModal()">×</button>
+        <span class="modal-leaf">🎁</span>
+        <div class="modal-gift-name" id="modalGiftName">—</div>
+        <div class="modal-gift-price" id="modalGiftPrice">—</div>
+        <div>
+            <label class="modal-field-label">Seu nome completo</label>
+            <input type="text" id="guestName" class="modal-input" placeholder="Para podermos agradecer...">
+            <p id="nameError" class="modal-error">⚠ Por favor, preencha seu nome para continuar</p>
+        </div>
+        <div class="modal-payments">
+            <button class="payment-btn" onclick="handlePaymentClick('pix')">
+                <span class="payment-btn-icon">💳</span>
+                <div class="payment-btn-text"><strong>Pagar com PIX</strong><span>Pagamento instantâneo e seguro</span></div>
+                <span class="payment-btn-arrow">→</span>
+            </button>
+            <button class="payment-btn" onclick="handlePaymentClick('card')">
+                <span class="payment-btn-icon">💰</span>
+                <div class="payment-btn-text"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div>
+                <span class="payment-btn-arrow">→</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <span class="footer-leaf">🌿</span>
+        <div class="footer-names">Gabriela <span class="amp">&</span> Luiz</div>
+        <div class="footer-tagline">13 de Junho de 2026 · Sorocaba · SP</div>
+    </div>
+</footer>
+
+<script>
+    // COUNTDOWN
+    function updateCountdown() {
+        const wedding = new Date('2026-06-13T17:30:00');
+        const now = new Date();
+        const diff = wedding - now;
+        if (diff <= 0) {
+            document.getElementById('cd-days').textContent = '0';
+            document.getElementById('cd-hours').textContent = '00';
+            document.getElementById('cd-min').textContent = '00';
+            document.getElementById('cd-sec').textContent = '00';
+            return;
+        }
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-days').textContent = days;
+        document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+        document.getElementById('cd-min').textContent = String(mins).padStart(2,'0');
+        document.getElementById('cd-sec').textContent = String(secs).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // REVEAL
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // LAZY IMAGES
+    const imgObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { const i = e.target; if(i.dataset.src){i.src=i.dataset.src; i.removeAttribute('data-src');} imgObs.unobserve(i); }});
+    }, { rootMargin: '100px' });
+    document.querySelectorAll('img[data-src]').forEach(i => imgObs.observe(i));
+
+    // PRESENTES
+    const PRESENTES = [
+        { nome: 'Jogo de Panelas', preco: 'R$ 470,00', descricao: 'Jogo de panelas para fogo de indução.', imagem: 'img/jogo_de_panelas.jpg', tag: 'Cozinha', pix: 'https://mpago.li/2cvWoiF', cartao: 'https://mpago.li/2cvWoiF' },
+        { nome: 'Jogo de Cama Casal', preco: 'R$ 300,00', descricao: 'Jogo de cama casal.', imagem: 'img/jogo_de_cama.jpg', tag: 'Quarto', pix: 'https://mpago.li/2qGccqa', cartao: 'https://mpago.li/2qGccqa' },
+        { nome: 'Cafeteira Elétrica', preco: 'R$ 350,00', descricao: 'Cafeteira elétrica programável para começar o dia com energia.', imagem: 'img/cafeteira.jpg', tag: 'Cozinha', pix: 'https://mpago.li/24HaaZk', cartao: 'https://mpago.li/24HaaZk' },
+        { nome: 'Conjunto de Taças', preco: 'R$ 200,00', descricao: 'Conjunto com 6 taças de vinho em cristal para nossas celebrações.', imagem: 'img/conjunto_de_tacas.jpg', tag: 'Mesa Posta', pix: 'https://mpago.li/2rLWgXN', cartao: 'https://mpago.li/2rLWgXN' },
+    ];
+    function precoParaNumero(p) { return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim()); }
+    function renderPresentes(lista) {
+        const c = document.querySelector('.gifts-grid');
+        c.innerHTML = lista.map(p => `
+            <div class="gift-card">
+                <div class="gift-img">
+                    <img data-src="${p.imagem}" alt="${p.nome}" onerror="this.parentNode.innerHTML='<div class=\\'gift-img-ph\\'>🌿</div>'">
+                </div>
+                <div class="gift-body">
+                    <span class="gift-tag">${p.tag}</span>
+                    <div class="gift-name">${p.nome}</div>
+                    <div class="gift-price">${p.preco}</div>
+                    <div class="gift-desc">${p.descricao}</div>
+                    <button class="gift-btn" onclick="openPaymentModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">Presentear</button>
+                </div>
+            </div>
+        `).join('');
+        c.querySelectorAll('img[data-src]').forEach(i => imgObs.observe(i));
+    }
+    function ordenarPresentes(ordem) {
+        const lista = [...PRESENTES];
+        if (ordem === 'asc') lista.sort((a,b) => precoParaNumero(a.preco)-precoParaNumero(b.preco));
+        if (ordem === 'desc') lista.sort((a,b) => precoParaNumero(b.preco)-precoParaNumero(a.preco));
+        document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.ordem === ordem));
+        renderPresentes(lista);
+    }
+    document.addEventListener('DOMContentLoaded', () => renderPresentes(PRESENTES));
+
+    // MODAL
+    let currentPixLink='', currentCardLink='', currentGiftName='', currentGiftPrice='';
+    function openPaymentModal(name, price, pix, card) {
+        currentGiftName=name; currentGiftPrice=price; currentPixLink=pix; currentCardLink=card;
+        document.getElementById('modalGiftName').textContent = name;
+        document.getElementById('modalGiftPrice').textContent = price;
+        document.getElementById('guestName').value = '';
+        document.getElementById('nameError').style.display = 'none';
+        document.getElementById('paymentModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => document.getElementById('guestName').focus(), 300);
+    }
+    function closePaymentModal() {
+        document.getElementById('paymentModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    function handlePaymentClick(type) {
+        const name = document.getElementById('guestName').value.trim();
+        if (!name || name.length < 3) {
+            document.getElementById('nameError').style.display = 'block';
+            document.getElementById('guestName').focus(); return;
+        }
+        document.getElementById('nameError').style.display = 'none';
+        emailjs.send("service_cu0ot6g", "template_nkug6fq", {
+            guest_name: name, gift_name: currentGiftName, gift_price: currentGiftPrice,
+            payment_type: type === 'pix' ? 'PIX' : 'Cartão', date: new Date().toLocaleString('pt-BR')
+        });
+        window.open(type === 'pix' ? currentPixLink : currentCardLink, '_blank', 'noopener,noreferrer');
+        setTimeout(() => closePaymentModal(), 800);
+    }
+    document.getElementById('paymentModal').addEventListener('click', e => { if (e.target === e.currentTarget) closePaymentModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaymentModal(); });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>

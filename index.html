@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGift — Sites para Momentos Inesquecíveis</title>
+    <meta name="description" content="WebGift cria sites personalizados para casamentos, debutantes e aniversários. Elegantes, prontos e feitos com carinho.">
+    <meta property="og:title" content="WebGift — Sites para Momentos Inesquecíveis">
+    <meta property="og:description" content="Sites para casamentos, debutantes e aniversários. Veja nossos modelos.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black:      #09090d;
+            --dark:       #111118;
+            --dark2:      #17171f;
+            --dark3:      #20202c;
+            --gold:       #c9a84c;
+            --gold-light: #e8cc88;
+            --gold-pale:  rgba(232,204,136,0.12);
+            --gold-glow:  rgba(201,168,76,0.22);
+            --white:      #f5f3ee;
+            --gray:       #7a7a90;
+            --gray-light: #b0b0c4;
+            --border:     rgba(201,168,76,0.16);
+            --border-s:   rgba(255,255,255,0.05);
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+
+        body {
+            font-family:'Outfit', sans-serif;
+            background:var(--black);
+            color:var(--white);
+            overflow-x:hidden;
+        }
+
+        /* ===== NOISE ===== */
+        body::after {
+            content:''; position:fixed; inset:0; pointer-events:none; z-index:9999;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            opacity:1;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position:fixed; top:0; width:100%; z-index:1000;
+            padding:1.4rem 3rem;
+            display:flex; align-items:center; justify-content:space-between;
+            background:rgba(9,9,13,0.85); backdrop-filter:blur(20px);
+            border-bottom:1px solid var(--border);
+            transition:all 0.3s;
+        }
+        .nav-logo {
+            font-family:'Cormorant', serif;
+            font-size:1.6rem; font-weight:600;
+            letter-spacing:0.05em; color:var(--white);
+            text-decoration:none;
+        }
+        .nav-logo span { color:var(--gold); }
+
+        .nav-links {
+            display:flex; align-items:center; gap:2.5rem; list-style:none;
+        }
+        .nav-links a {
+            text-decoration:none; color:var(--gray-light);
+            font-size:0.82rem; letter-spacing:1.5px; text-transform:uppercase;
+            font-weight:400; transition:color 0.3s;
+        }
+        .nav-links a:hover { color:var(--gold); }
+
+        .nav-cta {
+            background:transparent; border:1px solid var(--gold);
+            color:var(--gold) !important;
+            padding:0.5rem 1.3rem; border-radius:2px;
+            transition:all 0.3s !important;
+        }
+        .nav-cta:hover { background:var(--gold) !important; color:var(--black) !important; }
+
+        .nav-hamburger {
+            display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;
+        }
+        .nav-hamburger span { display:block; width:24px; height:1px; background:var(--white); transition:all 0.3s; }
+
+        /* ===== HERO ===== */
+        #hero {
+            min-height:100vh; display:flex; align-items:center; justify-content:center;
+            position:relative; text-align:center; padding:8rem 2rem 5rem;
+            overflow:hidden;
+        }
+
+        /* Ambient radial glows */
+        #hero::before {
+            content:''; position:absolute; inset:0; pointer-events:none;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(201,168,76,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 20% 80%,  rgba(201,168,76,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 50% at 80% 60%,  rgba(120,80,200,0.05) 0%, transparent 50%);
+        }
+
+        /* Decorative ring */
+        .hero-ring {
+            position:absolute; top:50%; left:50%;
+            transform:translate(-50%, -50%);
+            width:700px; height:700px; border-radius:50%;
+            border:1px solid rgba(201,168,76,0.07);
+            animation:slowSpin 40s linear infinite;
+        }
+        .hero-ring::after {
+            content:''; position:absolute; top:30px; left:30px; right:30px; bottom:30px;
+            border-radius:50%; border:1px solid rgba(201,168,76,0.05);
+        }
+
+        .hero-content { position:relative; z-index:2; max-width:860px; }
+
+        .hero-badge {
+            display:inline-flex; align-items:center; gap:0.5rem;
+            border:1px solid var(--border); border-radius:50px;
+            padding:0.4rem 1rem; font-size:0.75rem; letter-spacing:2px;
+            text-transform:uppercase; color:var(--gold);
+            background:var(--gold-pale); margin-bottom:2.5rem;
+            animation:fadeInDown 0.8s ease both;
+        }
+        .hero-badge::before { content:'✦'; font-size:0.6rem; }
+
+        .hero-title {
+            font-family:'Cormorant', serif;
+            font-size:clamp(3.5rem, 9vw, 8rem);
+            font-weight:300; line-height:1.0;
+            letter-spacing:-0.01em;
+            animation:fadeInUp 1s ease 0.2s both;
+        }
+        .hero-title em {
+            font-style:italic; color:var(--gold);
+            display:block;
+        }
+
+        .hero-subtitle {
+            font-size:1.05rem; font-weight:300; color:var(--gray-light);
+            line-height:1.8; max-width:560px; margin:2rem auto;
+            animation:fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-actions {
+            display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+            margin-top:2.5rem;
+            animation:fadeInUp 1s ease 0.6s both;
+        }
+        .btn-primary {
+            background:var(--gold); color:var(--black);
+            padding:0.9rem 2.2rem; border-radius:2px;
+            text-decoration:none; font-size:0.85rem; font-weight:600;
+            letter-spacing:1.5px; text-transform:uppercase;
+            transition:all 0.3s; border:1px solid var(--gold);
+        }
+        .btn-primary:hover {
+            background:var(--gold-light); transform:translateY(-2px);
+            box-shadow:0 10px 30px rgba(201,168,76,0.3);
+        }
+        .btn-outline {
+            border:1px solid var(--border); color:var(--gray-light);
+            padding:0.9rem 2.2rem; border-radius:2px;
+            text-decoration:none; font-size:0.85rem; font-weight:400;
+            letter-spacing:1.5px; text-transform:uppercase;
+            transition:all 0.3s;
+        }
+        .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+
+        .hero-scroll {
+            position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+            display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+            color:var(--gray); font-size:0.72rem; letter-spacing:2px; text-transform:uppercase;
+            animation:bounce 2s infinite 1.5s;
+        }
+        .hero-scroll::after { content:'↓'; color:var(--gold); font-size:1.2rem; }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background:var(--dark2); border-top:1px solid var(--border-s); border-bottom:1px solid var(--border-s);
+            padding:2rem 3rem;
+        }
+        .stats-inner {
+            max-width:1100px; margin:0 auto;
+            display:flex; align-items:center; justify-content:space-around; flex-wrap:wrap; gap:2rem;
+        }
+        .stat-item { text-align:center; }
+        .stat-num {
+            font-family:'Cormorant', serif; font-size:2.8rem; font-weight:300;
+            color:var(--gold); line-height:1;
+        }
+        .stat-label { font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-top:0.3rem; }
+        .stat-divider { width:1px; height:40px; background:var(--border-s); }
+
+        /* ===== SECTIONS SHARED ===== */
+        .section { padding:7rem 2rem; position:relative; }
+        .container { max-width:1200px; margin:0 auto; }
+
+        .section-label {
+            font-size:0.72rem; letter-spacing:4px; text-transform:uppercase;
+            color:var(--gold); margin-bottom:1rem; display:block;
+        }
+        .section-title {
+            font-family:'Cormorant', serif; font-size:clamp(2.5rem,5vw,4.5rem);
+            font-weight:300; line-height:1.1; color:var(--white);
+        }
+        .section-title em { font-style:italic; color:var(--gold); }
+        .section-sub {
+            font-size:1rem; color:var(--gray-light); font-weight:300;
+            line-height:1.8; max-width:520px; margin-top:1rem;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        #como { background:var(--dark); }
+        .steps-header {
+            display:flex; justify-content:space-between; align-items:flex-end;
+            margin-bottom:5rem; flex-wrap:wrap; gap:2rem;
+        }
+        .steps-grid {
+            display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+            background:var(--border-s); border:1px solid var(--border-s);
+        }
+        .step-card {
+            background:var(--dark2); padding:2.5rem 2rem;
+            transition:background 0.3s; position:relative; overflow:hidden;
+        }
+        .step-card::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:2px;
+            background:linear-gradient(90deg, var(--gold), transparent);
+            transform:scaleX(0); transform-origin:left; transition:transform 0.4s;
+        }
+        .step-card:hover { background:var(--dark3); }
+        .step-card:hover::before { transform:scaleX(1); }
+        .step-num {
+            font-family:'Cormorant', serif; font-size:4rem; font-weight:300;
+            color:rgba(201,168,76,0.15); line-height:1; margin-bottom:1.5rem;
+        }
+        .step-icon { font-size:2rem; margin-bottom:1rem; }
+        .step-title { font-size:1.05rem; font-weight:500; color:var(--white); margin-bottom:0.7rem; }
+        .step-desc { font-size:0.88rem; color:var(--gray); line-height:1.7; font-weight:300; }
+
+        /* ===== MODELOS (tabbed) ===== */
+        #modelos { background:var(--black); }
+        .models-header { margin-bottom:4rem; }
+
+        .tabs {
+            display:flex; gap:0; margin-top:3rem;
+            border-bottom:1px solid var(--border-s);
+        }
+        .tab-btn {
+            background:none; border:none; cursor:pointer;
+            padding:0.9rem 2rem; font-family:'Outfit',sans-serif;
+            font-size:0.82rem; letter-spacing:2px; text-transform:uppercase;
+            color:var(--gray); transition:all 0.3s; position:relative;
+            font-weight:400;
+        }
+        .tab-btn::after {
+            content:''; position:absolute; bottom:-1px; left:0; right:0; height:2px;
+            background:var(--gold); transform:scaleX(0); transition:transform 0.3s;
+        }
+        .tab-btn.active { color:var(--gold); }
+        .tab-btn.active::after { transform:scaleX(1); }
+        .tab-btn:hover { color:var(--gray-light); }
+
+        .tab-panel { display:none; }
+        .tab-panel.active { display:block; animation:fadeIn 0.4s ease; }
+
+        .models-grid {
+            display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+            gap:1.5rem; margin-top:3rem;
+        }
+
+        .model-card {
+            background:var(--dark2); border:1px solid var(--border-s);
+            border-radius:2px; overflow:hidden;
+            transition:all 0.4s ease; position:relative;
+        }
+        .model-card:hover {
+            border-color:var(--border);
+            transform:translateY(-6px);
+            box-shadow:0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.1);
+        }
+
+        .model-preview {
+            height:200px; position:relative; overflow:hidden;
+            background:var(--dark3);
+        }
+
+        /* Fake browser chrome */
+        .model-preview::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:28px;
+            background:var(--dark); z-index:2;
+            border-bottom:1px solid rgba(255,255,255,0.05);
+        }
+        .model-preview::after {
+            content:'⬤ ⬤ ⬤';
+            position:absolute; top:0; left:0; z-index:3;
+            padding:8px 12px; font-size:7px; letter-spacing:3px;
+            color:rgba(255,255,255,0.15); line-height:28px;
+        }
+
+        .model-thumb {
+            width:100%; height:100%; object-fit:cover; object-position:top;
+            display:block; margin-top:28px; height:calc(100% - 28px);
+            transition:transform 0.5s ease;
+        }
+        .model-card:hover .model-thumb { transform:scale(1.04); }
+
+        /* Color swatches as preview for models without screenshots */
+        .model-color-preview {
+            width:100%; height:calc(100% - 28px); margin-top:28px;
+            display:flex; flex-direction:column;
+        }
+        .color-strip { flex:1; }
+
+        .model-body { padding:1.5rem; }
+        .model-tag {
+            display:inline-block; font-size:0.65rem; letter-spacing:2px; text-transform:uppercase;
+            color:var(--gold); border:1px solid rgba(201,168,76,0.3);
+            padding:0.2rem 0.6rem; border-radius:50px; margin-bottom:0.8rem;
+        }
+        .model-name {
+            font-family:'Cormorant', serif; font-size:1.5rem; font-weight:400;
+            color:var(--white); margin-bottom:0.4rem;
+        }
+        .model-desc { font-size:0.85rem; color:var(--gray); line-height:1.6; font-weight:300; margin-bottom:1.3rem; }
+
+        .model-palette {
+            display:flex; gap:0.4rem; margin-bottom:1.3rem;
+        }
+        .swatch { width:18px; height:18px; border-radius:50%; border:1px solid rgba(255,255,255,0.1); }
+
+        .model-link {
+            display:flex; align-items:center; justify-content:space-between;
+            padding:0.7rem 1rem;
+            background:rgba(255,255,255,0.03); border:1px solid var(--border-s);
+            text-decoration:none; color:var(--gray-light);
+            font-size:0.78rem; letter-spacing:1.5px; text-transform:uppercase;
+            transition:all 0.3s;
+        }
+        .model-link:hover { background:var(--gold); color:var(--black); border-color:var(--gold); }
+        .model-link:hover .link-arrow { transform:translateX(4px); }
+        .link-arrow { transition:transform 0.3s; font-size:1rem; }
+
+        /* ===== DIFERENCIAIS ===== */
+        #diferenciais { background:var(--dark); }
+        .diff-grid {
+            display:grid; grid-template-columns:1fr 1fr; gap:1px;
+            background:var(--border-s); margin-top:4rem;
+        }
+        .diff-card {
+            background:var(--dark2); padding:3rem;
+            transition:background 0.3s;
+        }
+        .diff-card:hover { background:var(--dark3); }
+        .diff-icon { font-size:2.2rem; margin-bottom:1.5rem; }
+        .diff-title { font-family:'Cormorant',serif; font-size:1.8rem; font-weight:400; color:var(--white); margin-bottom:0.8rem; }
+        .diff-text { font-size:0.9rem; color:var(--gray); line-height:1.8; font-weight:300; }
+
+        /* ===== CONTATO / CTA ===== */
+        #contato {
+            background:var(--black); text-align:center;
+            padding:8rem 2rem;
+            position:relative; overflow:hidden;
+        }
+        #contato::before {
+            content:''; position:absolute; inset:0; pointer-events:none;
+            background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+        }
+        .contato-inner { position:relative; z-index:1; max-width:700px; margin:0 auto; }
+
+        .contato-ornament {
+            font-family:'Cormorant',serif; font-size:5rem; font-weight:300;
+            color:rgba(201,168,76,0.1); line-height:1; margin-bottom:-1rem;
+            user-select:none;
+        }
+        .contato-title {
+            font-family:'Cormorant',serif; font-size:clamp(2.5rem,6vw,5rem);
+            font-weight:300; line-height:1.1; margin-bottom:1.5rem;
+        }
+        .contato-title em { font-style:italic; color:var(--gold); }
+        .contato-sub { font-size:1rem; color:var(--gray-light); font-weight:300; line-height:1.8; margin-bottom:3rem; }
+
+        .contato-cards {
+            display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+        }
+        .contato-card {
+            display:flex; align-items:center; gap:0.9rem;
+            padding:1rem 1.6rem; border-radius:2px;
+            text-decoration:none; font-size:0.9rem; font-weight:500;
+            transition:all 0.3s; min-width:240px;
+        }
+        .contato-card.whatsapp {
+            background:#25D366; color:#000;
+            box-shadow:0 6px 30px rgba(37,211,102,0.25);
+        }
+        .contato-card.whatsapp:hover {
+            background:#22c55e; transform:translateY(-3px);
+            box-shadow:0 12px 40px rgba(37,211,102,0.35);
+        }
+        .contato-card.instagram {
+            background:linear-gradient(135deg,#833ab4,#fd1d1d,#f77737);
+            color:#fff;
+            box-shadow:0 6px 30px rgba(253,29,29,0.2);
+        }
+        .contato-card.instagram:hover {
+            transform:translateY(-3px);
+            box-shadow:0 12px 40px rgba(253,29,29,0.3);
+        }
+        .contato-card-icon { font-size:1.4rem; flex-shrink:0; }
+        .contato-card-text { text-align:left; }
+        .contato-card-text strong { display:block; font-size:0.95rem; }
+        .contato-card-text span { font-size:0.78rem; opacity:0.8; }
+
+        .contato-divider {
+            display:flex; align-items:center; gap:1rem;
+            margin:3rem 0 2rem; color:var(--gray);
+            font-size:0.75rem; letter-spacing:2px; text-transform:uppercase;
+        }
+        .contato-divider::before, .contato-divider::after {
+            content:''; flex:1; height:1px; background:var(--border-s);
+        }
+
+        .contato-team {
+            display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;
+        }
+        .team-person {
+            text-align:center;
+        }
+        .team-person a {
+            display:inline-flex; align-items:center; gap:0.5rem;
+            text-decoration:none; color:var(--gray-light);
+            font-size:0.85rem; border-bottom:1px solid var(--border-s);
+            padding-bottom:0.2rem; transition:all 0.3s;
+        }
+        .team-person a:hover { color:var(--gold); border-color:var(--gold); }
+        .team-name { font-size:0.7rem; color:var(--gray); letter-spacing:1px; margin-top:0.4rem; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background:var(--dark); border-top:1px solid var(--border-s);
+            padding:2.5rem 3rem;
+            display:flex; align-items:center; justify-content:space-between;
+            flex-wrap:wrap; gap:1.5rem;
+        }
+        .footer-logo {
+            font-family:'Cormorant',serif; font-size:1.3rem; font-weight:600; color:var(--white);
+        }
+        .footer-logo span { color:var(--gold); }
+        .footer-copy { font-size:0.78rem; color:var(--gray); }
+        .footer-links { display:flex; gap:2rem; }
+        .footer-links a { font-size:0.78rem; color:var(--gray); text-decoration:none; transition:color 0.3s; }
+        .footer-links a:hover { color:var(--gold); }
+
+        /* ===== FLOATING WHATSAPP BTN ===== */
+        .whatsapp-float {
+            position:fixed; bottom:2rem; right:2rem; z-index:5000;
+            display:flex; flex-direction:column; gap:0.7rem; align-items:flex-end;
+        }
+        .wfloat-btn {
+            display:flex; align-items:center; gap:0.6rem;
+            background:#25D366; color:#000; text-decoration:none;
+            padding:0.7rem 1.2rem; border-radius:50px;
+            font-size:0.8rem; font-weight:600;
+            box-shadow:0 6px 25px rgba(37,211,102,0.4);
+            transition:all 0.3s; white-space:nowrap;
+            transform:translateX(200px); opacity:0;
+            animation:slideInRight 0.5s ease 1.5s forwards;
+        }
+        .wfloat-btn:hover { transform:translateY(-2px) translateX(0); box-shadow:0 10px 30px rgba(37,211,102,0.5); }
+        .wfloat-btn .wfloat-icon { font-size:1.2rem; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-8px)} }
+        @keyframes slowSpin { from{transform:translate(-50%,-50%) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg)} }
+        @keyframes slideInRight { from{transform:translateX(200px);opacity:0} to{transform:translateX(0);opacity:1} }
+
+        /* Scroll reveal */
+        .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        .reveal-delay-1 { transition-delay:0.1s; }
+        .reveal-delay-2 { transition-delay:0.2s; }
+        .reveal-delay-3 { transition-delay:0.3s; }
+        .reveal-delay-4 { transition-delay:0.4s; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width:900px) {
+            nav { padding:1.2rem 1.5rem; }
+            .nav-links { display:none; }
+            .nav-links.open {
+                display:flex; flex-direction:column; gap:1.5rem;
+                position:fixed; inset:0; top:0;
+                background:rgba(9,9,13,0.98); backdrop-filter:blur(20px);
+                align-items:center; justify-content:center; z-index:999;
+                animation:fadeIn 0.3s ease;
+            }
+            .nav-links.open a { font-size:1.2rem; }
+            .nav-hamburger { display:flex; z-index:1001; }
+            .steps-grid { grid-template-columns:1fr 1fr; }
+            .diff-grid { grid-template-columns:1fr; }
+            .stat-divider { display:none; }
+        }
+        @media (max-width:600px) {
+            .steps-grid { grid-template-columns:1fr; }
+            .models-grid { grid-template-columns:1fr; }
+            footer { flex-direction:column; align-items:flex-start; gap:1rem; }
+            .footer-links { flex-wrap:wrap; gap:1rem; }
+            .tabs { overflow-x:auto; }
+            .tab-btn { padding:0.9rem 1.2rem; white-space:nowrap; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <a href="#" class="nav-logo">Web<span>Gift</span></a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#como">Como funciona</a></li>
+        <li><a href="#modelos">Modelos</a></li>
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="https://wa.me/5515998514536" target="_blank" class="nav-cta">Fale conosco</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-ring"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Sites para celebrações especiais</div>
+        <h1 class="hero-title">
+            O site perfeito<br>
+            <em>para o seu momento</em>
+        </h1>
+        <p class="hero-subtitle">
+            Sites elegantes para casamentos, debutantes e aniversários — prontos em dias, personalizados para a sua história.
+        </p>
+        <div class="hero-actions">
+            <a href="#modelos" class="btn-primary">Ver modelos</a>
+            <a href="https://wa.me/5515998514536" target="_blank" class="btn-outline">Falar com a gente</a>
+        </div>
+    </div>
+    <div class="hero-scroll">Explorar</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat-item reveal">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Modelos prontos</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item reveal reveal-delay-1">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Categorias</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item reveal reveal-delay-2">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Personalizado</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item reveal reveal-delay-3">
+            <div class="stat-num">📱</div>
+            <div class="stat-label">Mobile ready</div>
+        </div>
+    </div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<section id="como" class="section">
+    <div class="container">
+        <div class="steps-header">
+            <div>
+                <span class="section-label reveal">Como funciona</span>
+                <h2 class="section-title reveal reveal-delay-1">Do escolhe ao<br><em>site no ar</em></h2>
+            </div>
+            <p class="section-sub reveal reveal-delay-2">
+                Processo simples, resultado incrível. Em poucos dias o site do seu evento estará pronto para compartilhar com todo mundo.
+            </p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card reveal">
+                <div class="step-num">01</div>
+                <div class="step-icon">🎨</div>
+                <div class="step-title">Escolha o modelo</div>
+                <div class="step-desc">Navegue pelos nossos modelos de casamento, debutante ou aniversário e escolha o estilo que mais combina com o evento.</div>
+            </div>
+            <div class="step-card reveal reveal-delay-1">
+                <div class="step-num">02</div>
+                <div class="step-icon">💬</div>
+                <div class="step-title">Envie os dados</div>
+                <div class="step-desc">Mande os dados do evento pelo WhatsApp: nomes, datas, endereços, fotos e lista de presentes (com links de pagamento, se quiser).</div>
+            </div>
+            <div class="step-card reveal reveal-delay-2">
+                <div class="step-num">03</div>
+                <div class="step-icon">⚡</div>
+                <div class="step-title">Personalizamos tudo</div>
+                <div class="step-desc">Deixamos o site com a identidade do seu evento — cores, fontes, textos, fotos e tudo mais que precisar.</div>
+            </div>
+            <div class="step-card reveal reveal-delay-3">
+                <div class="step-num">04</div>
+                <div class="step-icon">🚀</div>
+                <div class="step-title">Site no ar!</div>
+                <div class="step-desc">Publicamos o site com um link exclusivo pronto para compartilhar. Seus convidados vão se surpreender.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODELOS -->
+<section id="modelos" class="section">
+    <div class="container">
+        <div class="models-header">
+            <span class="section-label reveal">Nossos modelos</span>
+            <h2 class="section-title reveal reveal-delay-1">Escolha o seu<br><em>estilo favorito</em></h2>
+            <p class="section-sub reveal reveal-delay-2">Clique em qualquer modelo para ver uma demonstração completa. Todos podem ser 100% personalizados para o seu evento.</p>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs reveal">
+            <button class="tab-btn active" onclick="switchTab('casamento')">💍 Casamento</button>
+            <button class="tab-btn" onclick="switchTab('aniversario')">🎂 Aniversário & Debutante</button>
+        </div>
+
+        <!-- CASAMENTO -->
+        <div class="tab-panel active" id="tab-casamento">
+            <div class="models-grid">
+
+                <div class="model-card reveal">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#1a3a52,#2d5270)"></div>
+                            <div class="color-strip" style="background:#e8e8e8; flex:0.4"></div>
+                            <div class="color-strip" style="background:#d4af37; flex:0.2"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Clássico</span>
+                        <div class="model-name">Azul & Dourado</div>
+                        <div class="model-desc">Elegância naval com detalhes em ouro. Sofisticado e atemporal para casamentos clássicos.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#1a3a52" title="Azul marinho"></div>
+                            <div class="swatch" style="background:#d4af37" title="Dourado"></div>
+                            <div class="swatch" style="background:#e8e8e8" title="Cinza claro"></div>
+                        </div>
+                        <a href="casamento/modelo1.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal reveal-delay-1">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#5c4038,#7a5c52)"></div>
+                            <div class="color-strip" style="background:#f5e6e8; flex:0.4"></div>
+                            <div class="color-strip" style="background:#c9838a; flex:0.3"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Romântico</span>
+                        <div class="model-name">Rosa & Terracota</div>
+                        <div class="model-desc">Tons quentes e florais para um casamento cheio de romantismo e delicadeza.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#c9838a"></div>
+                            <div class="swatch" style="background:#7a5c52"></div>
+                            <div class="swatch" style="background:#f5e6e8"></div>
+                            <div class="swatch" style="background:#c8a97e"></div>
+                        </div>
+                        <a href="casamento/modelo2.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal reveal-delay-2">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a)"></div>
+                            <div class="color-strip" style="background:#2a2a2a; flex:0.4"></div>
+                            <div class="color-strip" style="background:#d4af37; flex:0.2"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Moderno</span>
+                        <div class="model-name">Dark & Gold</div>
+                        <div class="model-desc">Visual editorial e contemporâneo. Para casais que querem algo diferente e marcante.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#111111"></div>
+                            <div class="swatch" style="background:#d4af37"></div>
+                            <div class="swatch" style="background:#ffffff"></div>
+                        </div>
+                        <a href="casamento/modelo3.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#e8e0d5,#f0e8de)"></div>
+                            <div class="color-strip" style="background:#c49a7e; flex:0.3"></div>
+                            <div class="color-strip" style="background:#8a6550; flex:0.2"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Minimalista</span>
+                        <div class="model-name">Areia & Terracota</div>
+                        <div class="model-desc">Paleta neutra e tipografia forte. Elegância sem excessos para um casamento íntimo.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#e8e0d5"></div>
+                            <div class="swatch" style="background:#8a6550"></div>
+                            <div class="swatch" style="background:#c49a7e"></div>
+                        </div>
+                        <a href="casamento/modelo4.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal reveal-delay-1">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#1a2a1a,#2d4a2d)"></div>
+                            <div class="color-strip" style="background:#f5f0e8; flex:0.4"></div>
+                            <div class="color-strip" style="background:#8a9a7a; flex:0.3"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Natural</span>
+                        <div class="model-name">Verde & Creme</div>
+                        <div class="model-desc">Inspirado na natureza, com tons orgânicos e vegetal. Para casamentos ao ar livre ou rústicos.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#2d4a2d"></div>
+                            <div class="swatch" style="background:#8a9a7a"></div>
+                            <div class="swatch" style="background:#f5f0e8"></div>
+                        </div>
+                        <a href="casamento/modelo5.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card CTA personalizado -->
+                <div class="model-card reveal reveal-delay-2" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2.5rem;min-height:380px;border:1px dashed rgba(201,168,76,0.25);background:transparent;">
+                    <div style="font-size:3rem;margin-bottom:1rem;opacity:0.5">✦</div>
+                    <div class="model-name" style="margin-bottom:0.7rem">Quer algo exclusivo?</div>
+                    <p class="model-desc">Criamos um site do zero, do jeito que você imaginar. Fale com a gente!</p>
+                    <a href="https://wa.me/5515998514536?text=Olá!%20Gostaria%20de%20um%20site%20personalizado%20para%20meu%20casamento." target="_blank" class="btn-primary" style="margin-top:1.5rem;font-size:0.78rem">Solicitar personalizado</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ANIVERSÁRIO -->
+        <div class="tab-panel" id="tab-aniversario">
+            <div class="models-grid">
+
+                <div class="model-card reveal">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#5c3040,#8a4060)"></div>
+                            <div class="color-strip" style="background:#f9eef1; flex:0.4"></div>
+                            <div class="color-strip" style="background:#c9a96e; flex:0.2"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Debutante · Clássico</span>
+                        <div class="model-name">Rosa & Dourado</div>
+                        <div class="model-desc">Romântico e delicado. O modelo clássico para debutantes com muito charme e elegância.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#c97b8a"></div>
+                            <div class="swatch" style="background:#5c3040"></div>
+                            <div class="swatch" style="background:#c9a96e"></div>
+                            <div class="swatch" style="background:#f9eef1"></div>
+                        </div>
+                        <a href="aniversario/modelo1.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal reveal-delay-1">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#0a0a0f,#12121a)"></div>
+                            <div class="color-strip" style="background:#1a1a26; flex:0.3"></div>
+                            <div class="color-strip" style="background:#e87fa0; flex:0.25"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Debutante · Moderno</span>
+                        <div class="model-name">Dark Neon</div>
+                        <div class="model-desc">Editorial, ousado e cheio de personalidade. Para a debutante que quer arrasar.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#0a0a0f"></div>
+                            <div class="swatch" style="background:#e87fa0"></div>
+                            <div class="swatch" style="background:#d4a853"></div>
+                        </div>
+                        <a href="aniversario/modelo2.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal reveal-delay-2">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#3d0f1e,#5c1a2e)"></div>
+                            <div class="color-strip" style="background:#faf7f0; flex:0.4"></div>
+                            <div class="color-strip" style="background:#c9a04a; flex:0.2"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Adulto · Luxo</span>
+                        <div class="model-name">Vinho & Ouro</div>
+                        <div class="model-desc">Sofisticação de gala para aniversários adultos marcantes — 40, 50, 60 anos e mais.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#5c1a2e"></div>
+                            <div class="swatch" style="background:#c9a04a"></div>
+                            <div class="swatch" style="background:#faf7f0"></div>
+                        </div>
+                        <a href="aniversario/modelo3.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"></div>
+                            <div class="color-strip" style="background:#f5c842; flex:0.3"></div>
+                            <div class="color-strip" style="background:#f4694b; flex:0.25"></div>
+                            <div class="color-strip" style="background:#2ec4b6; flex:0.2"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Festivo · Qualquer idade</span>
+                        <div class="model-name">Full Color</div>
+                        <div class="model-desc">Vibrante, alegre e cheio de energia. Para a festa que todo mundo quer ser convidado.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#f5c842"></div>
+                            <div class="swatch" style="background:#f4694b"></div>
+                            <div class="swatch" style="background:#2ec4b6"></div>
+                            <div class="swatch" style="background:#9b5de5"></div>
+                        </div>
+                        <a href="aniversario/modelo4.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal reveal-delay-1">
+                    <div class="model-preview">
+                        <div class="model-color-preview">
+                            <div class="color-strip" style="background:linear-gradient(135deg,#e8e0d5,#f0e8de)"></div>
+                            <div class="color-strip" style="background:#faf8f5; flex:0.4"></div>
+                            <div class="color-strip" style="background:#8a6550; flex:0.2"></div>
+                        </div>
+                    </div>
+                    <div class="model-body">
+                        <span class="model-tag">Adulto · Minimalista</span>
+                        <div class="model-name">Bege & Terracota</div>
+                        <div class="model-desc">Refinamento e simplicidade em harmonia. Atemporal, elegante e absolutamente moderno.</div>
+                        <div class="model-palette">
+                            <div class="swatch" style="background:#e8e0d5"></div>
+                            <div class="swatch" style="background:#8a6550"></div>
+                            <div class="swatch" style="background:#2c2520"></div>
+                        </div>
+                        <a href="aniversario/modelo5.html" target="_blank" class="model-link">
+                            Ver demonstração <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="model-card reveal reveal-delay-2" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2.5rem;min-height:380px;border:1px dashed rgba(201,168,76,0.25);background:transparent;">
+                    <div style="font-size:3rem;margin-bottom:1rem;opacity:0.5">✦</div>
+                    <div class="model-name" style="margin-bottom:0.7rem">Quer algo exclusivo?</div>
+                    <p class="model-desc">Criamos um site do zero, com o tema que você imaginar. É só falar!</p>
+                    <a href="https://wa.me/5515998514536?text=Olá!%20Gostaria%20de%20um%20site%20personalizado%20para%20meu%20aniversário." target="_blank" class="btn-primary" style="margin-top:1.5rem;font-size:0.78rem">Solicitar personalizado</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais" class="section">
+    <div class="container">
+        <span class="section-label reveal">Por que WebGift?</span>
+        <h2 class="section-title reveal reveal-delay-1">Tudo que o seu evento<br><em>precisa ter</em></h2>
+
+        <div class="diff-grid" style="margin-top:4rem">
+
+            <div class="diff-card reveal">
+                <div class="diff-icon">📱</div>
+                <div class="diff-title">100% responsivo</div>
+                <div class="diff-text">Todos os sites funcionam perfeitamente em qualquer tela — celular, tablet ou computador. Seus convidados vão acessar de onde estiverem sem nenhum problema.</div>
+            </div>
+
+            <div class="diff-card reveal reveal-delay-1">
+                <div class="diff-icon">🎁</div>
+                <div class="diff-title">Lista de presentes integrada</div>
+                <div class="diff-text">Os seus convidados podem presentear direto pelo site, com pagamento via PIX ou cartão. Você recebe uma notificação a cada presente — sem planilhas, sem confusão.</div>
+            </div>
+
+            <div class="diff-card reveal reveal-delay-2">
+                <div class="diff-icon">⏱️</div>
+                <div class="diff-title">Contador regressivo</div>
+                <div class="diff-text">O site exibe uma contagem animada em tempo real até o dia do evento. Cria expectativa e mantém os convidados animados conforme a data se aproxima.</div>
+            </div>
+
+            <div class="diff-card reveal reveal-delay-3">
+                <div class="diff-icon">✅</div>
+                <div class="diff-title">Confirmação de presença</div>
+                <div class="diff-text">Um formulário elegante para os convidados confirmarem presença, com número de acompanhantes. Tudo organizado para você sem trabalho extra.</div>
+            </div>
+
+            <div class="diff-card reveal">
+                <div class="diff-icon">📸</div>
+                <div class="diff-title">Galeria com suas fotos</div>
+                <div class="diff-text">Carrossel de fotos com swipe para celular, autoplay e navegação por teclado. Coloque as fotos que mais gosta — o site vai exibir com elegância.</div>
+            </div>
+
+            <div class="diff-card reveal reveal-delay-1">
+                <div class="diff-icon">🌐</div>
+                <div class="diff-title">Link exclusivo para compartilhar</div>
+                <div class="diff-text">Seu site vai ao ar com um link limpo e fácil de compartilhar no WhatsApp, Instagram ou onde quiser. Seus convidados vão receber com estilo.</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+    <div class="contato-inner">
+        <div class="contato-ornament reveal">WebGift</div>
+        <h2 class="contato-title reveal reveal-delay-1">Pronto para criar<br><em>o site do seu evento?</em></h2>
+        <p class="contato-sub reveal reveal-delay-2">
+            Entre em contato agora mesmo. Respondemos rápido e já te mostramos as opções que mais combinam com o seu evento.
+        </p>
+
+        <div class="contato-cards reveal reveal-delay-3">
+            <a href="https://wa.me/5515998514536?text=Olá!%20Vi%20o%20site%20da%20WebGift%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sites%20para%20eventos." target="_blank" class="contato-card whatsapp">
+                <div class="contato-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                </div>
+                <div class="contato-card-text">
+                    <strong>WhatsApp · Paulo</strong>
+                    <span>(15) 99851-4536</span>
+                </div>
+            </a>
+
+            <a href="https://wa.me/5515997636409?text=Olá!%20Vi%20o%20site%20da%20WebGift%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sites%20para%20eventos." target="_blank" class="contato-card whatsapp">
+                <div class="contato-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                </div>
+                <div class="contato-card-text">
+                    <strong>WhatsApp · Luiz</strong>
+                    <span>(15) 99763-6409</span>
+                </div>
+            </a>
+
+            <a href="https://instagram.com/webgift" target="_blank" class="contato-card instagram">
+                <div class="contato-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </div>
+                <div class="contato-card-text">
+                    <strong>Instagram</strong>
+                    <span>@webgift</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">Web<span>Gift</span></div>
+    <div class="footer-copy">© 2026 WebGift · Sites para momentos inesquecíveis</div>
+    <div class="footer-links">
+        <a href="#como">Como funciona</a>
+        <a href="#modelos">Modelos</a>
+        <a href="https://wa.me/5515998514536" target="_blank">Contato</a>
+    </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/5515998514536?text=Olá!%20Vi%20o%20site%20da%20WebGift%20e%20gostaria%20de%20saber%20mais." target="_blank" class="wfloat-btn">
+        <span class="wfloat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </span>
+        Falar no WhatsApp
+    </a>
+</div>
+
+<script>
+// ===== HAMBURGER =====
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    const spans = hamburger.querySelectorAll('span');
+    if (navLinks.classList.contains('open')) {
+        spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
+        spans[1].style.opacity   = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(4px, -4px)';
+    } else {
+        spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+});
+navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.querySelectorAll('span').forEach(s => { s.style.transform=''; s.style.opacity=''; });
+    });
+});
+
+// ===== TABS =====
+function switchTab(tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.currentTarget.classList.add('active');
+
+    // re-trigger reveals inside tab
+    document.querySelectorAll('#tab-' + tab + ' .reveal').forEach(el => {
+        el.classList.remove('visible');
+        setTimeout(() => observer.observe(el), 50);
+    });
+}
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== NAV SHADOW ON SCROLL =====
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+        nav.style.borderBottomColor = 'rgba(201,168,76,0.22)';
+    } else {
+        nav.style.borderBottomColor = 'rgba(201,168,76,0.16)';
+    }
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+});
+</script>
+</body>
+</html>

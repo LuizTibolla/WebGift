@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas · 30 Anos 🎉</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+    <meta name="description" content="Lucas está fazendo 30 anos! Vai ser a festa do ano!">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow:     #f5c842;
+            --yellow-d:   #e0a800;
+            --coral:      #f4694b;
+            --coral-d:    #d94e32;
+            --teal:       #2ec4b6;
+            --teal-d:     #1a9e92;
+            --purple:     #9b5de5;
+            --purple-d:   #7a3fc9;
+            --dark:       #1a1a2e;
+            --dark2:      #16213e;
+            --white:      #fefefe;
+            --off:        #f8f7f4;
+            --text:       #1a1a2e;
+            --text-light: #666;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+        /* CONFETTI BG PATTERN */
+        .confetti-bg {
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(245,200,66,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244,105,75,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(46,196,182,0.05) 0%, transparent 60%);
+        }
+
+        /* NAV */
+        nav {
+            position:fixed;top:0;width:100%;z-index:1000;
+            background:rgba(26,26,46,0.95);backdrop-filter:blur(16px);
+            padding:1rem 0;
+        }
+        nav ul{list-style:none;display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;padding:0 2rem}
+        nav a{text-decoration:none;color:rgba(255,255,255,0.7);font-size:0.82rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:all 0.3s}
+        nav a:hover{color:var(--yellow)}
+
+        section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:7rem 2rem;position:relative}
+        .section-content{max-width:1100px;width:100%}
+
+        /* HOME */
+        #home{background:var(--dark);overflow:hidden;text-align:center}
+        #home::before{
+            content:'';position:absolute;inset:0;
+            background:
+                radial-gradient(ellipse at 30% 60%, rgba(155,93,229,0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 40%, rgba(244,105,75,0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(46,196,182,0.2) 0%, transparent 50%);
+        }
+        .home-content{position:relative;z-index:2}
+
+        /* Floating emojis decoration */
+        .emoji-float{position:absolute;font-size:2rem;animation:floatUp 6s ease-in-out infinite;opacity:0.15;pointer-events:none;z-index:1}
+        .e1{left:5%;top:20%;animation-delay:0s;font-size:2.5rem}
+        .e2{right:8%;top:30%;animation-delay:1.5s}
+        .e3{left:15%;bottom:25%;animation-delay:3s}
+        .e4{right:12%;bottom:20%;animation-delay:0.8s;font-size:2.5rem}
+        .e5{left:40%;top:15%;animation-delay:2.2s}
+
+        .age-ring {
+            display:inline-flex;align-items:center;justify-content:center;
+            width:160px;height:160px;border-radius:50%;
+            border:3px solid var(--yellow);
+            background:linear-gradient(135deg, rgba(245,200,66,0.15), rgba(244,105,75,0.15));
+            margin-bottom:2rem;
+            box-shadow:0 0 40px rgba(245,200,66,0.2),0 0 80px rgba(244,105,75,0.1);
+            animation:spinGlow 4s ease-in-out infinite;
+        }
+        .age-ring .num {
+            font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;
+            background:linear-gradient(135deg, var(--yellow), var(--coral));
+            -webkit-background-clip:text;background-clip:text;color:transparent;
+            line-height:1;
+        }
+        .home-name {
+            font-family:'Syne',sans-serif;font-weight:800;
+            font-size:clamp(3rem,8vw,7rem);color:var(--white);letter-spacing:-0.02em;
+            line-height:1;margin-bottom:1rem;
+        }
+        .home-name span {
+            background:linear-gradient(135deg, var(--yellow), var(--coral));
+            -webkit-background-clip:text;background-clip:text;color:transparent;
+        }
+        .home-date{font-size:1rem;color:rgba(255,255,255,0.6);letter-spacing:2px;font-weight:300}
+        .home-badges{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+        .badge {
+            padding:0.5rem 1.2rem;border-radius:50px;font-size:0.82rem;font-weight:600;letter-spacing:1px;
+        }
+        .badge-y{background:rgba(245,200,66,0.2);color:var(--yellow);border:1px solid rgba(245,200,66,0.4)}
+        .badge-c{background:rgba(244,105,75,0.2);color:var(--coral);border:1px solid rgba(244,105,75,0.4)}
+        .badge-t{background:rgba(46,196,182,0.2);color:var(--teal);border:1px solid rgba(46,196,182,0.4)}
+
+        .scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite}
+        .scroll-indicator::after{content:'↓';font-size:1.8rem;color:var(--yellow);opacity:0.6}
+
+        /* SOBRE */
+        #sobre{background:var(--off);} 
+        #sobre .section-content{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+        .sobre-image{height:520px;overflow:hidden;border-radius:12px;position:relative}
+        .sobre-image img{width:100%;height:100%;object-fit:cover}
+        .sobre-image .placeholder-photo{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a2e,#16213e);font-size:5rem;opacity:0.3}
+        .image-sticker{
+            position:absolute;bottom:1.5rem;right:1.5rem;
+            background:var(--yellow);color:var(--dark);
+            font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
+            padding:0.6rem 1.2rem;border-radius:50px;
+            transform:rotate(-3deg);
+            box-shadow:4px 4px 0 var(--yellow-d);
+        }
+
+        .sobre-chip{display:inline-block;background:var(--coral);color:var(--white);font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:4px;margin-bottom:1.2rem}
+        .sobre-text h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:800;color:var(--dark);line-height:1.1;margin-bottom:1.5rem}
+        .sobre-text h2 em{color:var(--coral);font-style:normal}
+        .sobre-text p{font-size:1rem;line-height:1.85;color:var(--text-light);margin-bottom:1.2rem}
+        .fun-stats{display:flex;gap:1.5rem;margin-top:2rem;flex-wrap:wrap}
+        .fun-stat{
+            flex:1;min-width:80px;text-align:center;padding:1.2rem;
+            border-radius:12px;
+        }
+        .fun-stat.y{background:rgba(245,200,66,0.12);border:2px solid rgba(245,200,66,0.3)}
+        .fun-stat.c{background:rgba(244,105,75,0.1);border:2px solid rgba(244,105,75,0.3)}
+        .fun-stat.t{background:rgba(46,196,182,0.1);border:2px solid rgba(46,196,182,0.3)}
+        .fun-stat .emoji{font-size:1.8rem;display:block;margin-bottom:0.3rem}
+        .fun-stat .num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--dark)}
+        .fun-stat .lbl{font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-light)}
+
+        /* GALERIA */
+        #galeria{background:var(--dark2)}
+        .section-tag{display:inline-block;background:var(--teal);color:var(--dark);font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:4px;margin-bottom:1rem}
+        .section-heading-v{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:800;color:var(--white);margin-bottom:2.5rem;line-height:1}
+        .section-heading-v span{color:var(--teal)}
+
+        .gallery-main{height:480px;position:relative;overflow:hidden;border-radius:12px}
+        .carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.8s ease}
+        .carousel-slide.active{opacity:1}
+        .carousel-slide img{width:100%;height:100%;object-fit:cover}
+        .carousel-slide.placeholder-slide{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a2e,#0d1b2a);font-size:5rem}
+        .carousel-counter{position:absolute;top:1rem;right:1.2rem;z-index:5;background:rgba(26,26,46,0.85);color:var(--yellow);font-size:0.8rem;letter-spacing:1px;padding:0.3rem 0.9rem;border-radius:50px;font-weight:600}
+        .carousel-button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(26,26,46,0.85);color:var(--white);border:none;width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:10}
+        .carousel-button:hover{background:var(--yellow);color:var(--dark)}
+        .carousel-button.prev{left:1rem}
+        .carousel-button.next{right:1rem}
+        .carousel-indicators{display:flex;gap:0.5rem;margin-top:1.5rem;justify-content:center}
+        .carousel-indicator{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all 0.3s}
+        .carousel-indicator.active{background:var(--yellow);transform:scale(1.4)}
+
+        /* FESTA */
+        #festa{background:var(--off)}
+        .section-heading-f{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:800;color:var(--dark);margin-bottom:2.5rem;line-height:1}
+        .section-heading-f span{color:var(--purple)}
+        .festa-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+        .festa-card{
+            padding:2.5rem;border-radius:12px;position:relative;overflow:hidden;
+            transition:transform 0.3s,box-shadow 0.3s;
+        }
+        .festa-card:hover{transform:translateY(-4px)}
+        .festa-card.card-y{background:linear-gradient(135deg,rgba(245,200,66,0.12),rgba(245,200,66,0.05));border:2px solid rgba(245,200,66,0.3)}
+        .festa-card.card-y:hover{box-shadow:0 12px 40px rgba(245,200,66,0.15)}
+        .festa-card.card-p{background:linear-gradient(135deg,rgba(155,93,229,0.12),rgba(155,93,229,0.05));border:2px solid rgba(155,93,229,0.3)}
+        .festa-card.card-p:hover{box-shadow:0 12px 40px rgba(155,93,229,0.15)}
+        .festa-card .icon{font-size:2.5rem;margin-bottom:1rem}
+        .festa-card h3{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;color:var(--dark);margin-bottom:1.5rem}
+        .festa-detail p{font-size:0.95rem;line-height:2.2;color:var(--text-light)}
+        .festa-detail strong{color:var(--text);font-weight:700}
+        .route-button{
+            display:inline-block;margin-top:1.5rem;
+            background:var(--dark);color:var(--white);
+            padding:0.7rem 1.8rem;text-decoration:none;border-radius:50px;
+            font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+            transition:all 0.3s;
+        }
+        .card-p .route-button{background:var(--purple)}
+        .card-y .route-button{background:var(--yellow-d)}
+        .route-button:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
+
+        /* COUNTDOWN */
+        #countdown{background:var(--purple);text-align:center}
+        #countdown::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.06) 0%,transparent 60%)}
+        .countdown-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+        .countdown-emoji{font-size:3rem;margin-bottom:1rem}
+        .countdown-title{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:700;color:var(--white);margin-bottom:2.5rem}
+        .countdown-timer{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .time-unit{text-align:center;min-width:100px;background:rgba(255,255,255,0.1);border-radius:12px;padding:2rem 1.5rem;border:2px solid rgba(255,255,255,0.15);backdrop-filter:blur(4px)}
+        .time-unit .num{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:var(--white);line-height:1}
+        .time-unit .lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:0.5rem}
+
+        /* PRESENTES */
+        #presentes{background:var(--white)}
+        .section-heading-p{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:800;color:var(--dark);margin-bottom:0.5rem;line-height:1}
+        .section-heading-p span{color:var(--coral)}
+        .presentes-intro{font-size:1rem;color:var(--text-light);line-height:1.8;margin-bottom:2.5rem;max-width:560px}
+
+        .sort-bar{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin-bottom:2rem}
+        .sort-label{font-size:0.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-light)}
+        .sort-btn{background:var(--off);border:2px solid transparent;color:var(--text);padding:0.45rem 1.1rem;border-radius:50px;font-size:0.8rem;font-family:'Nunito',sans-serif;font-weight:600;cursor:pointer;transition:all 0.25s}
+        .sort-btn:hover,.sort-btn.active{background:var(--coral);color:var(--white)}
+
+        .gift-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+        .gift-card{background:var(--white);border:2px solid var(--off);border-radius:12px;overflow:hidden;transition:all 0.3s}
+        .gift-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.1);border-color:var(--coral)}
+        .gift-image{height:200px;overflow:hidden;background:var(--off)}
+        .gift-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+        .gift-card:hover .gift-image img{transform:scale(1.06)}
+        .gift-content{padding:1.5rem}
+        .gift-content h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:0.4rem}
+        .gift-price{font-size:1rem;color:var(--coral);font-weight:700;margin-bottom:0.5rem}
+        .gift-content p{font-size:0.88rem;color:var(--text-light);line-height:1.6;margin-bottom:1.2rem}
+        .gift-button{width:100%;padding:0.75rem;background:var(--dark);border:none;color:var(--white);font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:8px;transition:all 0.3s}
+        .gift-button:hover{background:var(--coral)}
+
+        /* CONFIRMAÇÃO */
+        #confirmacao{background:var(--dark)}
+        .confirm-wrapper{max-width:540px}
+        .section-heading-c{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;color:var(--white);margin-bottom:0.5rem;line-height:1}
+        .section-heading-c span{color:var(--teal)}
+        .confirm-sub{font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:rgba(46,196,182,0.7);margin-bottom:1.5rem}
+        .confirm-form{margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+        .form-group label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.5rem}
+        .form-group input,.form-group select{width:100%;padding:0.9rem 1rem;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.1);color:var(--white);font-family:'Nunito',sans-serif;font-size:0.95rem;border-radius:8px;outline:none;transition:border-color 0.3s}
+        .form-group input:focus,.form-group select:focus{border-color:var(--teal)}
+        .form-group select option{background:var(--dark2)}
+        .confirm-btn{margin-top:1rem;padding:1rem;width:100%;background:var(--teal);border:none;color:var(--dark);font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:8px;transition:all 0.3s}
+        .confirm-btn:hover{background:#3dd9cc;transform:translateY(-2px);box-shadow:0 8px 25px rgba(46,196,182,0.3)}
+        .confirm-success{display:none;padding:1.5rem;background:rgba(46,196,182,0.1);border:2px solid rgba(46,196,182,0.3);border-radius:8px;margin-top:1rem;text-align:center}
+        .confirm-success p{color:var(--teal);font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
+
+        /* MODAL */
+        .modal-overlay{display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+        .modal-overlay.active{display:flex}
+        .modal-content{background:var(--white);border-radius:16px;max-width:450px;width:90%;padding:2.5rem;position:relative;animation:fadeInUp 0.3s ease}
+        .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-light)}
+        .modal-header{margin-bottom:1.5rem;border-bottom:2px solid var(--off);padding-bottom:1.5rem}
+        .modal-header h3{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;color:var(--dark)}
+        .modal-price{color:var(--coral);font-size:1.2rem;font-weight:700;margin-top:0.3rem}
+        .modal-name-label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.5rem}
+        .modal-name-input{width:100%;padding:0.9rem 1rem;border:2px solid var(--off);background:var(--off);font-family:'Nunito',sans-serif;font-size:0.95rem;color:var(--text);border-radius:8px;outline:none;transition:border-color 0.3s;margin-bottom:0.4rem}
+        .modal-name-input:focus{border-color:var(--coral)}
+        .name-error{color:var(--coral-d);font-size:0.82rem;display:none;margin-bottom:1rem}
+        .payment-buttons{display:flex;flex-direction:column;gap:0.8rem;margin-top:1.5rem}
+        .payment-option{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:2px solid var(--off);border-radius:10px;text-decoration:none;color:var(--text);cursor:pointer;transition:all 0.3s}
+        .payment-option:hover{border-color:var(--coral);background:rgba(244,105,75,0.04)}
+        .payment-icon{font-size:1.5rem}
+        .payment-info{flex:1}
+        .payment-info strong{display:block;font-size:0.9rem;font-weight:700;color:var(--dark)}
+        .payment-info span{font-size:0.8rem;color:var(--text-light)}
+        .payment-arrow{color:var(--coral);font-size:1.2rem}
+
+        /* FOOTER */
+        footer{background:var(--dark2);text-align:center;padding:3rem 2rem}
+        .footer-name{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,var(--yellow),var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:0.5rem}
+        footer p{color:rgba(255,255,255,0.4);font-size:0.85rem}
+        .heart{color:var(--coral)}
+
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+        @keyframes floatUp{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(5deg)}}
+        @keyframes spinGlow{0%,100%{box-shadow:0 0 40px rgba(245,200,66,0.2),0 0 80px rgba(244,105,75,0.1)}50%{box-shadow:0 0 60px rgba(245,200,66,0.35),0 0 100px rgba(244,105,75,0.2)}}
+
+        @media(max-width:768px){
+            #sobre .section-content,.festa-grid{grid-template-columns:1fr;gap:2.5rem}
+            .sobre-image{height:320px}
+            .gallery-main{height:280px}
+            nav ul{gap:1.2rem}
+            nav a{font-size:0.7rem}
+            section{padding:5rem 1.5rem}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Lucas</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#festa">A Festa</a></li>
+            <li><a href="#presentes">Presentes</a></li>
+            <!-- <li><a href="#confirmacao">Confirmar</a></li> -->
+        </ul>
+    </nav>
+
+    <section id="home">
+        <span class="emoji-float e1">🎉</span>
+        <span class="emoji-float e2">🎊</span>
+        <span class="emoji-float e3">✨</span>
+        <span class="emoji-float e4">🥳</span>
+        <span class="emoji-float e5">🎈</span>
+        <div class="home-content">
+            <div class="age-ring"><span class="num">30</span></div>
+            <h1 class="home-name"><span>Lucas</span> Mendes</h1>
+            <p class="home-date">🗓️ 05 de Agosto de 2026 · Vai ser incrível!</p>
+            <div class="home-badges">
+                <span class="badge badge-y">🎂 30 Anos</span>
+                <span class="badge badge-c">🎉 Aniversário</span>
+                <span class="badge badge-t">🕺 Aberta ao público</span>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="sobre">
+        <div class="section-content">
+            <div class="sobre-image">
+                <div class="placeholder-photo">📸</div>
+                <div class="image-sticker">30 🎉</div>
+            </div>
+            <div class="sobre-text">
+                <span class="sobre-chip">🎂 O Aniversariante</span>
+                <h2>Lucas: <em>30 anos</em> de pura energia!</h2>
+                <p>Quem conhece o Lucas sabe que qualquer festa com ele vira uma memória pra vida. Seja na pista de dança, na churrasqueira ou contando aquelas histórias impossíveis — ele sempre deixa todo mundo com sorriso no rosto.</p>
+                <p>Aos 30, ele chega com tudo: com as mesmas gargalhadas de sempre, novos projetos na cabeça e a certeza de que os melhores momentos ainda estão por vir.</p>
+                <p>Por isso, chamamos você para celebrar junto. Vai ser uma noite que todo mundo vai contar por muito tempo!</p>
+                <div class="fun-stats">
+                    <div class="fun-stat y"><span class="emoji">🎂</span><div class="num">30</div><div class="lbl">Anos</div></div>
+                    <div class="fun-stat c"><span class="emoji">🤣</span><div class="num">∞</div><div class="lbl">Risadas</div></div>
+                    <div class="fun-stat t"><span class="emoji">🕺</span><div class="num">1</div><div class="lbl">Noite épica</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="section-content">
+            <span class="section-tag">📸 Galeria</span>
+            <h2 class="section-heading-v">Memórias <span>incríveis</span></h2>
+            <div class="gallery-main">
+                <div class="carousel-counter"><span id="currentSlide">1</span> / <span id="totalSlides">6</span></div>
+                <div class="carousel-slide active placeholder-slide">📸</div>
+                <div class="carousel-slide placeholder-slide">🎉</div>
+                <div class="carousel-slide placeholder-slide">🤣</div>
+                <div class="carousel-slide placeholder-slide">🎊</div>
+                <div class="carousel-slide placeholder-slide">🎵</div>
+                <div class="carousel-slide placeholder-slide">🥳</div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="festa">
+        <div class="section-content">
+            <h2 class="section-heading-f">A <span>Festa</span></h2>
+            <div class="festa-grid">
+                <div class="festa-card card-y">
+                    <div class="icon">🍕</div>
+                    <h3>Happy Hour & Jantar</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 05 de Agosto de 2026</p>
+                        <p><strong>Horário:</strong> 18:00 (recepção)</p>
+                        <p><strong>Local:</strong> Espaço The Party</p>
+                        <p><strong>Endereço:</strong> Rua da Festa, 1200</p>
+                        <p style="margin-top:0.8rem;font-size:0.9rem;color:var(--text-light)">Venha com fome — e animado! 🍕🎵</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Festa,+1200" target="_blank" class="route-button">Como Chegar</a>
+                </div>
+                <div class="festa-card card-p">
+                    <div class="icon">🕺</div>
+                    <h3>Balada & Pista de Dança</h3>
+                    <div class="festa-detail">
+                        <p><strong>Horário:</strong> A partir das 22:00</p>
+                        <p><strong>DJ:</strong> DJ Amigo do Lucas 🎧</p>
+                        <p><strong>Dress code:</strong> Livre (seja você!)</p>
+                        <p><strong>Open bar:</strong> Das 22h às 00h</p>
+                        <p style="margin-top:0.8rem;font-size:0.9rem;color:var(--text-light)">Traga sua melhor energia! 🔥</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Festa,+1200" target="_blank" class="route-button">Como Chegar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown">
+        <div class="section-content">
+            <div class="countdown-inner">
+                <div class="countdown-emoji">🎉</div>
+                <p class="countdown-title">Faltam apenas... prepare-se!</p>
+                <div class="countdown-timer">
+                    <div class="time-unit"><div class="num" id="days">00</div><div class="lbl">Dias</div></div>
+                    <div class="time-unit"><div class="num" id="hours">00</div><div class="lbl">Horas</div></div>
+                    <div class="time-unit"><div class="num" id="minutes">00</div><div class="lbl">Min</div></div>
+                    <div class="time-unit"><div class="num" id="seconds">00</div><div class="lbl">Seg</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="presentes">
+        <div class="section-content">
+            <h2 class="section-heading-p">Lista de <span>Presentes</span></h2>
+            <p class="presentes-intro">Sua presença já é o presente mais legal! Mas se quiser dar um mimo ao Lucas, aqui vão algumas ideias.</p>
+            <div class="sort-bar">
+                <span class="sort-label">Ordenar:</span>
+                <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+                <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor → Maior</button>
+                <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior → Menor</button>
+            </div>
+            <div class="gift-options"></div>
+        </div>
+    </section>
+
+    <!-- <section id="confirmacao">
+        <div class="section-content">
+            <div class="confirm-wrapper">
+                <h2 class="section-heading-c">Vai <span>vir</span>?</h2>
+                <p class="confirm-sub">📩 Confirmações até 25/07/2026</p>
+                <p style="color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.8">Confirma aí pra garantir seu lugar na festa mais esperada do ano!</p>
+                <form class="confirm-form" id="confirmForm" onsubmit="handleConfirm(event)">
+                    <div class="form-group"><label>Seu nome</label><input type="text" id="confirmName" placeholder="Como te chamam?" required></div>
+                    <div class="form-group"><label>Vem com alguém?</label>
+                        <select id="confirmGuests">
+                            <option value="0">Só eu mesmo!</option>
+                            <option value="1">Eu + 1</option>
+                            <option value="2">Eu + 2</option>
+                            <option value="3">Eu + galera (3+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Confirmação</label>
+                        <select id="confirmAttend">
+                            <option value="sim">🎉 SIM! Estarei lá!</option>
+                            <option value="nao">😢 Infelizmente não consigo ir</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">🎊 Confirmar Presença!</button>
+                </form>
+                <div class="confirm-success" id="confirmSuccess"><p>🎉 Confirmado! Nos vemos em 05/08! 🎊</p></div>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header"><h3 id="modalGiftName">Presente</h3><div class="modal-price" id="modalGiftPrice">R$ 0,00</div></div>
+            <label class="modal-name-label">Seu nome (para o Lucas saber):</label>
+            <input class="modal-name-input" type="text" id="guestName" placeholder="Seu nome">
+            <p class="name-error" id="nameError">⚠️ Coloca seu nome aí!</p>
+            <div class="payment-buttons">
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('pix')">
+                    <div class="payment-icon">💳</div><div class="payment-info"><strong>Pagar com PIX</strong><span>Rápido e fácil</span></div><div class="payment-arrow">→</div>
+                </a>
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('card')">
+                    <div class="payment-icon">💰</div><div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div><div class="payment-arrow">→</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-name">Lucas Mendes 🎉</div>
+        <p>Feito com <span class="heart">♥</span> para uma festa inesquecível</p>
+        <p style="margin-top:0.5rem;opacity:0.3;font-size:0.8rem">05 de Agosto de 2026 · 30 Anos</p>
+    </footer>
+
+    <script>
+    let currentSlideIndex=0,autoPlayInterval;
+    function changeSlide(dir){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=(currentSlideIndex+dir+slides.length)%slides.length;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function goToSlide(idx){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=idx;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function startAutoPlay(){autoPlayInterval=setInterval(()=>changeSlide(1),4000)}
+    function stopAutoPlay(){clearInterval(autoPlayInterval)}
+    function resetAutoPlay(){stopAutoPlay();startAutoPlay()}
+    document.addEventListener('DOMContentLoaded',()=>{startAutoPlay();const gm=document.querySelector('.gallery-main');gm.addEventListener('mouseenter',stopAutoPlay);gm.addEventListener('mouseleave',startAutoPlay);let tx=0;gm.addEventListener('touchstart',e=>tx=e.changedTouches[0].screenX,{passive:true});gm.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50)changeSlide(d>0?1:-1)},{passive:true})});
+
+    const eventDate=new Date('2026-08-05T18:00:00');
+    function updateCountdown(){const diff=eventDate-new Date();if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');return}document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0')}
+    setInterval(updateCountdown,1000);updateCountdown();
+
+    const PRESENTES=[
+        {nome:'Tênis Esportivo',preco:'R$ 480,00',descricao:'Para correr (ou dançar) muito!',imagem:'img/presentes/tenis.jpg',pix:'#',cartao:'#'},
+        {nome:'Experiência de Kart',preco:'R$ 350,00',descricao:'Para quem adora velocidade e adrenalina.',imagem:'img/presentes/kart.jpg',pix:'#',cartao:'#'},
+        {nome:'Caixa de Som Bluetooth',preco:'R$ 400,00',descricao:'Para as futuras festas do Lucas.',imagem:'img/presentes/caixa.jpg',pix:'#',cartao:'#'},
+        {nome:'Voucher Restaurante',preco:'R$ 300,00',descricao:'Jantar especial para duas pessoas.',imagem:'img/presentes/restaurante.jpg',pix:'#',cartao:'#'},
+        {nome:'Ingresso Show',preco:'R$ 250,00',descricao:'Para o próximo show que ele quiser.',imagem:'img/presentes/show.jpg',pix:'#',cartao:'#'},
+        {nome:'Smartwatch',preco:'R$ 700,00',descricao:'Para controlar até a hora de dormir.',imagem:'img/presentes/smartwatch.jpg',pix:'#',cartao:'#'},
+    ];
+    let cpix='',ccard='';
+    function precoParaNum(p){return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim())}
+    function renderPresentes(lista){document.querySelector('.gift-options').innerHTML=lista.map(p=>`<div class="gift-card"><div class="gift-image"><img src="${p.imagem}" alt="${p.nome}" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;background:var(--off)\'>🎁</div>'"></div><div class="gift-content"><h3>${p.nome}</h3><div class="gift-price">${p.preco}</div><p>${p.descricao}</p><button class="gift-button" onclick="openModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">Presentear 🎁</button></div></div>`).join('')}
+    function ordenarPresentes(ordem){const lista=[...PRESENTES];if(ordem==='asc')lista.sort((a,b)=>precoParaNum(a.preco)-precoParaNum(b.preco));if(ordem==='desc')lista.sort((a,b)=>precoParaNum(b.preco)-precoParaNum(a.preco));document.querySelectorAll('.sort-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.ordem===ordem));renderPresentes(lista)}
+    document.addEventListener('DOMContentLoaded',()=>renderPresentes(PRESENTES));
+
+    function openModal(name,price,pix,card){cpix=pix;ccard=card;document.getElementById('modalGiftName').textContent=name;document.getElementById('modalGiftPrice').textContent=price;document.getElementById('guestName').value='';document.getElementById('nameError').style.display='none';document.getElementById('paymentModal').classList.add('active');document.body.style.overflow='hidden'}
+    function closeModal(){document.getElementById('paymentModal').classList.remove('active');document.body.style.overflow=''}
+    function handlePayment(type){const name=document.getElementById('guestName').value.trim();if(!name||name.length<3){document.getElementById('nameError').style.display='block';return}document.getElementById('nameError').style.display='none';window.open(type==='pix'?cpix:ccard,'_blank','noopener,noreferrer');setTimeout(closeModal,800)}
+    document.getElementById('paymentModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+    function handleConfirm(e){e.preventDefault();document.getElementById('confirmForm').style.display='none';document.getElementById('confirmSuccess').style.display='block'}
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+    </script>
+</body>
+</html>

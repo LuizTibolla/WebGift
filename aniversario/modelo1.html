@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia - 15 Anos</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <meta name="description" content="Sofia está completando 15 anos! Venha celebrar conosco essa data tão especial.">
+    <meta property="og:title" content="Sofia - 15 Anos">
+    <meta property="og:description" content="Uma noite inesquecível para celebrar os 15 anos de Sofia.">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --rose:        #c97b8a;
+            --rose-light:  #e8aab8;
+            --rose-pale:   #f9eef1;
+            --blush:       #fdf5f7;
+            --gold:        #c9a96e;
+            --gold-light:  #e8d5aa;
+            --cream:       #faf6f0;
+            --brown:       #7a4f5a;
+            --brown-dark:  #5c3040;
+            --white:       #fffcfd;
+            --text:        #4a2d35;
+            --text-light:  #9b7280;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ===== PETAL DECORATIONS ===== */
+        .petal-divider {
+            text-align: center;
+            color: var(--rose-light);
+            font-size: 1.4rem;
+            letter-spacing: 0.8rem;
+            margin: 1.5rem 0;
+            opacity: 0.7;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(253, 245, 247, 0.96);
+            backdrop-filter: blur(14px);
+            z-index: 1000;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid var(--rose-pale);
+        }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 2.8rem; flex-wrap: wrap; padding: 0 2rem; }
+        nav a { text-decoration: none; color: var(--brown); font-weight: 400; font-size: 0.82rem; letter-spacing: 2.5px; text-transform: uppercase; transition: all 0.3s ease; position: relative; }
+        nav a::after { content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background: var(--rose); transition: width 0.3s ease; }
+        nav a:hover { color: var(--rose); }
+        nav a:hover::after { width: 100%; }
+
+        /* ===== SECTIONS ===== */
+        section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem; position: relative; }
+        .section-content { max-width: 1100px; width: 100%; }
+
+        /* ===== HOME ===== */
+        #home {
+            background: linear-gradient(160deg, #5c3040 0%, #8a4060 40%, #c97b8a 100%);
+            background-image: url('img/debutante/hero.jpg');
+            background-size: cover; background-position: center top;
+            text-align: center; overflow: hidden; color: var(--white);
+        }
+        #home::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(160deg, rgba(70,20,40,0.70) 0%, rgba(150,60,85,0.55) 100%);
+            z-index: 1;
+        }
+        /* Floral corner decorations */
+        #home::after {
+            content: '✿'; position: absolute; bottom: 4rem; right: 3rem;
+            font-size: 5rem; opacity: 0.12; z-index: 1; transform: rotate(20deg);
+        }
+
+        .home-content { position: relative; z-index: 2; animation: fadeIn 1.5s ease-out; }
+
+        .age-badge {
+            display: inline-block;
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-light);
+            line-height: 1;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            margin: 0 auto 2rem;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(4px);
+            animation: fadeInDown 1s ease-out;
+        }
+        .age-badge .num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem; font-weight: 300; color: var(--gold-light); line-height: 1;
+        }
+        .age-badge .anos { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 0.2rem; }
+
+        .home-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; font-style: italic;
+            letter-spacing: 0.1rem; margin-bottom: 1.5rem; color: var(--white);
+            text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+        }
+        .home-date {
+            font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold-light); opacity: 0.9;
+        }
+        .home-floral { font-size: 1.8rem; margin: 1.5rem 0; opacity: 0.6; letter-spacing: 0.5rem; }
+
+        .scroll-indicator {
+            position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2;
+            animation: bounce 2s infinite;
+        }
+        .scroll-indicator::after { content: '↓'; font-size: 1.8rem; color: var(--gold-light); opacity: 0.7; }
+
+        /* ===== SOBRE A DEBUTANTE ===== */
+        #sobre { background: var(--blush); }
+        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+
+        .sobre-image {
+            height: 560px; border-radius: 2px;
+            background: var(--rose); position: relative; overflow: hidden;
+            box-shadow: 8px 8px 0 var(--rose-light), 16px 16px 0 rgba(201,123,138,0.15);
+        }
+        .sobre-image img { width: 100%; height: 100%; object-fit: cover; }
+        .sobre-image .placeholder-photo {
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--rose-pale), var(--rose-light));
+            font-size: 5rem; opacity: 0.4;
+        }
+
+        .sobre-text h2 {
+            font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 300; font-style: italic;
+            color: var(--brown-dark); margin-bottom: 0.5rem;
+        }
+        .sobre-text .subtitle {
+            font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--rose); margin-bottom: 2rem;
+        }
+        .sobre-text p { font-size: 1.05rem; line-height: 1.9; color: var(--text-light); margin-bottom: 1.3rem; }
+
+        .sobre-stats {
+            display: flex; gap: 2.5rem; margin-top: 2rem; padding-top: 2rem;
+            border-top: 1px solid var(--rose-pale);
+        }
+        .stat { text-align: center; }
+        .stat .num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--rose); }
+        .stat .label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); }
+
+        /* ===== GALERIA (carousel) ===== */
+        #galeria { background: var(--cream); }
+        #galeria .section-content { text-align: center; }
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; font-style: italic;
+            color: var(--brown-dark); margin-bottom: 0.4rem;
+        }
+        .section-sub { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--rose); margin-bottom: 3rem; }
+
+        .gallery-main {
+            height: 480px; border-radius: 2px; position: relative; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(90,30,50,0.15);
+        }
+        .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; }
+        .carousel-slide.active { opacity: 1; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .carousel-slide.placeholder-slide {
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--rose-pale), var(--rose-light));
+            font-size: 5rem; opacity: 0.3;
+        }
+
+        .carousel-counter {
+            position: absolute; top: 1rem; right: 1.2rem; z-index: 5;
+            background: rgba(255,255,255,0.85); color: var(--brown);
+            font-size: 0.8rem; letter-spacing: 1px; padding: 0.3rem 0.8rem; border-radius: 20px;
+        }
+
+        .carousel-button {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.9); color: var(--brown);
+            border: none; width: 48px; height: 48px; border-radius: 50%;
+            cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease; z-index: 10; box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .carousel-button:hover { transform: translateY(-50%) scale(1.1); background: var(--white); }
+        .carousel-button.prev { left: 1.2rem; }
+        .carousel-button.next { right: 1.2rem; }
+
+        .carousel-indicators { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; }
+        .carousel-indicator {
+            width: 8px; height: 8px; border-radius: 50%; background: var(--rose-light); cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .carousel-indicator.active { background: var(--rose); transform: scale(1.3); }
+
+        /* ===== FESTA ===== */
+        #festa { background: var(--brown-dark); color: var(--white); }
+        #festa::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 C30 5 32 15 30 20 C28 15 30 5 30 5Z' fill='%23c9a96e' fill-opacity='0.04'/%3E%3C/svg%3E") repeat;
+        }
+
+        .festa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .festa-card {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(201,169,110,0.3);
+            border-radius: 2px; padding: 3rem 2.5rem; text-align: center;
+            transition: all 0.3s ease; position: relative; z-index: 1;
+        }
+        .festa-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(201,169,110,0.5); }
+        .festa-card .icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .festa-card h3 {
+            font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300;
+            color: var(--gold-light); margin-bottom: 1.5rem;
+        }
+        .festa-detail { font-size: 1rem; line-height: 2; color: rgba(255,255,255,0.75); }
+        .festa-detail strong { color: var(--gold-light); font-weight: 500; }
+
+        .route-button {
+            display: inline-block; margin-top: 2rem;
+            border: 1px solid var(--gold); color: var(--gold);
+            padding: 0.8rem 2rem; text-decoration: none;
+            font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .route-button:hover { background: var(--gold); color: var(--brown-dark); }
+
+        /* ===== COUNTDOWN ===== */
+        #countdown { background: var(--rose-pale); text-align: center; }
+        .countdown-wrapper { max-width: 600px; margin: 0 auto; }
+        .countdown-title {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic;
+            color: var(--brown); margin-bottom: 2.5rem;
+        }
+        .countdown-timer { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .time-unit {
+            text-align: center; min-width: 90px;
+            background: var(--white); border: 1px solid var(--rose-light);
+            padding: 1.5rem 1rem; border-radius: 2px;
+            box-shadow: 0 4px 20px rgba(201,123,138,0.08);
+        }
+        .time-unit .num {
+            font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300;
+            color: var(--rose); line-height: 1;
+        }
+        .time-unit .lbl { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); margin-top: 0.5rem; }
+
+        /* ===== PRESENTES ===== */
+        #presentes { background: var(--blush); }
+        #presentes .section-content { text-align: center; }
+        .presentes-intro { max-width: 600px; margin: 0 auto 3rem; font-size: 1.05rem; line-height: 1.8; color: var(--text-light); }
+
+        .sort-bar { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center; }
+        .sort-label { font-size: 0.8rem; color: var(--text-light); letter-spacing: 1px; text-transform: uppercase; }
+        .sort-btn {
+            background: transparent; border: 1px solid var(--rose-light); color: var(--brown);
+            padding: 0.45rem 1.2rem; border-radius: 50px; font-size: 0.8rem;
+            font-family: 'Jost', sans-serif; cursor: pointer; transition: all 0.25s ease; letter-spacing: 0.5px;
+        }
+        .sort-btn:hover, .sort-btn.active { background: var(--rose); color: var(--white); border-color: var(--rose); }
+
+        .gift-options {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .gift-card {
+            background: var(--white); border: 1px solid var(--rose-pale);
+            border-radius: 2px; overflow: hidden; transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(201,123,138,0.06);
+        }
+        .gift-card:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(201,123,138,0.15); }
+        .gift-image { height: 200px; overflow: hidden; background: var(--rose-pale); }
+        .gift-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .gift-card:hover .gift-image img { transform: scale(1.05); }
+        .gift-content { padding: 1.5rem; text-align: left; }
+        .gift-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--brown-dark); margin-bottom: 0.4rem; }
+        .gift-price { font-size: 1rem; color: var(--rose); font-weight: 500; margin-bottom: 0.6rem; }
+        .gift-content p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 1.2rem; }
+        .gift-button {
+            width: 100%; padding: 0.75rem;
+            background: transparent; border: 1px solid var(--rose);
+            color: var(--rose); font-family: 'Jost', sans-serif;
+            font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .gift-button:hover { background: var(--rose); color: var(--white); }
+
+        /* ===== CONFIRMAÇÃO ===== */
+        #confirmacao { background: var(--cream); }
+        .confirm-wrapper {
+            max-width: 560px; margin: 0 auto; text-align: center;
+        }
+        .confirm-form { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+        .form-group label { display: block; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.9rem 1rem;
+            border: 1px solid var(--rose-light); background: var(--white);
+            font-family: 'Jost', sans-serif; font-size: 0.95rem; color: var(--text);
+            border-radius: 0; outline: none; transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus { border-color: var(--rose); }
+        .confirm-btn {
+            margin-top: 1rem; padding: 1rem; width: 100%;
+            background: var(--rose); border: none; color: var(--white);
+            font-family: 'Jost', sans-serif; font-size: 0.85rem;
+            letter-spacing: 3px; text-transform: uppercase; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .confirm-btn:hover { background: var(--brown-dark); }
+        .confirm-success {
+            display: none; padding: 1.5rem;
+            background: rgba(201,123,138,0.1); border: 1px solid var(--rose-light);
+            text-align: center; margin-top: 1rem;
+        }
+        .confirm-success p { color: var(--rose); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 9000;
+            background: rgba(60,15,30,0.7); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--white); max-width: 460px; width: 90%; padding: 2.5rem;
+            position: relative; animation: fadeInUp 0.3s ease;
+        }
+        .modal-close {
+            position: absolute; top: 1rem; right: 1.2rem;
+            background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light);
+        }
+        .modal-header { margin-bottom: 1.5rem; border-bottom: 1px solid var(--rose-pale); padding-bottom: 1.5rem; }
+        .modal-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--brown-dark); }
+        .modal-price { font-size: 1.3rem; color: var(--rose); margin-top: 0.3rem; }
+        .modal-name-label { font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.4rem; display: block; }
+        .modal-name-input {
+            width: 100%; padding: 0.9rem 1rem;
+            border: 1px solid var(--rose-light); background: var(--white);
+            font-family: 'Jost', sans-serif; font-size: 0.95rem; color: var(--text);
+            outline: none; transition: border-color 0.3s; margin-bottom: 0.4rem;
+        }
+        .modal-name-input:focus { border-color: var(--rose); }
+        .name-error { color: #c0392b; font-size: 0.82rem; display: none; margin-bottom: 1rem; }
+
+        .payment-buttons { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+        .payment-option {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1rem 1.2rem; border: 1px solid var(--rose-pale);
+            text-decoration: none; color: var(--text); transition: all 0.3s ease; cursor: pointer;
+        }
+        .payment-option:hover { border-color: var(--rose); background: var(--blush); }
+        .payment-icon { font-size: 1.5rem; }
+        .payment-info { flex: 1; }
+        .payment-info strong { display: block; font-size: 0.95rem; color: var(--brown-dark); }
+        .payment-info span { font-size: 0.82rem; color: var(--text-light); }
+        .payment-arrow { color: var(--rose); font-size: 1.2rem; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--brown-dark); color: rgba(255,255,255,0.6);
+            text-align: center; padding: 3rem 2rem;
+            font-size: 0.85rem; letter-spacing: 1px;
+        }
+        footer .footer-name {
+            font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic;
+            color: var(--gold-light); margin-bottom: 0.5rem;
+        }
+        footer .heart { color: var(--rose-light); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-10px); } }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .sobre-grid, .festa-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .sobre-image { height: 340px; }
+            .gallery-main { height: 280px; }
+            nav ul { gap: 1.2rem; }
+            nav a { font-size: 0.72rem; letter-spacing: 1.5px; }
+            .home-name { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+            section { padding: 5rem 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Sofia</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#festa">A Festa</a></li>
+            <li><a href="#presentes">Presentes</a></li>
+            <!-- <li><a href="#confirmacao">Confirmar</a></li> -->
+        </ul>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home">
+        <div class="home-content">
+            <div class="age-badge">
+                <span class="num">15</span>
+                <span class="anos">Anos</span>
+            </div>
+            <div class="home-floral">✿ ✾ ✿</div>
+            <h1 class="home-name">Sofia Almeida</h1>
+            <p class="home-date">Uma noite inesquecível · 28 de Junho de 2026</p>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- SOBRE A DEBUTANTE -->
+    <section id="sobre">
+        <div class="section-content">
+            <div class="sobre-grid">
+                <div class="sobre-image">
+                    <div class="placeholder-photo">📸</div>
+                </div>
+                <div class="sobre-text">
+                    <h2>A Aniversariante</h2>
+                    <p class="subtitle">✦ Quem é Sofia ✦</p>
+                    <p>
+                        Sofia chegou ao mundo há 15 anos trazendo luz, alegria e um sorriso que ilumina qualquer ambiente. 
+                        Desde pequenininha, encantou a todos com sua energia contagiante e seu coração generoso.
+                    </p>
+                    <p>
+                        Apaixonada por dança, música e arte, Sofia cresceu rodeada de amor e agora está prestes a 
+                        dar um dos passos mais especiais da sua vida: a passagem para a juventude.
+                    </p>
+                    <p>
+                        Queremos que esse momento seja tão mágico quanto ela merece, celebrado ao lado de quem mais 
+                        ama. Por isso, você foi convidado para fazer parte desta noite inesquecível!
+                    </p>
+                    <div class="sobre-stats">
+                        <div class="stat">
+                            <div class="num">15</div>
+                            <div class="label">Anos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num">∞</div>
+                            <div class="label">Memórias</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num">♡</div>
+                            <div class="label">Com amor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria">
+        <div class="section-content">
+            <h2 class="section-heading">Galeria de Fotos</h2>
+            <p class="section-sub">✦ Momentos especiais ✦</p>
+
+            <div class="gallery-main">
+                <div class="carousel-counter">
+                    <span id="currentSlide">1</span> / <span id="totalSlides">6</span>
+                </div>
+                <div class="carousel-slide active placeholder-slide">📸</div>
+                <div class="carousel-slide placeholder-slide">🌸</div>
+                <div class="carousel-slide placeholder-slide">✨</div>
+                <div class="carousel-slide placeholder-slide">💫</div>
+                <div class="carousel-slide placeholder-slide">🌺</div>
+                <div class="carousel-slide placeholder-slide">🎀</div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- A FESTA -->
+    <section id="festa">
+        <div class="section-content">
+            <h2 class="section-heading" style="color: var(--gold-light);">A Festa</h2>
+            <p class="section-sub" style="color: var(--rose-light);">✦ Detalhes do evento ✦</p>
+
+            <div class="festa-grid">
+                <div class="festa-card">
+                    <div class="icon">🌸</div>
+                    <h3>Missa de 15 Anos</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 28 de Junho de 2026</p>
+                        <p><strong>Horário:</strong> 16:00</p>
+                        <p><strong>Local:</strong> Igreja Nossa Senhora das Graças</p>
+                        <p><strong>Endereço:</strong> Av. das Flores, 200</p>
+                        <p style="margin-top:1.2rem; font-size:0.9rem; color:rgba(255,255,255,0.5);">Chegue com 20 minutos de antecedência</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+das+Flores,+200" target="_blank" class="route-button">Como Chegar</a>
+                </div>
+
+                <div class="festa-card">
+                    <div class="icon">🥂</div>
+                    <h3>Festa de Debutante</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 28 de Junho de 2026</p>
+                        <p><strong>Horário:</strong> 19:30</p>
+                        <p><strong>Local:</strong> Espaço Jardim Real</p>
+                        <p><strong>Endereço:</strong> Rua das Rosas, 540</p>
+                        <p style="margin-top:1.2rem; font-size:0.9rem; color:rgba(255,255,255,0.5);">Traje: Social / Festa</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+das+Rosas,+540" target="_blank" class="route-button">Como Chegar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section id="countdown">
+        <div class="section-content">
+            <div class="countdown-wrapper">
+                <div class="petal-divider">✿ ✾ ✿</div>
+                <p class="countdown-title">Faltam apenas...</p>
+                <div class="countdown-timer">
+                    <div class="time-unit"><div class="num" id="days">00</div><div class="lbl">Dias</div></div>
+                    <div class="time-unit"><div class="num" id="hours">00</div><div class="lbl">Horas</div></div>
+                    <div class="time-unit"><div class="num" id="minutes">00</div><div class="lbl">Minutos</div></div>
+                    <div class="time-unit"><div class="num" id="seconds">00</div><div class="lbl">Segundos</div></div>
+                </div>
+                <div class="petal-divider" style="margin-top:2rem;">✿ ✾ ✿</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESENTES -->
+    <section id="presentes">
+        <div class="section-content">
+            <h2 class="section-heading">Lista de Presentes</h2>
+            <p class="section-sub">✦ Surpreenda a nossa debutante ✦</p>
+            <p class="presentes-intro">
+                A sua presença já é o maior presente que Sofia pode receber! 
+                Mas se quiser presenteá-la, preparamos algumas sugestões especiais.
+            </p>
+            <div class="sort-bar">
+                <span class="sort-label">Ordenar:</span>
+                <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+                <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor → Maior</button>
+                <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior → Menor</button>
+            </div>
+            <div class="gift-options"></div>
+        </div>
+    </section>
+
+    <!-- CONFIRMAÇÃO
+    <section id="confirmacao">
+        <div class="section-content">
+            <div class="confirm-wrapper">
+                <h2 class="section-heading">Confirme sua Presença</h2>
+                <p class="section-sub">✦ Confirmações até 20/06/2026 ✦</p>
+                <p style="font-size:1rem; color:var(--text-light); line-height:1.8;">
+                    Para que possamos recebê-lo(a) da melhor forma, pedimos que confirme sua presença até o dia 20 de junho.
+                </p>
+                <form class="confirm-form" id="confirmForm" onsubmit="handleConfirm(event)">
+                    <div class="form-group">
+                        <label>Nome completo</label>
+                        <input type="text" id="confirmName" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Número de acompanhantes</label>
+                        <select id="confirmGuests">
+                            <option value="0">Somente eu</option>
+                            <option value="1">+ 1 acompanhante</option>
+                            <option value="2">+ 2 acompanhantes</option>
+                            <option value="3">+ 3 ou mais</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Você virá?</label>
+                        <select id="confirmAttend">
+                            <option value="sim">✓ Sim, confirmo presença!</option>
+                            <option value="nao">✗ Infelizmente não poderei ir</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">Confirmar Presença</button>
+                </form>
+                <div class="confirm-success" id="confirmSuccess">
+                    <p>🌸 Obrigada! Sua presença foi confirmada. Até lá! 🌸</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- MODAL DE PAGAMENTO -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <h3 id="modalGiftName">Nome do Presente</h3>
+                <div class="modal-price" id="modalGiftPrice">R$ 0,00</div>
+            </div>
+            <label class="modal-name-label">Seu nome (para agradecimento):</label>
+            <input class="modal-name-input" type="text" id="guestName" placeholder="Digite seu nome completo">
+            <p class="name-error" id="nameError">⚠️ Por favor, preencha seu nome antes de continuar</p>
+            <div class="payment-buttons">
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('pix')">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-info"><strong>Pagar com PIX</strong><span>Pagamento instantâneo</span></div>
+                    <div class="payment-arrow">→</div>
+                </a>
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('card')">
+                    <div class="payment-icon">💰</div>
+                    <div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div>
+                    <div class="payment-arrow">→</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-name">Sofia Almeida</div>
+        <p>Feito com <span class="heart">♥</span> para uma noite inesquecível</p>
+        <p style="margin-top:0.5rem; font-size:0.8rem; opacity:0.5;">28 de Junho de 2026 · 15 Anos</p>
+    </footer>
+
+    <script>
+    // ===== CAROUSEL =====
+    let currentSlideIndex = 0;
+    let autoPlayInterval;
+
+    function changeSlide(dir) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        slides.forEach(s => s.classList.remove('active'));
+        indicators.forEach(i => i.classList.remove('active'));
+        currentSlideIndex = (currentSlideIndex + dir + slides.length) % slides.length;
+        slides[currentSlideIndex].classList.add('active');
+        if (indicators[currentSlideIndex]) indicators[currentSlideIndex].classList.add('active');
+        document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+        resetAutoPlay();
+    }
+
+    function goToSlide(idx) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        slides.forEach(s => s.classList.remove('active'));
+        indicators.forEach(i => i.classList.remove('active'));
+        currentSlideIndex = idx;
+        slides[currentSlideIndex].classList.add('active');
+        if (indicators[currentSlideIndex]) indicators[currentSlideIndex].classList.add('active');
+        document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+        resetAutoPlay();
+    }
+
+    function startAutoPlay() { autoPlayInterval = setInterval(() => changeSlide(1), 4500); }
+    function stopAutoPlay() { clearInterval(autoPlayInterval); }
+    function resetAutoPlay() { stopAutoPlay(); startAutoPlay(); }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        startAutoPlay();
+        document.querySelector('.gallery-main').addEventListener('mouseenter', stopAutoPlay);
+        document.querySelector('.gallery-main').addEventListener('mouseleave', startAutoPlay);
+
+        // Touch swipe
+        let touchStartX = 0;
+        document.querySelector('.gallery-main').addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, { passive: true });
+        document.querySelector('.gallery-main').addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+        }, { passive: true });
+    });
+
+    // ===== COUNTDOWN =====
+    const eventDate = new Date('2026-06-28T19:30:00');
+    function updateCountdown() {
+        const now = new Date();
+        const diff = eventDate - now;
+        if (diff <= 0) {
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+            return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('days').textContent    = String(d).padStart(2,'0');
+        document.getElementById('hours').textContent   = String(h).padStart(2,'0');
+        document.getElementById('minutes').textContent = String(m).padStart(2,'0');
+        document.getElementById('seconds').textContent = String(s).padStart(2,'0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // ===== PRESENTES =====
+    const PRESENTES = [
+        { nome: 'Colar de Ouro', preco: 'R$ 450,00', descricao: 'Delicado colar de ouro 18k com pingente de flor.', imagem: 'img/presentes/colar.jpg', pix: '#', cartao: '#' },
+        { nome: 'Perfume Importado', preco: 'R$ 320,00', descricao: 'Fragrância floral elegante, perfeita para a jovem debutante.', imagem: 'img/presentes/perfume.jpg', pix: '#', cartao: '#' },
+        { nome: 'Bolsa de Festa', preco: 'R$ 280,00', descricao: 'Clutch dourada com acabamento artesanal.', imagem: 'img/presentes/bolsa.jpg', pix: '#', cartao: '#' },
+        { nome: 'Spa Day Completo', preco: 'R$ 380,00', descricao: 'Um dia inteiro de bem-estar e cuidados especiais.', imagem: 'img/presentes/spa.jpg', pix: '#', cartao: '#' },
+        { nome: 'Câmera Instantânea', preco: 'R$ 350,00', descricao: 'Para registrar e guardar todos os momentos especiais.', imagem: 'img/presentes/camera.jpg', pix: '#', cartao: '#' },
+        { nome: 'Voucher Viagem', preco: 'R$ 600,00', descricao: 'Crédito para sua próxima aventura inesquecível.', imagem: 'img/presentes/viagem.jpg', pix: '#', cartao: '#' },
+    ];
+
+    let currentPixLink = '', currentCardLink = '', currentGiftName = '', currentGiftPrice = '';
+
+    function precoParaNum(p) { return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim()); }
+
+    function renderPresentes(lista) {
+        document.querySelector('.gift-options').innerHTML = lista.map(p => `
+            <div class="gift-card">
+                <div class="gift-image">
+                    <img src="${p.imagem}" alt="${p.nome}" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;background:var(--rose-pale)\'>🎁</div>'">
+                </div>
+                <div class="gift-content">
+                    <h3>${p.nome}</h3>
+                    <div class="gift-price">${p.preco}</div>
+                    <p>${p.descricao}</p>
+                    <button class="gift-button" onclick="openModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">Presentear</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function ordenarPresentes(ordem) {
+        const lista = [...PRESENTES];
+        if (ordem === 'asc') lista.sort((a,b) => precoParaNum(a.preco) - precoParaNum(b.preco));
+        if (ordem === 'desc') lista.sort((a,b) => precoParaNum(b.preco) - precoParaNum(a.preco));
+        document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.ordem === ordem));
+        renderPresentes(lista);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => renderPresentes(PRESENTES));
+
+    // ===== MODAL =====
+    function openModal(name, price, pix, card) {
+        currentGiftName = name; currentGiftPrice = price; currentPixLink = pix; currentCardLink = card;
+        document.getElementById('modalGiftName').textContent = name;
+        document.getElementById('modalGiftPrice').textContent = price;
+        document.getElementById('guestName').value = '';
+        document.getElementById('nameError').style.display = 'none';
+        document.getElementById('paymentModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('paymentModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function handlePayment(type) {
+        const name = document.getElementById('guestName').value.trim();
+        if (!name || name.length < 3) {
+            document.getElementById('nameError').style.display = 'block';
+            return;
+        }
+        document.getElementById('nameError').style.display = 'none';
+        const link = type === 'pix' ? currentPixLink : currentCardLink;
+        window.open(link, '_blank', 'noopener,noreferrer');
+        setTimeout(closeModal, 800);
+    }
+
+    document.getElementById('paymentModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // ===== CONFIRMAÇÃO =====
+    function handleConfirm(e) {
+        e.preventDefault();
+        document.getElementById('confirmForm').style.display = 'none';
+        document.getElementById('confirmSuccess').style.display = 'block';
+    }
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+    </script>
+</body>
+</html>

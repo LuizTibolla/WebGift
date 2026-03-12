@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriela & Luiz — Casamento</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0806;
+            --deep: #110e0a;
+            --charcoal: #1e1a14;
+            --gold: #c9a55a;
+            --gold-light: #e8cc8a;
+            --gold-pale: #f5e6c4;
+            --ivory: #f7f2e8;
+            --cream: #ede5d0;
+            --warm-gray: #8a7d6a;
+            --text-dim: #6b5f4e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: var(--black);
+            color: var(--ivory);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* CURSOR CUSTOMIZADO */
+        .cursor {
+            position: fixed;
+            width: 8px; height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+        }
+        .cursor-ring {
+            position: fixed;
+            width: 30px; height: 30px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+            opacity: 0.6;
+        }
+
+        /* GRAIN OVERLAY */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.35;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            z-index: 1000;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: normal;
+        }
+        nav::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10,8,6,0.95) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .nav-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cream);
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 200;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0; right: 0;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        .nav-links a:hover { color: var(--gold-light); }
+        .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+        /* HERO */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--deep);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('img/casal/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            filter: grayscale(40%);
+        }
+
+        /* Geometric Art Deco frame */
+        .hero-frame {
+            position: absolute;
+            inset: 3rem;
+            border: 1px solid rgba(201, 165, 90, 0.2);
+            pointer-events: none;
+        }
+        .hero-frame::before, .hero-frame::after {
+            content: '';
+            position: absolute;
+            width: 60px; height: 60px;
+            border-color: var(--gold);
+            border-style: solid;
+        }
+        .hero-frame::before {
+            top: -1px; left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+        .hero-frame::after {
+            bottom: -1px; right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+        .hero-frame-inner {
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(201, 165, 90, 0.1);
+        }
+        .hero-frame-inner::before, .hero-frame-inner::after {
+            content: '';
+            position: absolute;
+            width: 40px; height: 40px;
+            border-color: rgba(201,165,90,0.4);
+            border-style: solid;
+        }
+        .hero-frame-inner::before {
+            bottom: -1px; left: -1px;
+            border-width: 0 0 1px 1px;
+        }
+        .hero-frame-inner::after {
+            top: -1px; right: -1px;
+            border-width: 1px 1px 0 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-eyebrow {
+            font-size: 0.65rem;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            display: block;
+            animation: fadeUp 1.2s ease both;
+        }
+        .hero-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(5rem, 12vw, 10rem);
+            font-weight: 300;
+            line-height: 0.9;
+            color: var(--ivory);
+            animation: fadeUp 1.4s 0.2s ease both;
+            letter-spacing: -2px;
+        }
+        .hero-names em {
+            display: block;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 0.45em;
+            letter-spacing: 0px;
+            font-weight: 300;
+            margin: 0.8rem 0;
+        }
+        .hero-ampersand {
+            display: block;
+            font-size: clamp(3rem, 6vw, 6rem);
+            color: var(--gold);
+            opacity: 0.5;
+            font-style: italic;
+            line-height: 1;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            animation: fadeUp 1.6s 0.4s ease both;
+        }
+        .hero-divider-line {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .hero-divider-line:last-child {
+            background: linear-gradient(to left, transparent, var(--gold));
+        }
+        .hero-divider-gem {
+            width: 6px; height: 6px;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+
+        .hero-date {
+            font-size: 0.75rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--cream);
+            font-weight: 100;
+            animation: fadeUp 1.8s 0.6s ease both;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeUp 2s 1s ease both;
+        }
+        .hero-scroll span {
+            font-size: 0.6rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+        .hero-scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.3; }
+        }
+
+        /* SECTIONS SHARED */
+        section {
+            padding: 8rem 4rem;
+            position: relative;
+        }
+        .section-label {
+            font-size: 0.6rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .section-label::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.6;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1;
+            color: var(--ivory);
+            margin-bottom: 0;
+        }
+
+        /* HISTÓRIA / CASAL */
+        #casal {
+            background: var(--deep);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 90vh;
+            padding: 0;
+            align-items: stretch;
+        }
+
+        .casal-images {
+            position: relative;
+            overflow: hidden;
+            background: var(--charcoal);
+        }
+        .casal-images .carousel-container {
+            position: absolute;
+            inset: 0;
+        }
+        .casal-images .carousel-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+        .casal-images .carousel-slide.active { opacity: 1; }
+        .casal-images .carousel-slide img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.05);
+        }
+        .casal-images .carousel-slide.placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--charcoal);
+        }
+        .casal-images .carousel-slide.placeholder::after {
+            content: '';
+            width: 80px; height: 80px;
+            border: 1px solid rgba(201,165,90,0.2);
+            border-radius: 50%;
+        }
+
+        /* Gold overlay on image */
+        .casal-images::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 60%, rgba(201,165,90,0.08) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .casal-carousel-controls {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        .casal-carousel-btn {
+            width: 44px; height: 44px;
+            background: rgba(10,8,6,0.7);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .casal-carousel-btn:hover { background: var(--gold); color: var(--black); }
+
+        .casal-text-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 7rem 5rem;
+            background: var(--deep);
+            position: relative;
+        }
+        .casal-text-side::before {
+            content: '';
+            position: absolute;
+            top: 4rem; bottom: 4rem;
+            left: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(201,165,90,0.3), transparent);
+        }
+        .casal-text-side p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.9;
+            color: rgba(247,242,232,0.65);
+            margin-top: 2.5rem;
+            font-weight: 300;
+        }
+
+        .casal-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-style: italic;
+            color: var(--gold-light);
+            font-weight: 300;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(201,165,90,0.2);
+            line-height: 1.4;
+        }
+        .casal-quote::before { content: '\201C'; font-size: 5rem; color: var(--gold); opacity: 0.2; display: block; line-height: 0.5; margin-bottom: 1rem; }
+
+        /* EVENTOS */
+        #cerimonia, #recepcao {
+            background: var(--black);
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        #recepcao .event-container {
+            direction: rtl;
+        }
+        #recepcao .event-container > * {
+            direction: ltr;
+        }
+
+        .event-image-box {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: var(--charcoal);
+            overflow: hidden;
+        }
+        .event-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%);
+            opacity: 0.8;
+        }
+
+        /* Art deco frame on event images */
+        .event-image-box::before {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(201,165,90,0.25);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .event-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--charcoal);
+        }
+        .event-image-placeholder::after {
+            content: '💒';
+            font-size: 4rem;
+            opacity: 0.2;
+        }
+        #recepcao .event-image-placeholder::after { content: '🥂'; }
+
+        .event-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 8rem;
+            font-weight: 300;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(201,165,90,0.15);
+            line-height: 1;
+            margin-bottom: -1.5rem;
+            display: block;
+        }
+        .event-info { padding: 1rem 0; }
+        .event-info h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--ivory);
+            margin-bottom: 2.5rem;
+            line-height: 1;
+        }
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .event-meta-item {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+        .event-meta-key {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            min-width: 80px;
+        }
+        .event-meta-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--cream);
+            font-weight: 300;
+        }
+
+        .event-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+            transition: gap 0.3s ease;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(201,165,90,0.3);
+        }
+        .event-link:hover { gap: 2rem; border-bottom-color: var(--gold); }
+        .event-link::after { content: '→'; font-size: 1rem; font-family: serif; }
+
+        /* PRESENTES */
+        #presentes {
+            background: var(--deep);
+        }
+        .presentes-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .presentes-header {
+            margin-bottom: 5rem;
+        }
+        .presentes-header p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: rgba(247,242,232,0.5);
+            max-width: 500px;
+            line-height: 1.8;
+            margin-top: 2rem;
+            font-weight: 300;
+        }
+
+        .sort-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .sort-label {
+            font-size: 0.6rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-right: 1rem;
+        }
+        .sort-btn {
+            background: transparent;
+            border: 1px solid rgba(201,165,90,0.2);
+            color: var(--warm-gray);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .sort-btn:hover, .sort-btn.active {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201,165,90,0.05);
+        }
+
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2px;
+        }
+        .gift-card {
+            background: var(--charcoal);
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .gift-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid transparent;
+            transition: border-color 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .gift-card:hover::before { border-color: rgba(201,165,90,0.4); }
+        .gift-card:hover { transform: translateY(-4px); }
+
+        .gift-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--black);
+            overflow: hidden;
+            position: relative;
+        }
+        .gift-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: all 0.5s ease;
+        }
+        .gift-card:hover .gift-image img { filter: grayscale(0%); transform: scale(1.03); }
+        .gift-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        .gift-body {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .gift-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--ivory);
+        }
+        .gift-price {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+        }
+        .gift-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: rgba(247,242,232,0.4);
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        .gift-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 1px solid rgba(201,165,90,0.4);
+            color: var(--gold);
+            padding: 1rem 2rem;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .gift-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10,8,6,0.92);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+
+        .modal-box {
+            background: var(--charcoal);
+            padding: 4rem;
+            max-width: 520px;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(201,165,90,0.2);
+            animation: modalIn 0.4s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Art deco corner */
+        .modal-box::before, .modal-box::after {
+            content: '';
+            position: absolute;
+            width: 24px; height: 24px;
+            border-color: var(--gold);
+            border-style: solid;
+        }
+        .modal-box::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        .modal-box::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: none; border: none;
+            color: var(--warm-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover { color: var(--gold); }
+
+        .modal-eyebrow {
+            font-size: 0.55rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--ivory);
+            margin-bottom: 0.5rem;
+        }
+        .modal-price {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 3rem;
+        }
+
+        .modal-label {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        .modal-input {
+            width: 100%;
+            background: var(--black);
+            border: 1px solid rgba(201,165,90,0.2);
+            color: var(--ivory);
+            padding: 1rem 1.2rem;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 200;
+            letter-spacing: 1px;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+        .modal-input:focus { border-color: var(--gold); }
+        .modal-input::placeholder { color: rgba(247,242,232,0.2); }
+
+        .modal-error {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #c5734a;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .modal-payments {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 2.5rem;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid rgba(201,165,90,0.15);
+            text-decoration: none;
+            color: var(--ivory);
+            cursor: pointer;
+            background: none;
+            width: 100%;
+            transition: all 0.3s;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        .payment-option:hover { border-color: var(--gold); background: rgba(201,165,90,0.05); }
+        .payment-icon { font-size: 1.5rem; }
+        .payment-text { flex: 1; text-align: left; }
+        .payment-text strong { display: block; font-size: 0.75rem; letter-spacing: 2px; font-weight: 300; color: var(--ivory); }
+        .payment-text span { font-size: 0.65rem; color: var(--warm-gray); letter-spacing: 1px; }
+        .payment-arrow { color: var(--gold); font-size: 0.9rem; }
+
+        /* FOOTER */
+        footer {
+            background: var(--black);
+            padding: 5rem 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(201,165,90,0.1);
+        }
+        .footer-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .footer-ornament-line {
+            width: 80px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .footer-ornament-line:last-child {
+            background: linear-gradient(to left, transparent, var(--gold));
+        }
+        .footer-gem {
+            width: 8px; height: 8px;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+        .footer-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+        }
+        .footer-date {
+            font-size: 0.65rem;
+            letter-spacing: 8px;
+            color: var(--warm-gray);
+            text-transform: uppercase;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            nav { padding: 1.5rem 2rem; }
+            .nav-brand { display: none; }
+            .nav-links { gap: 1.5rem; }
+            #casal { grid-template-columns: 1fr; }
+            .casal-images { height: 60vh; }
+            .casal-text-side { padding: 4rem 2rem; }
+            .event-container { grid-template-columns: 1fr; gap: 3rem; }
+            #recepcao .event-container { direction: ltr; }
+            section { padding: 5rem 2rem; }
+            .modal-box { padding: 2.5rem 2rem; }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>(function(){ emailjs.init("olKndLr0o-xTTVzun"); })();</script>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+    <a class="nav-brand" href="#home">I & R</a>
+    <ul class="nav-links">
+        <li><a href="#casal">História</a></li>
+        <li><a href="#cerimonia">Cerimônia</a></li>
+        <li><a href="#recepcao">Recepção</a></li>
+        <li><a href="#presentes">Presentes</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-frame">
+        <div class="hero-frame-inner"></div>
+    </div>
+    <div class="hero-content">
+        <span class="hero-eyebrow">Save the Date</span>
+        <div class="hero-names">
+            Gabriela
+            <span class="hero-ampersand">&</span>
+            Luiz
+            <em>13 de Junho de 2026</em>
+        </div>
+        <div class="hero-divider">
+            <div class="hero-divider-line"></div>
+            <div class="hero-divider-gem"></div>
+            <div class="hero-divider-gem" style="opacity:0.4;transform:rotate(45deg) scale(0.6)"></div>
+            <div class="hero-divider-gem"></div>
+            <div class="hero-divider-line"></div>
+        </div>
+        <p class="hero-date">Sorocaba · São Paulo · Brasil</p>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="hero-scroll-line"></div>
+    </div>
+</section>
+
+<!-- CASAL -->
+<section id="casal" style="padding:0; display:grid;">
+    <div class="casal-images">
+        <div class="carousel-container">
+            <div class="carousel-slide active"><img data-src="img/casal/foto1.jpg" alt="Foto 1"></div>
+            <div class="carousel-slide"><img data-src="img/casal/foto2.jpg" alt="Foto 2"></div>
+            <div class="carousel-slide"><img data-src="img/casal/foto3.jpg" alt="Foto 3"></div>
+            <div class="carousel-slide"><img data-src="img/casal/foto4.jpg" alt="Foto 4"></div>
+            <div class="carousel-slide"><img data-src="img/casal/foto5.jpg" alt="Foto 5"></div>
+            <div class="carousel-slide"><img data-src="img/casal/foto6.jpg" alt="Foto 6"></div>
+            <div class="carousel-slide"><img data-src="img/casal/foto7.jpg" alt="Foto 7"></div>
+            <div class="carousel-slide"><img data-src="img/casal/foto8.jpg" alt="Foto 8"></div>
+            <div class="carousel-slide"><img data-src="img/casal/foto9.jpg" alt="Foto 9"></div>
+        </div>
+        <div class="casal-carousel-controls">
+            <button class="casal-carousel-btn" onclick="changeSlide(-1)">&#8249;</button>
+            <button class="casal-carousel-btn" onclick="changeSlide(1)">&#8250;</button>
+        </div>
+    </div>
+    <div class="casal-text-side">
+        <div class="reveal">
+            <span class="section-label">Nossa História</span>
+            <h2 class="section-title">Uma história<br>escrita a dois</h2>
+        </div>
+        <div class="reveal">
+            <p>Cada história de amor é única, e a nossa é especial porque começou com uma amizade sincera, que cresceu e se transformou em algo muito maior.</p>
+            <p style="margin-top:1.5rem">Ao longo dos anos, compartilhamos sonhos, superamos desafios e construímos memórias inesquecíveis. E agora, estamos prontos para dar o próximo passo juntos.</p>
+        </div>
+        <div class="casal-quote reveal">
+            Amar é encontrar na simplicidade do outro a imensidão do mundo
+        </div>
+    </div>
+</section>
+
+<!-- CERIMÔNIA -->
+<section id="cerimonia">
+    <div class="event-container reveal">
+        <div class="event-image-box">
+            <img src="img/cerimonia.jpg" alt="Cerimônia" onerror="this.parentNode.innerHTML='<div class=\'event-image-placeholder\'></div>'">
+        </div>
+        <div class="event-info">
+            <span class="event-number">01</span>
+            <div class="section-label">Celebração</div>
+            <h2>Cerimônia</h2>
+            <div class="event-meta">
+                <div class="event-meta-item">
+                    <span class="event-meta-key">Data</span>
+                    <span class="event-meta-val">13 de Junho de 2026</span>
+                </div>
+                <div class="event-meta-item">
+                    <span class="event-meta-key">Horário</span>
+                    <span class="event-meta-val">17h30</span>
+                </div>
+                <div class="event-meta-item">
+                    <span class="event-meta-key">Local</span>
+                    <span class="event-meta-val">Santuário São Judas Tadeu</span>
+                </div>
+                <div class="event-meta-item">
+                    <span class="event-meta-key">Endereço</span>
+                    <span class="event-meta-val">Rua Walter Luis D'avilla, 171</span>
+                </div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Walter+Luis+D'avilla,+171" target="_blank" class="event-link">Como Chegar</a>
+        </div>
+    </div>
+</section>
+
+<!-- RECEPÇÃO -->
+<section id="recepcao" style="background:var(--charcoal)">
+    <div class="event-container reveal">
+        <div class="event-image-box">
+            <img src="img/recepcao.jpg" alt="Recepção" onerror="this.parentNode.innerHTML='<div class=\'event-image-placeholder\'></div>'">
+        </div>
+        <div class="event-info">
+            <span class="event-number">02</span>
+            <div class="section-label">Celebração</div>
+            <h2>Recepção</h2>
+            <div class="event-meta">
+                <div class="event-meta-item">
+                    <span class="event-meta-key">Data</span>
+                    <span class="event-meta-val">13 de Junho de 2026</span>
+                </div>
+                <div class="event-meta-item">
+                    <span class="event-meta-key">Horário</span>
+                    <span class="event-meta-val">19h30</span>
+                </div>
+                <div class="event-meta-item">
+                    <span class="event-meta-key">Local</span>
+                    <span class="event-meta-val">Giraclub Buffet e Eventos</span>
+                </div>
+                <div class="event-meta-item">
+                    <span class="event-meta-key">Endereço</span>
+                    <span class="event-meta-val">Rua Augusto Lipel, 10365</span>
+                </div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Augusto+Lipel,+10365" target="_blank" class="event-link">Como Chegar</a>
+        </div>
+    </div>
+</section>
+
+<!-- PRESENTES -->
+<section id="presentes">
+    <div class="presentes-wrapper">
+        <div class="presentes-header reveal">
+            <span class="section-label">Lista de Presentes</span>
+            <h2 class="section-title">Um gesto<br>de carinho</h2>
+            <p>Sua presença já é nosso maior presente! Mas se desejar nos presentear, preparamos algumas opções para ajudar a começar nossa nova vida juntos.</p>
+        </div>
+        <div class="sort-bar">
+            <span class="sort-label">Ordenar</span>
+            <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+            <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor Preço</button>
+            <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior Preço</button>
+        </div>
+        <div class="gift-grid"></div>
+    </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closePaymentModal()">×</button>
+        <div class="modal-eyebrow">Presente Selecionado</div>
+        <div class="modal-title" id="modalGiftName">—</div>
+        <div class="modal-price" id="modalGiftPrice">—</div>
+        <div>
+            <span class="modal-label">Seu nome completo</span>
+            <input type="text" id="guestName" class="modal-input" placeholder="Para podermos agradecer...">
+            <p id="nameError" class="modal-error">⚠ Por favor, preencha seu nome para continuar</p>
+        </div>
+        <div class="modal-payments">
+            <button class="payment-option" onclick="handlePaymentClick('pix')">
+                <div class="payment-icon">💳</div>
+                <div class="payment-text"><strong>Pagar com PIX</strong><span>Pagamento instantâneo</span></div>
+                <div class="payment-arrow">→</div>
+            </button>
+            <button class="payment-option" onclick="handlePaymentClick('card')">
+                <div class="payment-icon">💰</div>
+                <div class="payment-text"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div>
+                <div class="payment-arrow">→</div>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-ornament">
+        <div class="footer-ornament-line"></div>
+        <div class="footer-gem"></div>
+        <div class="footer-gem" style="opacity:0.4;transform:rotate(45deg) scale(0.6)"></div>
+        <div class="footer-gem"></div>
+        <div class="footer-ornament-line"></div>
+    </div>
+    <div class="footer-names">Gabriela & Luiz</div>
+    <div class="footer-date">13 de Junho de 2026 · Sorocaba · SP</div>
+</footer>
+
+<script>
+    // CURSOR
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        setTimeout(() => {
+            ring.style.left = e.clientX + 'px';
+            ring.style.top = e.clientY + 'px';
+        }, 80);
+    });
+
+    // CAROUSEL
+    let currentSlideIndex = 0;
+    let autoPlayInterval;
+    function changeSlide(dir) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        slides[currentSlideIndex].classList.remove('active');
+        currentSlideIndex = (currentSlideIndex + dir + slides.length) % slides.length;
+        slides[currentSlideIndex].classList.add('active');
+        const img = slides[currentSlideIndex].querySelector('img[data-src]');
+        if (img) { img.src = img.dataset.src; img.removeAttribute('data-src'); }
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(() => changeSlide(1), 5000);
+    }
+    autoPlayInterval = setInterval(() => changeSlide(1), 5000);
+    const firstImg = document.querySelector('.carousel-slide img[data-src]');
+    if (firstImg) { firstImg.src = firstImg.dataset.src; firstImg.removeAttribute('data-src'); }
+
+    // REVEAL
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // PRESENTES
+    const PRESENTES = [
+        { nome: 'Jogo de Panelas', preco: 'R$ 470,00', descricao: 'Jogo de panelas para fogo de indução.', imagem: 'img/jogo_de_panelas.jpg', pix: 'https://mpago.li/2cvWoiF', cartao: 'https://mpago.li/2cvWoiF' },
+        { nome: 'Jogo de Cama Casal', preco: 'R$ 300,00', descricao: 'Jogo de cama casal.', imagem: 'img/jogo_de_cama.jpg', pix: 'https://mpago.li/2qGccqa', cartao: 'https://mpago.li/2qGccqa' },
+        { nome: 'Cafeteira Elétrica', preco: 'R$ 350,00', descricao: 'Cafeteira elétrica programável para começar o dia com energia.', imagem: 'img/cafeteira.jpg', pix: 'https://mpago.li/24HaaZk', cartao: 'https://mpago.li/24HaaZk' },
+        { nome: 'Conjunto de Taças', preco: 'R$ 200,00', descricao: 'Conjunto com 6 taças de vinho em cristal para nossas celebrações.', imagem: 'img/conjunto_de_tacas.jpg', pix: 'https://mpago.li/2rLWgXN', cartao: 'https://mpago.li/2rLWgXN' },
+    ];
+    function precoParaNumero(p) { return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim()); }
+    function renderPresentes(lista) {
+        const c = document.querySelector('.gift-grid');
+        c.innerHTML = lista.map(p => `
+            <div class="gift-card">
+                <div class="gift-image">
+                    <img data-src="${p.imagem}" alt="${p.nome}" onerror="this.parentNode.innerHTML='<div class=\\'gift-image-placeholder\\'>${p.nome[0]}</div>'">
+                </div>
+                <div class="gift-body">
+                    <div class="gift-name">${p.nome}</div>
+                    <div class="gift-price">${p.preco}</div>
+                    <div class="gift-desc">${p.descricao}</div>
+                    <button class="gift-btn" onclick="openPaymentModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">Presentear</button>
+                </div>
+            </div>
+        `).join('');
+        c.querySelectorAll('img[data-src]').forEach(img => imgObs.observe(img));
+    }
+    function ordenarPresentes(ordem) {
+        const lista = [...PRESENTES];
+        if (ordem === 'asc') lista.sort((a,b) => precoParaNumero(a.preco)-precoParaNumero(b.preco));
+        if (ordem === 'desc') lista.sort((a,b) => precoParaNumero(b.preco)-precoParaNumero(a.preco));
+        document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.ordem === ordem));
+        renderPresentes(lista);
+    }
+
+    const imgObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { const img = e.target; img.src = img.dataset.src; img.removeAttribute('data-src'); imgObs.unobserve(img); } });
+    }, { rootMargin: '100px' });
+
+    document.addEventListener('DOMContentLoaded', () => renderPresentes(PRESENTES));
+
+    // MODAL
+    let currentPixLink='', currentCardLink='', currentGiftName='', currentGiftPrice='';
+    function openPaymentModal(name, price, pix, card) {
+        currentGiftName=name; currentGiftPrice=price; currentPixLink=pix; currentCardLink=card;
+        document.getElementById('modalGiftName').textContent = name;
+        document.getElementById('modalGiftPrice').textContent = price;
+        document.getElementById('guestName').value = '';
+        document.getElementById('nameError').style.display = 'none';
+        document.getElementById('paymentModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => document.getElementById('guestName').focus(), 300);
+    }
+    function closePaymentModal() {
+        document.getElementById('paymentModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    function handlePaymentClick(type) {
+        const name = document.getElementById('guestName').value.trim();
+        if (!name || name.length < 3) {
+            document.getElementById('nameError').style.display = 'block';
+            document.getElementById('guestName').focus(); return;
+        }
+        document.getElementById('nameError').style.display = 'none';
+        emailjs.send("service_cu0ot6g", "template_nkug6fq", {
+            guest_name: name, gift_name: currentGiftName, gift_price: currentGiftPrice,
+            payment_type: type === 'pix' ? 'PIX' : 'Cartão', date: new Date().toLocaleString('pt-BR')
+        });
+        window.open(type === 'pix' ? currentPixLink : currentCardLink, '_blank', 'noopener,noreferrer');
+        setTimeout(() => closePaymentModal(), 800);
+    }
+    document.getElementById('paymentModal').addEventListener('click', e => { if (e.target === e.currentTarget) closePaymentModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaymentModal(); });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>

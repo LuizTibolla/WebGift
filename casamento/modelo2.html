@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriela & Luiz - Nosso Casamento</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <meta name="description" content="Gabriela & Luiz - 13 de Junho de 2026. Celebre conosco nosso dia especial!">
+    <meta property="og:title" content="Gabriela & Luiz - Nosso Casamento">
+    <meta property="og:description" content="13 de Junho de 2026 - Celebre conosco nosso dia especial!">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose: #c9838a;
+            --rose-light: #e8b4b8;
+            --rose-pale: #f5e6e8;
+            --blush: #fdf5f6;
+            --beige: #f2ede8;
+            --beige-dark: #d4c5b9;
+            --brown: #7a5c52;
+            --brown-dark: #5c4038;
+            --white: #fffcfb;
+            --text: #4a3028;
+            --text-light: #9b7b72;
+            --gold: #c8a97e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Lato', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,252,251,0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000; padding: 1.2rem 0;
+            border-bottom: 1px solid var(--rose-pale);
+        }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; padding: 0 2rem; }
+        nav a { text-decoration: none; color: var(--brown); font-weight: 400; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; position: relative; }
+        nav a::after { content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background: var(--rose); transition: width 0.3s ease; }
+        nav a:hover { color: var(--rose); }
+        nav a:hover::after { width: 100%; }
+
+        /* SECTIONS */
+        section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem; position: relative; }
+        .section-content { max-width: 1100px; width: 100%; }
+
+        /* HOME */
+        #home {
+            background-color: var(--brown-dark);
+            background-image: url('img/casal/hero.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            text-align: center; overflow: hidden;
+        }
+        #home::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(160deg, rgba(90,45,35,0.65) 0%, rgba(60,20,20,0.75) 100%);
+            z-index: 1;
+        }
+        .home-content { position: relative; z-index: 2; color: var(--white); }
+        .home-tag { font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase; color: var(--rose-light); margin-bottom: 2.5rem; display: block; animation: fadeInDown 1s ease-out; }
+        .names { font-family: 'Playfair Display', serif; font-size: 5.5rem; font-weight: 400; font-style: italic; line-height: 1.1; animation: fadeIn 1.8s ease-out; text-shadow: 0 2px 30px rgba(0,0,0,0.3); }
+        .names .and { font-size: 3rem; color: var(--rose-light); display: inline-block; margin: 0 0.5rem; }
+        .home-ornament { display: block; font-size: 1.5rem; color: var(--rose-light); margin: 1.5rem auto; opacity: 0.7; letter-spacing: 1rem; animation: fadeIn 1.5s ease-out; }
+        .date-tag { font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 1.5rem; color: rgba(255,255,255,0.85); animation: fadeIn 2.2s ease-out; }
+        .date-tag::before, .date-tag::after { content: '✦'; color: var(--rose-light); margin: 0 1rem; font-size: 0.7rem; }
+        .scroll-indicator { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2.5s ease-in-out infinite; }
+        .scroll-indicator::after { content: '↓'; font-size: 2rem; color: var(--rose-light); }
+
+        /* SECTION TITLES */
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 400; font-style: italic; color: var(--brown-dark); margin-bottom: 0.5rem; }
+        .section-divider { display: flex; align-items: center; gap: 1rem; margin: 1.2rem 0 2.5rem; }
+        .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--rose-light); }
+        .section-divider span { color: var(--rose); font-size: 1.2rem; }
+
+        /* CASAL */
+        #casal { background: var(--beige); }
+        .couple-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .couple-text p { font-size: 1.05rem; line-height: 1.9; color: var(--text-light); margin-bottom: 1.3rem; }
+        .couple-image { height: 520px; background: var(--rose-pale); border-radius: 60% 40% 55% 45% / 50% 50% 50% 50%; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(201,131,138,0.25); }
+        .carousel-container { position: relative; width: 100%; height: 100%; }
+        .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; }
+        .carousel-slide.active { opacity: 1; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .carousel-slide.placeholder { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--rose-pale), var(--beige)); }
+        .carousel-slide.placeholder::after { content: '📸'; font-size: 4rem; opacity: 0.3; }
+        .carousel-button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,252,251,0.9); color: var(--rose); border: 1px solid var(--rose-light); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10; }
+        .carousel-button:hover { background: var(--rose); color: white; transform: translateY(-50%) scale(1.1); }
+        .carousel-button.prev { left: 15px; }
+        .carousel-button.next { right: 15px; }
+        .carousel-indicators { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+        .carousel-indicator { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); border: 1.5px solid white; cursor: pointer; transition: all 0.3s ease; }
+        .carousel-indicator.active { background: var(--rose); border-color: var(--rose); transform: scale(1.3); }
+        .carousel-counter { position: absolute; top: 16px; right: 16px; background: rgba(255,252,251,0.9); color: var(--rose); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; z-index: 10; }
+
+        /* EVENTS */
+        #cerimonia { background: var(--white); }
+        #recepcao { background: var(--rose-pale); }
+        .event-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(120,60,52,0.15); min-height: 440px; }
+        .event-image-side { background-color: var(--brown); background-size: cover; background-position: center; position: relative; }
+        #cerimonia .event-image-side { background-image: url('img/cerimonia.jpg'); }
+        #recepcao .event-image-side { background-image: url('img/recepcao.jpg'); }
+        .event-image-side::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(90,40,32,0.5), rgba(120,60,50,0.3)); }
+        .event-text-side { background: var(--white); padding: 4rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+        #recepcao .event-text-side { background: var(--beige); }
+        .event-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .event-text-side h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-style: italic; color: var(--brown-dark); margin-bottom: 1rem; }
+        .event-details { font-size: 1.05rem; line-height: 2; color: var(--text-light); }
+        .event-details strong { color: var(--rose); font-weight: 700; }
+        .event-note { margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-light); font-style: italic; padding-top: 1.5rem; border-top: 1px solid var(--rose-pale); }
+        .route-button { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--rose); border: 1.5px solid var(--rose); padding: 0.85rem 2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; margin-top: 2rem; align-self: flex-start; }
+        .route-button:hover { background: var(--rose); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,131,138,0.35); }
+        .route-button::before { content: '📍'; font-size: 1rem; }
+
+        /* GIFTS */
+        #presentes { background: var(--beige); }
+        .gifts-header { text-align: center; margin-bottom: 3.5rem; }
+        .gifts-header p { font-size: 1.1rem; color: var(--text-light); line-height: 1.8; max-width: 650px; margin: 0 auto; }
+        .gift-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; }
+        .gift-card { background: var(--white); border-radius: 16px; overflow: hidden; transition: all 0.35s ease; box-shadow: 0 4px 20px rgba(120,60,52,0.08); display: flex; flex-direction: column; }
+        .gift-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(201,131,138,0.2); }
+        .gift-image { width: 100%; height: 210px; background: var(--rose-pale); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; overflow: hidden; position: relative; }
+        .gift-image img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease; }
+        .gift-image img[data-src] { opacity: 0; }
+        .gift-image img.loaded { opacity: 1; }
+        .gift-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .gift-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-style: italic; margin-bottom: 0.4rem; color: var(--brown-dark); }
+        .gift-price { color: var(--rose); font-weight: 700; font-size: 1.2rem; margin-bottom: 0.8rem; }
+        .gift-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 1.3rem; flex-grow: 1; }
+        .gift-button { background: var(--rose); color: white; border: none; padding: 0.85rem 1.5rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; display: inline-block; text-align: center; }
+        .gift-button:hover { background: var(--brown); transform: scale(1.03); box-shadow: 0 6px 16px rgba(201,131,138,0.35); }
+
+        /* MODAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(80,30,25,0.85); backdrop-filter: blur(6px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--white); border-radius: 20px; padding: 3rem; max-width: 500px; width: 90%; position: relative; animation: slideInUp 0.3s ease-out; box-shadow: 0 30px 80px rgba(0,0,0,0.25); border-top: 4px solid var(--rose); }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: var(--rose-pale); border: none; font-size: 1.5rem; color: var(--rose); cursor: pointer; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease; }
+        .modal-close:hover { background: var(--rose); color: white; transform: rotate(90deg); }
+        .modal-header { text-align: center; margin-bottom: 2rem; }
+        .modal-header h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; color: var(--brown-dark); margin-bottom: 0.3rem; }
+        .modal-price { color: var(--rose); font-size: 1.9rem; font-weight: 700; }
+        .payment-buttons { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+        .payment-option { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; border: 1.5px solid var(--rose-pale); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; color: var(--text); }
+        .payment-option:hover { border-color: var(--rose); background: var(--blush); transform: translateX(4px); }
+        .payment-icon { font-size: 2rem; width: 40px; text-align: center; }
+        .payment-info { flex: 1; text-align: left; }
+        .payment-info strong { display: block; font-size: 1rem; margin-bottom: 0.2rem; color: var(--brown-dark); }
+        .payment-info span { font-size: 0.85rem; color: var(--text-light); }
+        .payment-arrow { font-size: 1.2rem; color: var(--rose); }
+
+        /* FOOTER */
+        footer { background: var(--brown-dark); color: rgba(255,252,251,0.8); text-align: center; padding: 3.5rem 2rem; }
+        footer::before { content: '❧ ✦ ❧'; display: block; color: var(--rose-light); font-size: 1.5rem; margin-bottom: 1.5rem; letter-spacing: 1rem; opacity: 0.6; }
+        footer p { font-size: 1rem; letter-spacing: 1px; }
+        .heart { color: var(--rose-light); display: inline-block; animation: heartbeat 1.5s infinite; }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-10px); } }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            #home { background-attachment: scroll; }
+            .names { font-size: 3.5rem; }
+            nav ul { gap: 1.2rem; }
+            nav a { font-size: 0.75rem; }
+            .couple-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .couple-image { height: 380px; }
+            .event-wrapper { grid-template-columns: 1fr; }
+            .event-image-side { height: 220px; }
+            .event-text-side { padding: 2.5rem 2rem; }
+            .event-text-side h2 { font-size: 2.2rem; }
+            .section-title { font-size: 2.5rem; }
+            section { padding: 4rem 1.5rem; }
+            .modal-content { padding: 2rem; }
+        }
+
+        .sort-bar { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .sort-label { font-size: 0.82rem; color: var(--text-light); letter-spacing: 1.5px; text-transform: uppercase; margin-right: 0.5rem; }
+        .sort-btn { background: transparent; border: 1.5px solid var(--beige-dark); color: var(--brown); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.82rem; font-family: 'Lato', sans-serif; cursor: pointer; transition: all 0.25s ease; }
+        .sort-btn:hover { border-color: var(--rose); background: var(--rose); color: white; }
+        .sort-btn.active { background: var(--rose); color: white; border-color: var(--rose); }
+    </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>(function(){ emailjs.init("olKndLr0o-xTTVzun"); })();</script>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#casal">O Casal</a></li>
+        <li><a href="#cerimonia">Cerimônia</a></li>
+        <li><a href="#recepcao">Recepção</a></li>
+        <li><a href="#presentes">Presentes</a></li>
+    </ul>
+</nav>
+
+<section id="home">
+    <div class="home-content">
+        <span class="home-tag">Save the Date</span>
+        <div class="names">Gabriela <span class="and">&</span> Luiz</div>
+        <span class="home-ornament">✦ ✦ ✦</span>
+        <p class="date-tag">13 de Junho de 2026</p>
+    </div>
+    <div class="scroll-indicator"></div>
+</section>
+
+<section id="casal">
+    <div class="section-content">
+        <div class="couple-grid">
+            <div class="couple-text">
+                <h2 class="section-title">Nossa História</h2>
+                <div class="section-divider"><span>🌸</span></div>
+                <p>Cada história de amor é única, e a nossa é especial porque começou com uma amizade sincera, que cresceu e se transformou em algo muito maior.</p>
+                <p>Ao longo dos anos, compartilhamos sonhos, superamos desafios e construímos memórias inesquecíveis. E agora, estamos prontos para dar o próximo passo juntos.</p>
+                <p>Este é o dia em que uniremos nossas vidas oficialmente, cercados pelas pessoas que amamos. Queremos você ao nosso lado neste momento tão especial!</p>
+            </div>
+            <div class="couple-image">
+                <div class="carousel-container">
+                    <div class="carousel-counter"><span id="currentSlide">1</span> / <span id="totalSlides">9</span></div>
+                    <div class="carousel-slide active"><img data-src="img/casal/foto1.jpg" alt="Foto 1"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto2.jpg" alt="Foto 2"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto3.jpg" alt="Foto 3"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto4.jpg" alt="Foto 4"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto5.jpg" alt="Foto 5"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto6.jpg" alt="Foto 6"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto7.jpg" alt="Foto 7"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto8.jpg" alt="Foto 8"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto9.jpg" alt="Foto 9"></div>
+                    <button class="carousel-button prev" onclick="changeSlide(-1)">&#8249;</button>
+                    <button class="carousel-button next" onclick="changeSlide(1)">&#8250;</button>
+                    <div class="carousel-indicators">
+                        <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(6)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(7)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(8)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cerimonia">
+    <div class="section-content">
+        <div class="event-wrapper">
+            <div class="event-image-side"></div>
+            <div class="event-text-side">
+                <div class="event-icon">💒</div>
+                <h2>Cerimônia</h2>
+                <div class="event-details">
+                    <p><strong>Data:</strong> 13/06/2026</p>
+                    <p><strong>Horário:</strong> 17:30</p>
+                    <p><strong>Local:</strong> Santuário São Judas Tadeu</p>
+                    <p><strong>Endereço:</strong> Rua Walter Luis D'avilla, 171</p>
+                </div>
+                <p class="event-note">Pedimos que cheguem com 30 minutos de antecedência</p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Walter+Luis+D'avilla,+171" target="_blank" class="route-button">Como Chegar</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="recepcao">
+    <div class="section-content">
+        <div class="event-wrapper">
+            <div class="event-text-side">
+                <div class="event-icon">🥂</div>
+                <h2>Recepção</h2>
+                <div class="event-details">
+                    <p><strong>Data:</strong> 13/06/2026</p>
+                    <p><strong>Horário:</strong> 19:30</p>
+                    <p><strong>Local:</strong> Giraclub Buffet e Eventos</p>
+                    <p><strong>Endereço:</strong> Rua Augusto Lipel, 10365</p>
+                </div>
+                <p class="event-note">Venha celebrar conosco com muita música, dança e alegria!</p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Augusto+Lipel,+10365" target="_blank" class="route-button">Como Chegar</a>
+            </div>
+            <div class="event-image-side"></div>
+        </div>
+    </div>
+</section>
+
+<section id="presentes">
+    <div class="section-content">
+        <div class="gifts-header">
+            <h2 class="section-title">Lista de Presentes</h2>
+            <div class="section-divider"><span>🌸</span></div>
+            <p>Sua presença já é nosso maior presente! Mas se desejar nos presentear, preparamos algumas opções para ajudar a começar nossa nova vida juntos.</p>
+        </div>
+
+        <div class="sort-bar">
+            <span class="sort-label">Ordenar por preço:</span>
+            <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+            <button class="sort-btn" data-ordem="asc"      onclick="ordenarPresentes('asc')">Menor → Maior</button>
+            <button class="sort-btn" data-ordem="desc"     onclick="ordenarPresentes('desc')">Maior → Menor</button>
+        </div>
+        <div class="gift-options"></div>
+                    </div>
+     
+    </div>
+</section>
+
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closePaymentModal()">&#215;</button>
+        <div class="modal-header">
+            <h3 id="modalGiftName">Nome do Presente</h3>
+            <div class="modal-price" id="modalGiftPrice">R$ 0,00</div>
+        </div>
+        <div style="margin: 1.5rem 0;">
+            <label for="guestName" style="display: block; font-size: 0.95rem; color: var(--brown); margin-bottom: 0.5rem; font-weight: 700;">Para podermos agradecer, por favor informe seu nome:</label>
+            <input type="text" id="guestName" placeholder="Digite seu nome completo"
+                style="width: 100%; padding: 1rem; border: 1.5px solid var(--beige-dark); border-radius: 10px; font-size: 1rem; font-family: Lato, sans-serif; transition: border-color 0.3s ease;"
+                onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-dark)'">
+            <p id="nameError" style="color: #c0392b; font-size: 0.85rem; margin-top: 0.5rem; display: none;">&#9888;&#65039; Por favor, preencha seu nome antes de continuar</p>
+        </div>
+        <div class="payment-buttons">
+            <a href="javascript:void(0)" class="payment-option" onclick="handlePaymentClick('pix')">
+                <div class="payment-icon">&#x1F4B3;</div>
+                <div class="payment-info"><strong>Pagar com PIX</strong><span>Pagamento instantâneo e seguro</span></div>
+                <div class="payment-arrow">&#8594;</div>
+            </a>
+            <a href="javascript:void(0)" class="payment-option" onclick="handlePaymentClick('card')">
+                <div class="payment-icon">&#x1F4B0;</div>
+                <div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div>
+                <div class="payment-arrow">&#8594;</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Feito com <span class="heart">&#9829;</span> para nosso dia especial</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Gabriela & Luiz &middot; 13 de Junho de 2026</p>
+</footer>
+
+<script>
+// ===== FUNÇÕES GLOBAIS DO CARROSSEL (DEVEM VIR PRIMEIRO) =====
+        let currentSlideIndex = 0;
+        let autoPlayInterval;
+
+        // Função para mudar slide (setas) - GLOBAL
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (slides.length === 0) return;
+            
+            // Remove active de todos
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Ajusta o índice (circular)
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+
+            // Ativa o slide e indicador atual
+            slides[currentSlideIndex].classList.add('active');
+            if (indicators[currentSlideIndex]) {
+                indicators[currentSlideIndex].classList.add('active');
+            }
+
+            // Atualiza contador
+            const currentSlideElement = document.getElementById('currentSlide');
+            if (currentSlideElement) {
+                currentSlideElement.textContent = currentSlideIndex + 1;
+            }
+
+            // Carrega a imagem se ainda não foi carregada
+            const currentImg = slides[currentSlideIndex].querySelector('img[data-src]');
+            if (currentImg) {
+                const src = currentImg.getAttribute('data-src');
+                if (src) {
+                    currentImg.src = src;
+                    currentImg.removeAttribute('data-src');
+                }
+            }
+
+            // Reinicia auto-play
+            resetAutoPlay();
+        }
+
+        // Função para ir direto para um slide (bolinhas) - GLOBAL
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (slides.length === 0) return;
+            
+            // Remove active de todos
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Define o índice
+            currentSlideIndex = index;
+
+            // Ativa o slide e indicador atual
+            slides[currentSlideIndex].classList.add('active');
+            if (indicators[currentSlideIndex]) {
+                indicators[currentSlideIndex].classList.add('active');
+            }
+
+            // Atualiza contador
+            const currentSlideElement = document.getElementById('currentSlide');
+            if (currentSlideElement) {
+                currentSlideElement.textContent = currentSlideIndex + 1;
+            }
+
+            // Carrega a imagem se ainda não foi carregada
+            const currentImg = slides[currentSlideIndex].querySelector('img[data-src]');
+            if (currentImg) {
+                const src = currentImg.getAttribute('data-src');
+                if (src) {
+                    currentImg.src = src;
+                    currentImg.removeAttribute('data-src');
+                }
+            }
+
+            // Reinicia auto-play
+            resetAutoPlay();
+        }
+
+        // Auto-play - troca automaticamente a cada 4 segundos
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000);
+        }
+
+        // Parar auto-play
+        function stopAutoPlay() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+            }
+        }
+
+        // Reiniciar auto-play
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
+        // Inicializa o carrossel quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            
+            if (slides.length > 0) {
+                // Carrega primeira imagem
+                const firstImg = slides[0].querySelector('img[data-src]');
+                if (firstImg) {
+                    const src = firstImg.getAttribute('data-src');
+                    if (src) {
+                        firstImg.src = src;
+                        firstImg.removeAttribute('data-src');
+                    }
+                }
+                
+                // Inicia auto-play
+                startAutoPlay();
+
+                // Pausa auto-play quando mouse está em cima
+                const carouselContainer = document.querySelector('.carousel-container');
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+                    carouselContainer.addEventListener('mouseleave', startAutoPlay);
+                }
+
+                // Suporte para navegação por teclado
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowLeft') {
+                        changeSlide(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        changeSlide(1);
+                    }
+                });
+
+                // Suporte para swipe em dispositivos touch
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('touchstart', function(e) {
+                        touchStartX = e.changedTouches[0].screenX;
+                    }, { passive: true });
+
+                    carouselContainer.addEventListener('touchend', function(e) {
+                        touchEndX = e.changedTouches[0].screenX;
+                        const swipeThreshold = 50;
+                        if (touchStartX - touchEndX > swipeThreshold) {
+                            changeSlide(1);
+                        } else if (touchEndX - touchStartX > swipeThreshold) {
+                            changeSlide(-1);
+                        }
+                    }, { passive: true });
+                }
+            }
+        });
+
+        // ===== LAZY LOADING DE IMAGENS =====
+        // Carrega imagens apenas quando estão próximas de aparecer na tela
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    
+                    if (src) {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                        img.classList.add('loaded');
+                    }
+                    
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px' // Começa a carregar 50px antes da imagem aparecer
+        });
+
+        // Observa todas as imagens com data-src
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ===== INTERSECTION OBSERVER PARA ANIMAÇÕES =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-content').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ===== VARIÁVEIS GLOBAIS DO MODAL =====
+        let currentPixLink = '';
+        let currentCardLink = '';
+        let currentGiftName = '';
+        let currentGiftPrice = '';
+
+        // ===== MODAL FUNCTIONS =====
+        function openPaymentModal(giftName, giftPrice, pixLink, cardLink) {
+            // Armazena os dados
+            currentGiftName = giftName;
+            currentGiftPrice = giftPrice;
+            currentPixLink = pixLink;
+            currentCardLink = cardLink;
+            
+            // Atualiza o modal
+            document.getElementById('modalGiftName').textContent = giftName;
+            document.getElementById('modalGiftPrice').textContent = giftPrice;
+            
+            // Limpa o campo de nome e erro
+            document.getElementById('guestName').value = '';
+            document.getElementById('nameError').style.display = 'none';
+            
+            // Abre o modal
+            document.getElementById('paymentModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Foca no campo de nome
+            setTimeout(() => {
+                document.getElementById('guestName').focus();
+            }, 300);
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handlePaymentClick(paymentType) {
+            const guestName = document.getElementById('guestName').value.trim();
+            const nameError = document.getElementById('nameError');
+            
+            // Valida se o nome foi preenchido
+            if (!guestName || guestName.length < 3) {
+                nameError.style.display = 'block';
+                document.getElementById('guestName').focus();
+                document.getElementById('guestName').style.borderColor = '#d32f2f';
+                return;
+            }
+            
+            // Esconde erro se estava visível
+            nameError.style.display = 'none';
+            document.getElementById('guestName').style.borderColor = 'var(--gray)';
+            
+            // Envia dados para o Google Forms
+            sendNotificationEmail(guestName, currentGiftName, currentGiftPrice, paymentType);
+            
+            // Abre o link de pagamento
+            const paymentLink = paymentType === 'pix' ? currentPixLink : currentCardLink;
+            window.open(paymentLink, '_blank', 'noopener,noreferrer');
+            
+            // Fecha o modal após 1 segundo
+            setTimeout(() => {
+                closePaymentModal();
+            }, 1000);
+        }
+        
+        function sendNotificationEmail(guestName, giftName, giftPrice, paymentType) {
+
+            emailjs.send("service_cu0ot6g", "template_nkug6fq", {
+                guest_name: guestName,
+                gift_name: giftName,
+                gift_price: giftPrice,
+                payment_type: paymentType === 'pix' ? 'PIX' : 'Cartão',
+                date: new Date().toLocaleString('pt-BR')
+            })
+            .then(function(response) {
+                console.log("Email enviado com sucesso!", response.status);
+            }, function(error) {
+                console.log("Erro ao enviar:", error);
+            });
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePaymentModal();
+            }
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePaymentModal();
+            }
+        });
+
+        function openPaymentModal(giftName, giftPrice, pixLink, cardLink) {
+            currentGiftName = giftName; currentGiftPrice = giftPrice;
+            currentPixLink = pixLink; currentCardLink = cardLink;
+            document.getElementById('modalGiftName').textContent = giftName;
+            document.getElementById('modalGiftPrice').textContent = giftPrice;
+            document.getElementById('guestName').value = '';
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('paymentModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => document.getElementById('guestName').focus(), 300);
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handlePaymentClick(paymentType) {
+            const guestName = document.getElementById('guestName').value.trim();
+            const nameError = document.getElementById('nameError');
+            if (!guestName || guestName.length < 3) { nameError.style.display = 'block'; document.getElementById('guestName').focus(); return; }
+            nameError.style.display = 'none';
+            sendNotificationEmail(guestName, currentGiftName, currentGiftPrice, paymentType);
+            window.open(paymentType === 'pix' ? currentPixLink : currentCardLink, '_blank', 'noopener,noreferrer');
+            setTimeout(() => closePaymentModal(), 1000);
+        }
+
+        function sendNotificationEmail(guestName, giftName, giftPrice, paymentType) {
+            emailjs.send("service_cu0ot6g", "template_nkug6fq", {
+                guest_name: guestName, gift_name: giftName, gift_price: giftPrice,
+                payment_type: paymentType === 'pix' ? 'PIX' : 'Cartão',
+                date: new Date().toLocaleString('pt-BR')
+            });
+        }
+
+        document.getElementById('paymentModal').addEventListener('click', function(e) { if (e.target === this) closePaymentModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaymentModal(); });
+
+        // ===== LISTA DE PRESENTES =====
+        const PRESENTES = [
+          { nome: 'Jogo de Panelas',    preco: 'R$ 470,00', descricao: 'Jogo de panelas para fogo de indu\u00e7\u00e3o.',                           imagem: 'img/jogo_de_panelas.jpg',   pix: 'https://mpago.li/2cvWoiF', cartao: 'https://mpago.li/2cvWoiF' },
+          { nome: 'Jogo de Cama Casal', preco: 'R$ 300,00', descricao: 'Jogo de cama casal.',                                                        imagem: 'img/jogo_de_cama.jpg',      pix: 'https://mpago.li/2qGccqa', cartao: 'https://mpago.li/2qGccqa' },
+          { nome: 'Cafeteira El\u00e9trica', preco: 'R$ 350,00', descricao: 'Cafeteira el\u00e9trica program\u00e1vel para come\u00e7ar o dia com energia.', imagem: 'img/cafeteira.jpg',         pix: 'https://mpago.li/24HaaZk', cartao: 'https://mpago.li/24HaaZk' },
+          { nome: 'Conjunto de Ta\u00e7as',  preco: 'R$ 200,00', descricao: 'Conjunto com 6 ta\u00e7as de vinho em cristal para nossas celebra\u00e7\u00f5es.', imagem: 'img/conjunto_de_tacas.jpg', pix: 'https://mpago.li/2rLWgXN', cartao: 'https://mpago.li/2rLWgXN' },
+        ];
+
+        function precoParaNumero(preco) {
+            return parseFloat(preco.replace('R$', '').replace(/\./g, '').replace(',', '.').trim());
+        }
+
+        function renderPresentes(lista) {
+            const container = document.querySelector('.gift-options');
+            container.innerHTML = lista.map(p => `
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <img data-src="${p.imagem}" alt="${p.nome}">
+                    </div>
+                    <div class="gift-content">
+                        <h3>${p.nome}</h3>
+                        <div class="gift-price">${p.preco}</div>
+                        <p>${p.descricao}</p>
+                        <button class="gift-button"
+                            onclick="openPaymentModal('${p.nome}', '${p.preco}', '${p.pix}', '${p.cartao}')">
+                            Presentear
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            container.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        }
+
+        function ordenarPresentes(ordem) {
+            const lista = [...PRESENTES];
+            if (ordem === 'asc')  lista.sort((a, b) => precoParaNumero(a.preco) - precoParaNumero(b.preco));
+            if (ordem === 'desc') lista.sort((a, b) => precoParaNumero(b.preco) - precoParaNumero(a.preco));
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.ordem === ordem);
+            });
+            renderPresentes(lista);
+        }
+
+        // Render inicial
+        document.addEventListener('DOMContentLoaded', () => renderPresentes(PRESENTES));
+
+    </script>
+</body>
+</html>

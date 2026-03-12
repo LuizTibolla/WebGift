@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriela & Luiz - Nosso Casamento</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+    <meta name="description" content="Gabriela & Luiz - 13 de Junho de 2026.">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f0f0f;
+            --ink-soft: #1c1c1c;
+            --ink-mid: #2a2a2a;
+            --sage: #7d9b76;
+            --sage-light: #a8c4a0;
+            --sage-pale: #e8f0e6;
+            --cream: #f8f6f2;
+            --cream-dark: #ede9e1;
+            --warm-gray: #6b6560;
+            --white: #ffffff;
+            --accent: #c4a882;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--cream); background: var(--ink); overflow-x: hidden; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(15,15,15,0.95); backdrop-filter: blur(16px); z-index: 1000; padding: 1.3rem 0; border-bottom: 1px solid rgba(125,155,118,0.2); }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 3.5rem; flex-wrap: wrap; padding: 0 2rem; }
+        nav a { text-decoration: none; color: rgba(248,246,242,0.6); font-weight: 400; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; transition: all 0.3s ease; }
+        nav a:hover { color: var(--sage-light); }
+
+        /* SECTIONS */
+        section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem; position: relative; }
+        .section-content { max-width: 1200px; width: 100%; }
+
+        /* HOME */
+        #home { background: var(--ink); overflow: hidden; position: relative; }
+        .home-bg {
+            position: absolute; inset: 0;
+            background-image: url('img/casal/hero1.jpg');
+            background-size: cover; background-position: center;
+            opacity: 0.3;
+            filter: grayscale(40%);
+        }
+        .home-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to right, rgba(15,15,15,0.98) 35%, rgba(15,15,15,0.4) 100%);
+        }
+        .home-content { position: relative; z-index: 2; max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 4rem; text-align: left; }
+        .home-year { font-size: 0.75rem; letter-spacing: 6px; color: var(--sage); text-transform: uppercase; margin-bottom: 3rem; display: block; }
+        .home-title-top { font-family: 'DM Serif Display', serif; font-size: 1.8rem; font-weight: 400; color: var(--cream-dark); font-style: italic; letter-spacing: 0.05em; display: block; margin-bottom: -0.5rem; animation: fadeInUp 1s ease-out; }
+        .home-title-main { font-family: 'DM Serif Display', serif; font-size: 8rem; font-weight: 400; line-height: 0.9; letter-spacing: -0.02em; animation: fadeInUp 1.2s ease-out; }
+        .home-title-main .name1 { display: block; color: var(--cream); }
+        .home-title-main .amp { color: var(--sage); font-style: italic; font-size: 5rem; display: block; line-height: 1.1; }
+        .home-title-main .name2 { display: block; color: var(--cream); }
+        .home-meta { margin-top: 3rem; display: flex; align-items: center; gap: 2rem; animation: fadeInUp 1.5s ease-out; }
+        .home-date { font-size: 0.9rem; letter-spacing: 3px; color: rgba(248,246,242,0.5); text-transform: uppercase; }
+        .home-line { flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to right, var(--sage), transparent); }
+        .scroll-hint { position: absolute; bottom: 3rem; right: 4rem; z-index: 2; writing-mode: vertical-lr; font-size: 0.7rem; letter-spacing: 3px; color: rgba(248,246,242,0.3); text-transform: uppercase; display: flex; align-items: center; gap: 1rem; }
+        .scroll-hint::before { content: ''; display: block; width: 1px; height: 60px; background: linear-gradient(to bottom, var(--sage), transparent); }
+
+        /* SECTION LABELS */
+        .section-label { font-size: 0.7rem; letter-spacing: 5px; color: var(--sage); text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: 4rem; font-weight: 400; color: var(--cream); line-height: 1.1; margin-bottom: 3rem; }
+        .section-title em { color: var(--sage-light); font-style: italic; }
+
+        /* CASAL */
+        #casal { background: var(--ink-soft); }
+        .couple-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center; }
+        .couple-text p { font-size: 1.05rem; line-height: 1.9; color: rgba(248,246,242,0.55); margin-bottom: 1.5rem; font-weight: 300; }
+        .couple-image { height: 580px; background: var(--ink-mid); position: relative; overflow: hidden; clip-path: polygon(0 0, 90% 0, 100% 8%, 100% 100%, 10% 100%, 0 92%); }
+        .carousel-container { position: relative; width: 100%; height: 100%; }
+        .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; }
+        .carousel-slide.active { opacity: 1; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); }
+        .carousel-slide.placeholder { display: flex; align-items: center; justify-content: center; background: var(--ink-mid); }
+        .carousel-slide.placeholder::after { content: '📸'; font-size: 4rem; opacity: 0.2; }
+        .carousel-button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(15,15,15,0.8); color: var(--sage-light); border: 1px solid rgba(125,155,118,0.3); width: 48px; height: 48px; border-radius: 0; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10; }
+        .carousel-button:hover { background: var(--sage); color: var(--ink); border-color: var(--sage); }
+        .carousel-button.prev { left: 0; }
+        .carousel-button.next { right: 0; }
+        .carousel-indicators { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 10; }
+        .carousel-indicator { width: 20px; height: 2px; border-radius: 0; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease; }
+        .carousel-indicator.active { background: var(--sage-light); width: 32px; }
+        .carousel-counter { position: absolute; top: 20px; left: 20px; color: var(--sage-light); font-size: 0.75rem; letter-spacing: 2px; z-index: 10; font-weight: 500; }
+
+        /* EVENTS */
+        #cerimonia { background: var(--ink); }
+        #recepcao { background: var(--ink-soft); }
+        .event-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 480px; border: 1px solid rgba(125,155,118,0.15); }
+        .event-img-panel { background-color: var(--ink-mid); background-size: cover; background-position: center; position: relative; }
+        #cerimonia .event-img-panel { background-image: url('img/cerimonia.jpg'); }
+        #recepcao .event-img-panel { background-image: url('img/recepcao.jpg'); }
+        .event-img-panel::after { content: ''; position: absolute; inset: 0; background: rgba(15,15,15,0.5); mix-blend-mode: multiply; }
+        .event-text-panel { padding: 4.5rem; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid rgba(125,155,118,0.15); }
+        #recepcao .event-text-panel { border-left: none; border-right: 1px solid rgba(125,155,118,0.15); }
+        .event-num { font-size: 5rem; font-family: 'DM Serif Display', serif; color: rgba(125,155,118,0.15); line-height: 1; margin-bottom: -1rem; }
+        .event-text-panel h2 { font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: var(--cream); margin-bottom: 2rem; line-height: 1.1; }
+        .event-details { font-size: 1rem; line-height: 2.2; color: rgba(248,246,242,0.5); }
+        .event-details strong { color: var(--sage-light); font-weight: 500; letter-spacing: 0.05em; }
+        .event-sep { width: 40px; height: 1px; background: var(--sage); margin: 1.5rem 0; }
+        .route-button { display: inline-flex; align-items: center; gap: 0.8rem; background: transparent; color: var(--sage-light); border: 1px solid rgba(125,155,118,0.4); padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; margin-top: 2rem; align-self: flex-start; }
+        .route-button:hover { background: var(--sage); color: var(--ink); border-color: var(--sage); }
+        .route-button::before { content: '—'; margin-right: 0.3rem; }
+
+        /* GIFTS */
+        #presentes { background: var(--ink); }
+        .gifts-header { margin-bottom: 4rem; }
+        .gifts-header p { font-size: 1.05rem; color: rgba(248,246,242,0.4); line-height: 1.8; max-width: 550px; font-weight: 300; }
+        .gift-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1px; background: rgba(125,155,118,0.1); }
+        .gift-card { background: var(--ink-soft); transition: all 0.3s ease; display: flex; flex-direction: column; overflow: hidden; }
+        .gift-card:hover { background: var(--ink-mid); }
+        .gift-image { width: 100%; height: 200px; background: var(--ink-mid); display: flex; align-items: center; justify-content: center; font-size: 3rem; overflow: hidden; position: relative; }
+        .gift-image img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease; filter: grayscale(30%); }
+        .gift-card:hover .gift-image img { filter: grayscale(0%); }
+        .gift-image img[data-src] { opacity: 0; }
+        .gift-image img.loaded { opacity: 1; }
+        .gift-content { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; border-top: 1px solid rgba(125,155,118,0.1); }
+        .gift-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 0.4rem; color: var(--cream); font-weight: 400; line-height: 1.3; }
+        .gift-price { color: var(--sage-light); font-weight: 500; font-size: 1.1rem; margin-bottom: 0.6rem; letter-spacing: 0.05em; }
+        .gift-card p { font-size: 0.88rem; color: rgba(248,246,242,0.35); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; font-weight: 300; }
+        .gift-button { background: transparent; color: var(--sage-light); border: 1px solid rgba(125,155,118,0.3); padding: 0.8rem 1.5rem; font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: inline-block; text-align: center; font-family: 'DM Sans', sans-serif; }
+        .gift-button:hover { background: var(--sage); color: var(--ink); border-color: var(--sage); }
+
+        /* MODAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--ink-soft); border: 1px solid rgba(125,155,118,0.2); padding: 3rem; max-width: 500px; width: 90%; position: relative; animation: slideInUp 0.25s ease-out; border-top: 2px solid var(--sage); }
+        .modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: 1px solid rgba(248,246,242,0.1); font-size: 1.2rem; color: rgba(248,246,242,0.5); cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .modal-close:hover { background: rgba(248,246,242,0.05); color: var(--cream); }
+        .modal-header { margin-bottom: 2rem; }
+        .modal-header h3 { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: var(--cream); margin-bottom: 0.3rem; }
+        .modal-price { color: var(--sage-light); font-size: 1.8rem; font-weight: 500; letter-spacing: 0.05em; }
+        .payment-buttons { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+        .payment-option { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; border: 1px solid rgba(248,246,242,0.08); cursor: pointer; transition: all 0.3s ease; text-decoration: none; color: var(--cream); }
+        .payment-option:hover { border-color: rgba(125,155,118,0.4); background: rgba(125,155,118,0.05); }
+        .payment-icon { font-size: 1.8rem; width: 36px; text-align: center; }
+        .payment-info { flex: 1; text-align: left; }
+        .payment-info strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; font-weight: 500; }
+        .payment-info span { font-size: 0.82rem; color: rgba(248,246,242,0.35); }
+        .payment-arrow { font-size: 1rem; color: var(--sage); }
+
+        /* FOOTER */
+        footer { background: var(--ink); color: rgba(248,246,242,0.3); text-align: center; padding: 4rem 2rem; border-top: 1px solid rgba(125,155,118,0.1); }
+        footer p { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
+        .heart { color: var(--sage); display: inline-block; animation: heartbeat 2s infinite; }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .home-content { padding: 0 2rem; }
+            .home-title-main { font-size: 4.5rem; }
+            .home-title-main .amp { font-size: 3rem; }
+            nav ul { gap: 1.5rem; }
+            nav a { font-size: 0.72rem; letter-spacing: 2px; }
+            .couple-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .couple-image { height: 400px; clip-path: none; }
+            .event-layout { grid-template-columns: 1fr; }
+            .event-img-panel { height: 240px; }
+            .event-text-panel { padding: 2.5rem 2rem; border-left: none !important; border-right: none !important; border-top: 1px solid rgba(125,155,118,0.15); }
+            .section-title { font-size: 2.8rem; }
+            section { padding: 4rem 1.5rem; }
+            .modal-content { padding: 2rem; }
+            .scroll-hint { display: none; }
+        }
+
+        .sort-bar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .sort-label { font-size: 0.72rem; color: rgba(248,246,242,0.3); letter-spacing: 3px; text-transform: uppercase; margin-right: 0.5rem; }
+        .sort-btn { background: transparent; border: 1px solid rgba(248,246,242,0.12); color: rgba(248,246,242,0.4); padding: 0.45rem 1.1rem; font-size: 0.75rem; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.25s ease; letter-spacing: 1px; text-transform: uppercase; }
+        .sort-btn:hover { border-color: var(--sage); color: var(--sage-light); }
+        .sort-btn.active { background: var(--sage); color: var(--ink); border-color: var(--sage); }
+    </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>(function(){ emailjs.init("olKndLr0o-xTTVzun"); })();</script>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#casal">O Casal</a></li>
+        <li><a href="#cerimonia">Cerimônia</a></li>
+        <li><a href="#recepcao">Recepção</a></li>
+        <li><a href="#presentes">Presentes</a></li>
+    </ul>
+</nav>
+
+<section id="home">
+    <div class="home-bg"></div>
+    <div class="home-content">
+        <span class="home-year">13 · Junho · 2026</span>
+        <span class="home-title-top">Celebração de</span>
+        <div class="home-title-main">
+            <span class="name1">Gabriela</span>
+            <span class="amp">&amp;</span>
+            <span class="name2">Luiz</span>
+        </div>
+        <div class="home-meta">
+            <div class="home-line"></div>
+            <span class="home-date">Sorocaba · São Paulo</span>
+        </div>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+</section>
+
+<section id="casal">
+    <div class="section-content">
+        <div class="couple-layout">
+            <div class="couple-text">
+                <span class="section-label">01 / O Casal</span>
+                <h2 class="section-title">Nossa<br><em>História</em></h2>
+                <p>Cada história de amor é única, e a nossa é especial porque começou com uma amizade sincera, que cresceu e se transformou em algo muito maior.</p>
+                <p>Ao longo dos anos, compartilhamos sonhos, superamos desafios e construímos memórias inesquecíveis. E agora, estamos prontos para dar o próximo passo juntos.</p>
+                <p>Este é o dia em que uniremos nossas vidas oficialmente, cercados pelas pessoas que amamos.</p>
+            </div>
+            <div class="couple-image">
+                <div class="carousel-container">
+                    <div class="carousel-counter"><span id="currentSlide">1</span> / <span id="totalSlides">9</span></div>
+                    <div class="carousel-slide active"><img data-src="img/casal/foto1.jpg" alt="Foto 1"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto2.jpg" alt="Foto 2"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto3.jpg" alt="Foto 3"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto4.jpg" alt="Foto 4"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto5.jpg" alt="Foto 5"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto6.jpg" alt="Foto 6"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto7.jpg" alt="Foto 7"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto8.jpg" alt="Foto 8"></div>
+                    <div class="carousel-slide"><img data-src="img/casal/foto9.jpg" alt="Foto 9"></div>
+                    <button class="carousel-button prev" onclick="changeSlide(-1)">&#8249;</button>
+                    <button class="carousel-button next" onclick="changeSlide(1)">&#8250;</button>
+                    <div class="carousel-indicators">
+                        <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(6)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(7)"></span>
+                        <span class="carousel-indicator" onclick="goToSlide(8)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cerimonia">
+    <div class="section-content">
+        <div class="event-layout">
+            <div class="event-img-panel"></div>
+            <div class="event-text-panel">
+                <div class="event-num">01</div>
+                <h2>Cerimônia</h2>
+                <div class="event-sep"></div>
+                <div class="event-details">
+                    <p><strong>Data —</strong> 13 de Junho de 2026</p>
+                    <p><strong>Horário —</strong> 17:30</p>
+                    <p><strong>Local —</strong> Santuário São Judas Tadeu</p>
+                    <p><strong>Endereço —</strong> Rua Walter Luis D'avilla, 171</p>
+                </div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Walter+Luis+D'avilla,+171" target="_blank" class="route-button">Como Chegar</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="recepcao">
+    <div class="section-content">
+        <div class="event-layout">
+            <div class="event-text-panel">
+                <div class="event-num">02</div>
+                <h2>Recepção</h2>
+                <div class="event-sep"></div>
+                <div class="event-details">
+                    <p><strong>Data —</strong> 13 de Junho de 2026</p>
+                    <p><strong>Horário —</strong> 19:30</p>
+                    <p><strong>Local —</strong> Giraclub Buffet e Eventos</p>
+                    <p><strong>Endereço —</strong> Rua Augusto Lipel, 10365</p>
+                </div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Augusto+Lipel,+10365" target="_blank" class="route-button">Como Chegar</a>
+            </div>
+            <div class="event-img-panel"></div>
+        </div>
+    </div>
+</section>
+
+<section id="presentes">
+    <div class="section-content">
+        <div class="gifts-header">
+            <span class="section-label">03 / Presentes</span>
+            <h2 class="section-title">Lista de<br><em>Presentes</em></h2>
+            <p>Sua presença já é nosso maior presente! Se desejar nos presentear, preparamos algumas opções para nossa nova vida.</p>
+        </div>
+
+        <div class="sort-bar">
+            <span class="sort-label">Ordenar por preço:</span>
+            <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+            <button class="sort-btn" data-ordem="asc"      onclick="ordenarPresentes('asc')">Menor → Maior</button>
+            <button class="sort-btn" data-ordem="desc"     onclick="ordenarPresentes('desc')">Maior → Menor</button>
+        </div>
+<div class="gift-options"></div>
+                    </div>
+     
+    </div>
+</section>
+
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closePaymentModal()">&#215;</button>
+        <div class="modal-header">
+            <h3 id="modalGiftName">Nome do Presente</h3>
+            <div class="modal-price" id="modalGiftPrice">R$ 0,00</div>
+        </div>
+        <div style="margin: 1.5rem 0;">
+            <label for="guestName" style="display: block; font-size: 0.82rem; color: rgba(248,246,242,0.5); margin-bottom: 0.6rem; font-weight: 400; letter-spacing: 2px; text-transform: uppercase;">Seu nome completo</label>
+            <input type="text" id="guestName" placeholder="Para que possamos agradecer"
+                style="width: 100%; padding: 1rem; border: 1px solid rgba(248,246,242,0.1); background: rgba(248,246,242,0.04); color: var(--cream); border-radius: 0; font-size: 1rem; font-family: DM Sans, sans-serif; transition: border-color 0.3s ease;"
+                onfocus="this.style.borderColor='rgba(125,155,118,0.5)'" onblur="this.style.borderColor='rgba(248,246,242,0.1)'">
+            <p id="nameError" style="color: #e07070; font-size: 0.82rem; margin-top: 0.5rem; display: none;">&#9888;&#65039; Por favor, preencha seu nome antes de continuar</p>
+        </div>
+        <div class="payment-buttons">
+            <a href="javascript:void(0)" class="payment-option" onclick="handlePaymentClick('pix')">
+                <div class="payment-icon">&#x1F4B3;</div>
+                <div class="payment-info"><strong>Pagar com PIX</strong><span>Pagamento instantâneo e seguro</span></div>
+                <div class="payment-arrow">&#8594;</div>
+            </a>
+            <a href="javascript:void(0)" class="payment-option" onclick="handlePaymentClick('card')">
+                <div class="payment-icon">&#x1F4B0;</div>
+                <div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div>
+                <div class="payment-arrow">&#8594;</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Feito com <span class="heart">&#9829;</span> para nosso dia especial</p>
+    <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.5;">Gabriela &amp; Luiz &middot; 2026</p>
+</footer>
+
+<script>
+// ===== FUNÇÕES GLOBAIS DO CARROSSEL (DEVEM VIR PRIMEIRO) =====
+        let currentSlideIndex = 0;
+        let autoPlayInterval;
+
+        // Função para mudar slide (setas) - GLOBAL
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (slides.length === 0) return;
+            
+            // Remove active de todos
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Ajusta o índice (circular)
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+
+            // Ativa o slide e indicador atual
+            slides[currentSlideIndex].classList.add('active');
+            if (indicators[currentSlideIndex]) {
+                indicators[currentSlideIndex].classList.add('active');
+            }
+
+            // Atualiza contador
+            const currentSlideElement = document.getElementById('currentSlide');
+            if (currentSlideElement) {
+                currentSlideElement.textContent = currentSlideIndex + 1;
+            }
+
+            // Carrega a imagem se ainda não foi carregada
+            const currentImg = slides[currentSlideIndex].querySelector('img[data-src]');
+            if (currentImg) {
+                const src = currentImg.getAttribute('data-src');
+                if (src) {
+                    currentImg.src = src;
+                    currentImg.removeAttribute('data-src');
+                }
+            }
+
+            // Reinicia auto-play
+            resetAutoPlay();
+        }
+
+        // Função para ir direto para um slide (bolinhas) - GLOBAL
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (slides.length === 0) return;
+            
+            // Remove active de todos
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Define o índice
+            currentSlideIndex = index;
+
+            // Ativa o slide e indicador atual
+            slides[currentSlideIndex].classList.add('active');
+            if (indicators[currentSlideIndex]) {
+                indicators[currentSlideIndex].classList.add('active');
+            }
+
+            // Atualiza contador
+            const currentSlideElement = document.getElementById('currentSlide');
+            if (currentSlideElement) {
+                currentSlideElement.textContent = currentSlideIndex + 1;
+            }
+
+            // Carrega a imagem se ainda não foi carregada
+            const currentImg = slides[currentSlideIndex].querySelector('img[data-src]');
+            if (currentImg) {
+                const src = currentImg.getAttribute('data-src');
+                if (src) {
+                    currentImg.src = src;
+                    currentImg.removeAttribute('data-src');
+                }
+            }
+
+            // Reinicia auto-play
+            resetAutoPlay();
+        }
+
+        // Auto-play - troca automaticamente a cada 4 segundos
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000);
+        }
+
+        // Parar auto-play
+        function stopAutoPlay() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+            }
+        }
+
+        // Reiniciar auto-play
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
+        // Inicializa o carrossel quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            
+            if (slides.length > 0) {
+                // Carrega primeira imagem
+                const firstImg = slides[0].querySelector('img[data-src]');
+                if (firstImg) {
+                    const src = firstImg.getAttribute('data-src');
+                    if (src) {
+                        firstImg.src = src;
+                        firstImg.removeAttribute('data-src');
+                    }
+                }
+                
+                // Inicia auto-play
+                startAutoPlay();
+
+                // Pausa auto-play quando mouse está em cima
+                const carouselContainer = document.querySelector('.carousel-container');
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+                    carouselContainer.addEventListener('mouseleave', startAutoPlay);
+                }
+
+                // Suporte para navegação por teclado
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowLeft') {
+                        changeSlide(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        changeSlide(1);
+                    }
+                });
+
+                // Suporte para swipe em dispositivos touch
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('touchstart', function(e) {
+                        touchStartX = e.changedTouches[0].screenX;
+                    }, { passive: true });
+
+                    carouselContainer.addEventListener('touchend', function(e) {
+                        touchEndX = e.changedTouches[0].screenX;
+                        const swipeThreshold = 50;
+                        if (touchStartX - touchEndX > swipeThreshold) {
+                            changeSlide(1);
+                        } else if (touchEndX - touchStartX > swipeThreshold) {
+                            changeSlide(-1);
+                        }
+                    }, { passive: true });
+                }
+            }
+        });
+
+        // ===== LAZY LOADING DE IMAGENS =====
+        // Carrega imagens apenas quando estão próximas de aparecer na tela
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    
+                    if (src) {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                        img.classList.add('loaded');
+                    }
+                    
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px' // Começa a carregar 50px antes da imagem aparecer
+        });
+
+        // Observa todas as imagens com data-src
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ===== INTERSECTION OBSERVER PARA ANIMAÇÕES =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-content').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ===== VARIÁVEIS GLOBAIS DO MODAL =====
+        let currentPixLink = '';
+        let currentCardLink = '';
+        let currentGiftName = '';
+        let currentGiftPrice = '';
+
+        // ===== MODAL FUNCTIONS =====
+        function openPaymentModal(giftName, giftPrice, pixLink, cardLink) {
+            // Armazena os dados
+            currentGiftName = giftName;
+            currentGiftPrice = giftPrice;
+            currentPixLink = pixLink;
+            currentCardLink = cardLink;
+            
+            // Atualiza o modal
+            document.getElementById('modalGiftName').textContent = giftName;
+            document.getElementById('modalGiftPrice').textContent = giftPrice;
+            
+            // Limpa o campo de nome e erro
+            document.getElementById('guestName').value = '';
+            document.getElementById('nameError').style.display = 'none';
+            
+            // Abre o modal
+            document.getElementById('paymentModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Foca no campo de nome
+            setTimeout(() => {
+                document.getElementById('guestName').focus();
+            }, 300);
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handlePaymentClick(paymentType) {
+            const guestName = document.getElementById('guestName').value.trim();
+            const nameError = document.getElementById('nameError');
+            
+            // Valida se o nome foi preenchido
+            if (!guestName || guestName.length < 3) {
+                nameError.style.display = 'block';
+                document.getElementById('guestName').focus();
+                document.getElementById('guestName').style.borderColor = '#d32f2f';
+                return;
+            }
+            
+            // Esconde erro se estava visível
+            nameError.style.display = 'none';
+            document.getElementById('guestName').style.borderColor = 'var(--gray)';
+            
+            // Envia dados para o Google Forms
+            sendNotificationEmail(guestName, currentGiftName, currentGiftPrice, paymentType);
+            
+            // Abre o link de pagamento
+            const paymentLink = paymentType === 'pix' ? currentPixLink : currentCardLink;
+            window.open(paymentLink, '_blank', 'noopener,noreferrer');
+            
+            // Fecha o modal após 1 segundo
+            setTimeout(() => {
+                closePaymentModal();
+            }, 1000);
+        }
+        
+        function sendNotificationEmail(guestName, giftName, giftPrice, paymentType) {
+
+            emailjs.send("service_cu0ot6g", "template_nkug6fq", {
+                guest_name: guestName,
+                gift_name: giftName,
+                gift_price: giftPrice,
+                payment_type: paymentType === 'pix' ? 'PIX' : 'Cartão',
+                date: new Date().toLocaleString('pt-BR')
+            })
+            .then(function(response) {
+                console.log("Email enviado com sucesso!", response.status);
+            }, function(error) {
+                console.log("Erro ao enviar:", error);
+            });
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePaymentModal();
+            }
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePaymentModal();
+            }
+        });
+
+        function openPaymentModal(giftName, giftPrice, pixLink, cardLink) {
+            currentGiftName = giftName; currentGiftPrice = giftPrice;
+            currentPixLink = pixLink; currentCardLink = cardLink;
+            document.getElementById('modalGiftName').textContent = giftName;
+            document.getElementById('modalGiftPrice').textContent = giftPrice;
+            document.getElementById('guestName').value = '';
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('paymentModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => document.getElementById('guestName').focus(), 300);
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handlePaymentClick(paymentType) {
+            const guestName = document.getElementById('guestName').value.trim();
+            const nameError = document.getElementById('nameError');
+            if (!guestName || guestName.length < 3) { nameError.style.display = 'block'; document.getElementById('guestName').focus(); return; }
+            nameError.style.display = 'none';
+            sendNotificationEmail(guestName, currentGiftName, currentGiftPrice, paymentType);
+            window.open(paymentType === 'pix' ? currentPixLink : currentCardLink, '_blank', 'noopener,noreferrer');
+            setTimeout(() => closePaymentModal(), 1000);
+        }
+
+        function sendNotificationEmail(guestName, giftName, giftPrice, paymentType) {
+            emailjs.send("service_cu0ot6g", "template_nkug6fq", {
+                guest_name: guestName, gift_name: giftName, gift_price: giftPrice,
+                payment_type: paymentType === 'pix' ? 'PIX' : 'Cartão',
+                date: new Date().toLocaleString('pt-BR')
+            });
+        }
+
+        document.getElementById('paymentModal').addEventListener('click', function(e) { if (e.target === this) closePaymentModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaymentModal(); });
+
+        // ===== LISTA DE PRESENTES =====
+        const PRESENTES = [
+          { nome: 'Jogo de Panelas',    preco: 'R$ 470,00', descricao: 'Jogo de panelas para fogo de indu\u00e7\u00e3o.',                           imagem: 'img/jogo_de_panelas.jpg',   pix: 'https://mpago.li/2cvWoiF', cartao: 'https://mpago.li/2cvWoiF' },
+          { nome: 'Jogo de Cama Casal', preco: 'R$ 300,00', descricao: 'Jogo de cama casal.',                                                        imagem: 'img/jogo_de_cama.jpg',      pix: 'https://mpago.li/2qGccqa', cartao: 'https://mpago.li/2qGccqa' },
+          { nome: 'Cafeteira El\u00e9trica', preco: 'R$ 350,00', descricao: 'Cafeteira el\u00e9trica program\u00e1vel para come\u00e7ar o dia com energia.', imagem: 'img/cafeteira.jpg',         pix: 'https://mpago.li/24HaaZk', cartao: 'https://mpago.li/24HaaZk' },
+          { nome: 'Conjunto de Ta\u00e7as',  preco: 'R$ 200,00', descricao: 'Conjunto com 6 ta\u00e7as de vinho em cristal para nossas celebra\u00e7\u00f5es.', imagem: 'img/conjunto_de_tacas.jpg', pix: 'https://mpago.li/2rLWgXN', cartao: 'https://mpago.li/2rLWgXN' },
+        ];
+
+        function precoParaNumero(preco) {
+            return parseFloat(preco.replace('R$', '').replace(/\./g, '').replace(',', '.').trim());
+        }
+
+        function renderPresentes(lista) {
+            const container = document.querySelector('.gift-options');
+            container.innerHTML = lista.map(p => `
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <img data-src="${p.imagem}" alt="${p.nome}">
+                    </div>
+                    <div class="gift-content">
+                        <h3>${p.nome}</h3>
+                        <div class="gift-price">${p.preco}</div>
+                        <p>${p.descricao}</p>
+                        <button class="gift-button"
+                            onclick="openPaymentModal('${p.nome}', '${p.preco}', '${p.pix}', '${p.cartao}')">
+                            Presentear
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            container.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        }
+
+        function ordenarPresentes(ordem) {
+            const lista = [...PRESENTES];
+            if (ordem === 'asc')  lista.sort((a, b) => precoParaNumero(a.preco) - precoParaNumero(b.preco));
+            if (ordem === 'desc') lista.sort((a, b) => precoParaNumero(b.preco) - precoParaNumero(a.preco));
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.ordem === ordem);
+            });
+            renderPresentes(lista);
+        }
+
+        // Render inicial
+        document.addEventListener('DOMContentLoaded', () => renderPresentes(PRESENTES));
+
+    </script>
+</body>
+</html>

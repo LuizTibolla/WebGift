@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado! - Gabriela & Luiz</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #1a3a52;
+            --navy-light: #2d5270;
+            --gold: #d4af37;
+            --gold-light: #f0c945;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Background com foto */
+        .bg {
+            position: fixed;
+            inset: 0;
+            background-color: var(--navy);
+            background-image: url('img/casal/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            z-index: 0;
+        }
+
+        /* Overlay escuro elegante */
+        .bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 25, 40, 0.65);
+        }
+
+        /* Conteúdo central */
+        .content {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: var(--white);
+        }
+
+        /* Ícone do coração animado */
+        .heart-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: heartPulse 1.8s ease-in-out infinite;
+            opacity: 0;
+            animation: heartPulse 1.8s ease-in-out infinite, fadeInDown 0.8s ease-out 0.2s forwards;
+        }
+
+        /* Linha decorativa dourada */
+        .divider {
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            margin: 1.5rem auto;
+            animation: expandLine 1s ease-out 0.6s forwards;
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 300;
+            letter-spacing: 0.2rem;
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 0.9s ease-out 0.4s forwards;
+        }
+
+        .title em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            font-weight: 300;
+            font-style: italic;
+            opacity: 0;
+            margin-top: 0.5rem;
+            animation: fadeInUp 0.9s ease-out 0.7s forwards;
+            letter-spacing: 0.05rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .message {
+            max-width: 560px;
+            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.82);
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 0.9s ease-out 1s forwards;
+            letter-spacing: 0.03rem;
+        }
+
+        /* Card do casamento */
+        .wedding-reminder {
+            margin-top: 2.5rem;
+            padding: 1.6rem 2.8rem;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 4px;
+            background: rgba(10, 25, 40, 0.45);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            animation: fadeInUp 0.9s ease-out 1.3s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wedding-reminder::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.07), transparent);
+            animation: shimmer 3.5s ease-in-out 2s infinite;
+        }
+
+        .reminder-label {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .reminder-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 300;
+            letter-spacing: 0.15rem;
+            color: var(--white);
+        }
+
+        .reminder-names {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.4rem;
+            font-weight: 300;
+        }
+
+        /* Botão voltar ao site */
+        .back-link {
+            margin-top: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.9s ease-out 1.6s forwards;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover::before {
+            transform: translateX(-4px);
+        }
+
+        /* Partículas de confete dourado */
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+
+        .particle:nth-child(odd) {
+            border-radius: 0;
+            width: 4px;
+            height: 8px;
+            background: rgba(212,175,55,0.7);
+        }
+
+        /* Keyframes */
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes expandLine {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 0.8;
+                transform: translateY(-20px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wedding-reminder {
+                padding: 1.3rem 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fundo com foto -->
+    <div class="bg"></div>
+
+    <!-- Partículas douradas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Conteúdo -->
+    <div class="content">
+
+        <div class="heart-icon">♥</div>
+
+        <h1 class="title">Muito <em>obrigado!</em></h1>
+        <p class="subtitle">Seu presente chegou até nós com todo o carinho</p>
+
+        <div class="divider"></div>
+
+        <p class="message">
+            Cada presente é um pedacinho especial 
+            de quem amamos, fazendo parte do nosso novo lar e da nossa nova vida juntos.
+            Não vemos a hora de celebrar ao seu lado!
+        </p>
+
+        <div class="wedding-reminder">
+            <div class="reminder-label">Nos encontramos em</div>
+            <div class="reminder-date">13 de Junho de 2026</div>
+            <div class="reminder-names">Gabriela &amp; Luiz</div>
+        </div>
+
+        <a href="index.html" class="back-link">Voltar ao site</a>
+
+    </div>
+
+    <script>
+        // Gera partículas douradas caindo
+        const container = document.getElementById('particles');
+        const count = 28;
+
+        for (let i = 0; i < count; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+
+            const size = Math.random() * 4 + 3;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (Math.random() * 6 + 5) + 's';
+            p.style.animationDelay = (Math.random() * 8) + 's';
+            p.style.opacity = Math.random() * 0.6 + 0.2;
+
+            container.appendChild(p);
+        }
+    </script>
+
+</body>
+</html>

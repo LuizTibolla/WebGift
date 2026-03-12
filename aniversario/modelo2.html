@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentina · XV</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+    <meta name="description" content="Valentina está completando 15 anos. Uma celebração única e inesquecível.">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black:      #0a0a0f;
+            --dark:       #12121a;
+            --dark2:      #1a1a26;
+            --neon:       #e87fa0;
+            --neon-glow:  rgba(232,127,160,0.35);
+            --neon-dim:   rgba(232,127,160,0.12);
+            --gold:       #d4a853;
+            --gold-dim:   rgba(212,168,83,0.15);
+            --white:      #f0eff5;
+            --gray:       #888899;
+            --gray-light: #bbbccc;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'DM Sans',sans-serif; color:var(--white); background:var(--black); overflow-x:hidden; }
+
+        /* GRAIN OVERLAY */
+        body::after {
+            content:''; position:fixed; inset:0; pointer-events:none; z-index:9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity:0.25;
+        }
+
+        /* NAV */
+        nav {
+            position:fixed; top:0; width:100%; z-index:1000;
+            background:rgba(10,10,15,0.88); backdrop-filter:blur(16px);
+            border-bottom:1px solid rgba(232,127,160,0.15);
+            padding:1rem 0;
+        }
+        nav ul { list-style:none; display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; padding:0 2rem; }
+        nav a { text-decoration:none; color:var(--gray); font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s; }
+        nav a:hover { color:var(--neon); text-shadow:0 0 12px var(--neon-glow); }
+
+        /* SECTIONS */
+        section { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:7rem 2rem; position:relative; }
+        .section-content { max-width:1100px; width:100%; }
+
+        /* HOME */
+        #home {
+            background:var(--black);
+            background-image:url('img/debutante/hero.jpg');
+            background-size:cover; background-position:center;
+            text-align:center; overflow:hidden;
+        }
+        #home::before {
+            content:''; position:absolute; inset:0;
+            background:linear-gradient(160deg, rgba(5,5,10,0.85) 0%, rgba(20,10,20,0.75) 100%);
+            z-index:1;
+        }
+        .home-content { position:relative; z-index:2; }
+
+        .home-xv {
+            font-family:'Bebas Neue',sans-serif;
+            font-size:clamp(8rem, 20vw, 18rem);
+            line-height:0.85; letter-spacing:0.05em;
+            color:transparent;
+            -webkit-text-stroke:1px var(--neon);
+            text-shadow:0 0 60px var(--neon-glow), 0 0 120px rgba(232,127,160,0.15);
+            animation:glowPulse 3s ease-in-out infinite;
+        }
+        .home-name {
+            font-family:'Bebas Neue',sans-serif;
+            font-size:clamp(2.5rem, 7vw, 6rem);
+            letter-spacing:0.3em; color:var(--white);
+            margin:0.5rem 0 1.5rem;
+        }
+        .home-date {
+            font-size:0.85rem; letter-spacing:4px; text-transform:uppercase;
+            color:var(--gold); font-weight:300;
+        }
+        .home-line {
+            width:80px; height:1px; background:var(--neon);
+            margin:1.5rem auto;
+            box-shadow:0 0 10px var(--neon-glow);
+        }
+
+        .scroll-indicator {
+            position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); z-index:2;
+            animation:bounce 2s infinite;
+        }
+        .scroll-indicator::after { content:'↓'; font-size:1.5rem; color:var(--neon); opacity:0.6; }
+
+        /* SOBRE */
+        #sobre { background:var(--dark); }
+        .sobre-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+        .sobre-image {
+            height:540px; position:relative; overflow:hidden;
+            border:1px solid rgba(232,127,160,0.2);
+        }
+        .sobre-image::before {
+            content:''; position:absolute; inset:0; z-index:1;
+            background:linear-gradient(180deg, transparent 60%, var(--dark) 100%);
+        }
+        .sobre-image img { width:100%; height:100%; object-fit:cover; }
+        .sobre-image .placeholder-photo {
+            width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+            background:linear-gradient(135deg, #1a1020, #2a1530);
+            font-size:5rem; opacity:0.3;
+        }
+        .img-accent {
+            position:absolute; bottom:-1rem; right:-1rem; z-index:2;
+            width:100px; height:100px; border:1px solid var(--neon);
+            box-shadow:0 0 20px var(--neon-glow);
+        }
+
+        .sobre-tag {
+            display:inline-block; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase;
+            color:var(--neon); border:1px solid rgba(232,127,160,0.3);
+            padding:0.4rem 1rem; margin-bottom:1.5rem;
+        }
+        .sobre-text h2 {
+            font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,5vw,5rem);
+            letter-spacing:0.05em; color:var(--white); line-height:1; margin-bottom:2rem;
+        }
+        .sobre-text p { font-size:1rem; line-height:1.9; color:var(--gray-light); margin-bottom:1.2rem; font-weight:300; }
+
+        .stats-row { display:flex; gap:2rem; margin-top:2.5rem; }
+        .stat-item { flex:1; border-left:2px solid var(--neon); padding-left:1rem; }
+        .stat-item .num { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:var(--neon); line-height:1; }
+        .stat-item .lbl { font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; color:var(--gray); }
+
+        /* GALERIA */
+        #galeria { background:var(--black); }
+        .section-label { font-size:0.7rem; letter-spacing:4px; text-transform:uppercase; color:var(--neon); margin-bottom:0.8rem; }
+        .section-heading {
+            font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,6vw,6rem);
+            letter-spacing:0.05em; color:var(--white); margin-bottom:3rem; line-height:1;
+        }
+
+        .gallery-main { height:500px; position:relative; overflow:hidden; border:1px solid rgba(232,127,160,0.15); }
+        .carousel-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.9s ease; }
+        .carousel-slide.active { opacity:1; }
+        .carousel-slide img { width:100%; height:100%; object-fit:cover; }
+        .carousel-slide.placeholder-slide {
+            display:flex; align-items:center; justify-content:center;
+            background:linear-gradient(135deg,#0f0f1a,#1a0f20);
+            font-size:5rem;
+        }
+        .carousel-counter {
+            position:absolute; top:1rem; right:1.2rem; z-index:5;
+            background:rgba(10,10,15,0.8); color:var(--neon);
+            font-size:0.75rem; letter-spacing:2px; padding:0.3rem 0.8rem;
+            border:1px solid rgba(232,127,160,0.3);
+        }
+        .carousel-button {
+            position:absolute; top:50%; transform:translateY(-50%);
+            background:rgba(10,10,15,0.8); color:var(--white);
+            border:1px solid rgba(232,127,160,0.3); width:48px; height:48px;
+            cursor:pointer; font-size:1.5rem; display:flex; align-items:center; justify-content:center;
+            transition:all 0.3s; z-index:10;
+        }
+        .carousel-button:hover { background:var(--neon); color:var(--black); border-color:var(--neon); }
+        .carousel-button.prev { left:1rem; }
+        .carousel-button.next { right:1rem; }
+        .carousel-indicators { display:flex; gap:0.5rem; margin-top:1.5rem; }
+        .carousel-indicator {
+            height:2px; width:30px; background:rgba(232,127,160,0.2); cursor:pointer;
+            transition:all 0.3s;
+        }
+        .carousel-indicator.active { background:var(--neon); box-shadow:0 0 8px var(--neon-glow); width:60px; }
+
+        /* FESTA */
+        #festa { background:var(--dark2); }
+        .festa-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+        .festa-card {
+            border:1px solid rgba(232,127,160,0.2); padding:3rem 2.5rem;
+            position:relative; overflow:hidden; transition:all 0.3s;
+        }
+        .festa-card::before {
+            content:''; position:absolute; top:0; left:0; width:3px; height:0;
+            background:var(--neon); transition:height 0.4s ease;
+        }
+        .festa-card:hover { border-color:rgba(232,127,160,0.5); background:rgba(232,127,160,0.04); }
+        .festa-card:hover::before { height:100%; }
+        .festa-card .icon { font-size:2rem; margin-bottom:1.5rem; }
+        .festa-card h3 {
+            font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.05em;
+            color:var(--neon); margin-bottom:1.5rem;
+        }
+        .festa-detail p { font-size:0.95rem; line-height:2.2; color:var(--gray-light); }
+        .festa-detail strong { color:var(--white); font-weight:500; }
+        .route-button {
+            display:inline-block; margin-top:2rem;
+            border:1px solid var(--neon); color:var(--neon);
+            padding:0.7rem 1.8rem; text-decoration:none;
+            font-size:0.75rem; letter-spacing:3px; text-transform:uppercase;
+            transition:all 0.3s;
+        }
+        .route-button:hover { background:var(--neon); color:var(--black); box-shadow:0 0 20px var(--neon-glow); }
+
+        /* COUNTDOWN */
+        #countdown { background:var(--black); text-align:center; }
+        .countdown-inner { max-width:700px; margin:0 auto; }
+        .countdown-label { font-size:0.75rem; letter-spacing:4px; text-transform:uppercase; color:var(--neon); margin-bottom:2.5rem; }
+        .countdown-timer { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+        .time-unit {
+            text-align:center; min-width:100px;
+            border:1px solid rgba(232,127,160,0.2); padding:2rem 1.5rem;
+            position:relative; overflow:hidden;
+        }
+        .time-unit::before {
+            content:''; position:absolute; inset:0;
+            background:radial-gradient(ellipse at center bottom, rgba(232,127,160,0.06) 0%, transparent 70%);
+        }
+        .time-unit .num {
+            font-family:'Bebas Neue',sans-serif; font-size:3.5rem; color:var(--neon);
+            line-height:1; text-shadow:0 0 20px var(--neon-glow);
+        }
+        .time-unit .lbl { font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--gray); margin-top:0.5rem; }
+
+        /* PRESENTES */
+        #presentes { background:var(--dark); }
+        .presentes-intro { max-width:560px; font-size:1rem; line-height:1.8; color:var(--gray-light); margin-bottom:2.5rem; font-weight:300; }
+
+        .sort-bar { display:flex; align-items:center; gap:0.7rem; flex-wrap:wrap; margin-bottom:2rem; }
+        .sort-label { font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; color:var(--gray); }
+        .sort-btn {
+            background:transparent; border:1px solid rgba(255,255,255,0.1); color:var(--gray);
+            padding:0.4rem 1.1rem; font-size:0.75rem; letter-spacing:1px;
+            font-family:'DM Sans',sans-serif; cursor:pointer; transition:all 0.25s;
+        }
+        .sort-btn:hover, .sort-btn.active { border-color:var(--neon); color:var(--neon); }
+
+        .gift-options { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1px; background:rgba(232,127,160,0.1); }
+        .gift-card { background:var(--dark); transition:all 0.3s; }
+        .gift-card:hover { background:var(--dark2); }
+        .gift-image { height:200px; overflow:hidden; background:var(--dark2); }
+        .gift-image img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; filter:grayscale(30%); }
+        .gift-card:hover .gift-image img { transform:scale(1.06); filter:grayscale(0%); }
+        .gift-content { padding:1.5rem; }
+        .gift-content h3 { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.05em; color:var(--white); margin-bottom:0.4rem; }
+        .gift-price { font-size:0.9rem; color:var(--neon); margin-bottom:0.5rem; letter-spacing:1px; }
+        .gift-content p { font-size:0.85rem; color:var(--gray); line-height:1.6; margin-bottom:1.2rem; font-weight:300; }
+        .gift-button {
+            width:100%; padding:0.7rem; background:transparent;
+            border:1px solid rgba(232,127,160,0.3); color:var(--neon);
+            font-family:'DM Sans',sans-serif; font-size:0.75rem;
+            letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:all 0.3s;
+        }
+        .gift-button:hover { background:var(--neon); color:var(--black); border-color:var(--neon); box-shadow:0 0 15px var(--neon-glow); }
+
+        /* CONFIRMAÇÃO */
+        #confirmacao { background:var(--dark2); }
+        .confirm-wrapper { max-width:540px; }
+        .confirm-form { margin-top:2.5rem; display:flex; flex-direction:column; gap:1rem; }
+        .form-group label { display:block; font-size:0.7rem; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); margin-bottom:0.5rem; }
+        .form-group input, .form-group select {
+            width:100%; padding:0.9rem 1rem;
+            background:rgba(255,255,255,0.04); border:1px solid rgba(232,127,160,0.2);
+            color:var(--white); font-family:'DM Sans',sans-serif; font-size:0.95rem;
+            outline:none; transition:border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus { border-color:var(--neon); }
+        .form-group select option { background:var(--dark2); }
+        .confirm-btn {
+            margin-top:1rem; padding:1rem; width:100%;
+            background:var(--neon); border:none; color:var(--black);
+            font-family:'DM Sans',sans-serif; font-size:0.8rem;
+            letter-spacing:3px; text-transform:uppercase; cursor:pointer; font-weight:500;
+            transition:all 0.3s; box-shadow:0 0 20px var(--neon-glow);
+        }
+        .confirm-btn:hover { background:var(--white); }
+        .confirm-success {
+            display:none; padding:1.5rem; border:1px solid rgba(232,127,160,0.3);
+            background:rgba(232,127,160,0.06); margin-top:1rem;
+        }
+        .confirm-success p { color:var(--neon); font-size:1rem; letter-spacing:1px; }
+
+        /* MODAL */
+        .modal-overlay {
+            display:none; position:fixed; inset:0; z-index:9000;
+            background:rgba(0,0,0,0.85); backdrop-filter:blur(8px);
+            align-items:center; justify-content:center;
+        }
+        .modal-overlay.active { display:flex; }
+        .modal-content {
+            background:var(--dark2); border:1px solid rgba(232,127,160,0.25);
+            max-width:440px; width:90%; padding:2.5rem; position:relative;
+            animation:fadeInUp 0.3s ease;
+        }
+        .modal-close { position:absolute; top:1rem; right:1.2rem; background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--gray); transition:color 0.2s; }
+        .modal-close:hover { color:var(--neon); }
+        .modal-header { margin-bottom:1.5rem; border-bottom:1px solid rgba(232,127,160,0.15); padding-bottom:1.5rem; }
+        .modal-header h3 { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; color:var(--white); }
+        .modal-price { color:var(--neon); font-size:1.1rem; margin-top:0.3rem; }
+        .modal-name-label { display:block; font-size:0.7rem; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); margin-bottom:0.5rem; }
+        .modal-name-input {
+            width:100%; padding:0.9rem 1rem;
+            background:rgba(255,255,255,0.04); border:1px solid rgba(232,127,160,0.2);
+            color:var(--white); font-family:'DM Sans',sans-serif; font-size:0.95rem;
+            outline:none; transition:border-color 0.3s; margin-bottom:0.4rem;
+        }
+        .modal-name-input:focus { border-color:var(--neon); }
+        .name-error { color:#ff6b8a; font-size:0.82rem; display:none; margin-bottom:1rem; }
+        .payment-buttons { display:flex; flex-direction:column; gap:0.7rem; margin-top:1.5rem; }
+        .payment-option {
+            display:flex; align-items:center; gap:1rem; padding:1rem 1.2rem;
+            border:1px solid rgba(232,127,160,0.2); text-decoration:none; color:var(--white);
+            cursor:pointer; transition:all 0.3s;
+        }
+        .payment-option:hover { border-color:var(--neon); background:rgba(232,127,160,0.06); }
+        .payment-icon { font-size:1.4rem; }
+        .payment-info { flex:1; }
+        .payment-info strong { display:block; font-size:0.9rem; color:var(--white); }
+        .payment-info span { font-size:0.8rem; color:var(--gray); }
+        .payment-arrow { color:var(--neon); }
+
+        /* FOOTER */
+        footer {
+            background:var(--black); border-top:1px solid rgba(232,127,160,0.1);
+            text-align:center; padding:3rem 2rem; color:var(--gray);
+        }
+        .footer-name {
+            font-family:'Bebas Neue',sans-serif; font-size:3rem; letter-spacing:0.2em;
+            color:transparent; -webkit-text-stroke:1px var(--neon);
+            text-shadow:0 0 30px var(--neon-glow); margin-bottom:0.5rem;
+        }
+        .heart { color:var(--neon); }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-10px)} }
+        @keyframes glowPulse { 0%,100%{text-shadow:0 0 60px var(--neon-glow),0 0 120px rgba(232,127,160,0.15)} 50%{text-shadow:0 0 80px rgba(232,127,160,0.5),0 0 160px rgba(232,127,160,0.25)} }
+
+        @media(max-width:768px) {
+            .sobre-grid,.festa-grid{grid-template-columns:1fr;gap:2.5rem}
+            .sobre-image{height:320px}
+            .gallery-main{height:280px}
+            nav ul{gap:1.2rem}
+            nav a{font-size:0.68rem}
+            section{padding:5rem 1.5rem}
+            .home-xv{font-size:clamp(6rem,22vw,12rem)}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Valentina</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#festa">A Festa</a></li>
+            <li><a href="#presentes">Presentes</a></li>
+            <!-- <li><a href="#confirmacao">Confirmar</a></li> -->
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="home-content">
+            <div class="home-xv">XV</div>
+            <div class="home-line"></div>
+            <h1 class="home-name">Valentina Torres</h1>
+            <p class="home-date">12 de Julho de 2026 · Uma noite única</p>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="sobre">
+        <div class="section-content">
+            <div class="sobre-grid">
+                <div class="sobre-image">
+                    <div class="placeholder-photo">📸</div>
+                    <div class="img-accent"></div>
+                </div>
+                <div class="sobre-text">
+                    <span class="sobre-tag">✦ A Debutante</span>
+                    <h2>Valentina<br>Torres</h2>
+                    <p>Valentina sempre soube exatamente quem ela quer ser: alguém que transforma tudo ao redor com sua energia única, sua risada inconfundível e seu olhar cheio de futuro.</p>
+                    <p>Apaixonada por moda, música e por desafios que a fazem crescer, ela chegou aos 15 anos com uma maturidade que surpreende e uma leveza que inspira todos ao redor.</p>
+                    <p>Esta noite é a celebração de tudo que ela já é — e de tudo que ainda está por vir.</p>
+                    <div class="stats-row">
+                        <div class="stat-item"><div class="num">15</div><div class="lbl">Anos</div></div>
+                        <div class="stat-item"><div class="num">∞</div><div class="lbl">Sonhos</div></div>
+                        <div class="stat-item"><div class="num">01</div><div class="lbl">Noite única</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="section-content">
+            <p class="section-label">✦ Momentos</p>
+            <h2 class="section-heading">Galeria</h2>
+            <div class="gallery-main">
+                <div class="carousel-counter"><span id="currentSlide">1</span> / <span id="totalSlides">6</span></div>
+                <div class="carousel-slide active placeholder-slide">📸</div>
+                <div class="carousel-slide placeholder-slide">🌸</div>
+                <div class="carousel-slide placeholder-slide">✨</div>
+                <div class="carousel-slide placeholder-slide">💫</div>
+                <div class="carousel-slide placeholder-slide">🎭</div>
+                <div class="carousel-slide placeholder-slide">🖤</div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="festa">
+        <div class="section-content">
+            <p class="section-label">✦ O Evento</p>
+            <h2 class="section-heading">A Festa</h2>
+            <div class="festa-grid">
+                <div class="festa-card">
+                    <div class="icon">🕊️</div>
+                    <h3>Missa de 15 Anos</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 12 de Julho de 2026</p>
+                        <p><strong>Horário:</strong> 16:00</p>
+                        <p><strong>Local:</strong> Igreja São Francisco de Assis</p>
+                        <p><strong>Endereço:</strong> Rua da Paz, 300</p>
+                        <p style="margin-top:1rem;color:var(--gray);font-size:0.85rem">Chegue com 15 minutos de antecedência</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Paz,+300" target="_blank" class="route-button">Como Chegar</a>
+                </div>
+                <div class="festa-card">
+                    <div class="icon">✦</div>
+                    <h3>Festa de 15 Anos</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 12 de Julho de 2026</p>
+                        <p><strong>Horário:</strong> 20:00</p>
+                        <p><strong>Local:</strong> The Black Space Events</p>
+                        <p><strong>Endereço:</strong> Av. Progresso, 1800</p>
+                        <p style="margin-top:1rem;color:var(--gray);font-size:0.85rem">Dress code: All Black / Festa</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+Progresso,+1800" target="_blank" class="route-button">Como Chegar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown">
+        <div class="section-content">
+            <div class="countdown-inner">
+                <p class="countdown-label">✦ Contagem regressiva ✦</p>
+                <div class="countdown-timer">
+                    <div class="time-unit"><div class="num" id="days">00</div><div class="lbl">Dias</div></div>
+                    <div class="time-unit"><div class="num" id="hours">00</div><div class="lbl">Horas</div></div>
+                    <div class="time-unit"><div class="num" id="minutes">00</div><div class="lbl">Min</div></div>
+                    <div class="time-unit"><div class="num" id="seconds">00</div><div class="lbl">Seg</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="presentes">
+        <div class="section-content">
+            <p class="section-label">✦ Presentes</p>
+            <h2 class="section-heading">Lista</h2>
+            <p class="presentes-intro">Sua presença já é tudo. Mas se quiser presentear Valentina, aqui vão algumas sugestões especiais.</p>
+            <div class="sort-bar">
+                <span class="sort-label">Ordenar:</span>
+                <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+                <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor → Maior</button>
+                <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior → Menor</button>
+            </div>
+            <div class="gift-options"></div>
+        </div>
+    </section>
+
+    <!-- <section id="confirmacao">
+        <div class="section-content">
+            <div class="confirm-wrapper">
+                <p class="section-label">✦ RSVP</p>
+                <h2 class="section-heading">Confirme<br>Presença</h2>
+                <p style="color:var(--gray-light);font-size:0.95rem;line-height:1.8;font-weight:300">Confirmações até <strong style="color:var(--neon)">30/06/2026</strong>. Sua presença fará essa noite ainda mais especial.</p>
+                <form class="confirm-form" id="confirmForm" onsubmit="handleConfirm(event)">
+                    <div class="form-group"><label>Nome completo</label><input type="text" id="confirmName" placeholder="Seu nome" required></div>
+                    <div class="form-group"><label>Acompanhantes</label>
+                        <select id="confirmGuests">
+                            <option value="0">Somente eu</option>
+                            <option value="1">+ 1 acompanhante</option>
+                            <option value="2">+ 2 acompanhantes</option>
+                            <option value="3">+ 3 ou mais</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Confirmação</label>
+                        <select id="confirmAttend">
+                            <option value="sim">✓ Estarei lá!</option>
+                            <option value="nao">✗ Não poderei comparecer</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">Confirmar Presença</button>
+                </form>
+                <div class="confirm-success" id="confirmSuccess"><p>✦ Confirmado! Até dia 12 de julho! ✦</p></div>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <h3 id="modalGiftName">Presente</h3>
+                <div class="modal-price" id="modalGiftPrice">R$ 0,00</div>
+            </div>
+            <label class="modal-name-label">Seu nome (para agradecimento):</label>
+            <input class="modal-name-input" type="text" id="guestName" placeholder="Digite seu nome">
+            <p class="name-error" id="nameError">⚠ Preencha seu nome para continuar</p>
+            <div class="payment-buttons">
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('pix')">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-info"><strong>Pagar com PIX</strong><span>Pagamento instantâneo</span></div>
+                    <div class="payment-arrow">→</div>
+                </a>
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('card')">
+                    <div class="payment-icon">💰</div>
+                    <div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div>
+                    <div class="payment-arrow">→</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-name">VALENTINA</div>
+        <p>Feito com <span class="heart">♥</span> para uma noite inesquecível</p>
+        <p style="margin-top:0.5rem;font-size:0.75rem;opacity:0.4;letter-spacing:2px">XII · VII · MMXXVI</p>
+    </footer>
+
+    <script>
+    let currentSlideIndex = 0, autoPlayInterval;
+    function changeSlide(dir) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        slides.forEach(s=>s.classList.remove('active'));
+        indicators.forEach(i=>i.classList.remove('active'));
+        currentSlideIndex = (currentSlideIndex + dir + slides.length) % slides.length;
+        slides[currentSlideIndex].classList.add('active');
+        if(indicators[currentSlideIndex]) indicators[currentSlideIndex].classList.add('active');
+        document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+        resetAutoPlay();
+    }
+    function goToSlide(idx) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        slides.forEach(s=>s.classList.remove('active'));
+        indicators.forEach(i=>i.classList.remove('active'));
+        currentSlideIndex = idx;
+        slides[currentSlideIndex].classList.add('active');
+        if(indicators[currentSlideIndex]) indicators[currentSlideIndex].classList.add('active');
+        document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+        resetAutoPlay();
+    }
+    function startAutoPlay(){autoPlayInterval=setInterval(()=>changeSlide(1),4500)}
+    function stopAutoPlay(){clearInterval(autoPlayInterval)}
+    function resetAutoPlay(){stopAutoPlay();startAutoPlay()}
+    document.addEventListener('DOMContentLoaded',()=>{
+        startAutoPlay();
+        const gm = document.querySelector('.gallery-main');
+        gm.addEventListener('mouseenter',stopAutoPlay);
+        gm.addEventListener('mouseleave',startAutoPlay);
+        let tx=0;
+        gm.addEventListener('touchstart',e=>tx=e.changedTouches[0].screenX,{passive:true});
+        gm.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50)changeSlide(d>0?1:-1)},{passive:true});
+    });
+
+    const eventDate = new Date('2026-07-12T20:00:00');
+    function updateCountdown(){
+        const diff = eventDate - new Date();
+        if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');return}
+        document.getElementById('days').textContent    = String(Math.floor(diff/86400000)).padStart(2,'0');
+        document.getElementById('hours').textContent   = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+        document.getElementById('minutes').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+        document.getElementById('seconds').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    }
+    setInterval(updateCountdown,1000); updateCountdown();
+
+    const PRESENTES = [
+        {nome:'Mochila Premium',preco:'R$ 380,00',descricao:'Mochila de couro sintético para o dia a dia.',imagem:'img/presentes/mochila.jpg',pix:'#',cartao:'#'},
+        {nome:'Fone Bluetooth',preco:'R$ 450,00',descricao:'Fone sem fio com cancelamento de ruído.',imagem:'img/presentes/fone.jpg',pix:'#',cartao:'#'},
+        {nome:'Câmera Instantânea',preco:'R$ 350,00',descricao:'Para registrar cada momento especial.',imagem:'img/presentes/camera.jpg',pix:'#',cartao:'#'},
+        {nome:'Smartwatch',preco:'R$ 700,00',descricao:'Relógio inteligente estiloso e funcional.',imagem:'img/presentes/smartwatch.jpg',pix:'#',cartao:'#'},
+        {nome:'Voucher Fashion',preco:'R$ 300,00',descricao:'Crédito para usar na loja favorita dela.',imagem:'img/presentes/voucher.jpg',pix:'#',cartao:'#'},
+        {nome:'Notebook',preco:'R$ 2.500,00',descricao:'Para estudar e criar sem limites.',imagem:'img/presentes/notebook.jpg',pix:'#',cartao:'#'},
+    ];
+    let cpix='',ccard='',cgname='',cgprice='';
+    function precoParaNum(p){return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim())}
+    function renderPresentes(lista){
+        document.querySelector('.gift-options').innerHTML = lista.map(p=>`
+            <div class="gift-card">
+                <div class="gift-image"><img src="${p.imagem}" alt="${p.nome}" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;background:var(--dark2)\'>🎁</div>'"></div>
+                <div class="gift-content">
+                    <h3>${p.nome}</h3><div class="gift-price">${p.preco}</div>
+                    <p>${p.descricao}</p>
+                    <button class="gift-button" onclick="openModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">Presentear</button>
+                </div>
+            </div>`).join('');
+    }
+    function ordenarPresentes(ordem){
+        const lista=[...PRESENTES];
+        if(ordem==='asc')lista.sort((a,b)=>precoParaNum(a.preco)-precoParaNum(b.preco));
+        if(ordem==='desc')lista.sort((a,b)=>precoParaNum(b.preco)-precoParaNum(a.preco));
+        document.querySelectorAll('.sort-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.ordem===ordem));
+        renderPresentes(lista);
+    }
+    document.addEventListener('DOMContentLoaded',()=>renderPresentes(PRESENTES));
+
+    function openModal(name,price,pix,card){
+        cgname=name;cgprice=price;cpix=pix;ccard=card;
+        document.getElementById('modalGiftName').textContent=name;
+        document.getElementById('modalGiftPrice').textContent=price;
+        document.getElementById('guestName').value='';
+        document.getElementById('nameError').style.display='none';
+        document.getElementById('paymentModal').classList.add('active');
+        document.body.style.overflow='hidden';
+    }
+    function closeModal(){document.getElementById('paymentModal').classList.remove('active');document.body.style.overflow='';}
+    function handlePayment(type){
+        const name=document.getElementById('guestName').value.trim();
+        if(!name||name.length<3){document.getElementById('nameError').style.display='block';return;}
+        document.getElementById('nameError').style.display='none';
+        window.open(type==='pix'?cpix:ccard,'_blank','noopener,noreferrer');
+        setTimeout(closeModal,800);
+    }
+    document.getElementById('paymentModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+    function handleConfirm(e){e.preventDefault();document.getElementById('confirmForm').style.display='none';document.getElementById('confirmSuccess').style.display='block';}
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+    </script>
+</body>
+</html>
