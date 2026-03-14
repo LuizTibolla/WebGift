@@ -42,10 +42,14 @@
 
         /* HOME */
         #home {
-            background:var(--wine-dark);
-            background-image:url('img/aniversariante/hero.jpg');
-            background-size:cover; background-position:center;
-            text-align:center; overflow:hidden; color:var(--white);
+            position: relative; /* ← adiciona isso */
+            background: var(--wine-dark);
+            background-image: url('img/aniversariante_hero3.jpg');
+            background-size: cover;
+            background-position: center 35%; /* ← testa valores aqui */
+            text-align: center;
+            overflow: hidden;
+            color: var(--white);
         }
         #home::before {
             content:''; position:absolute; inset:0;
@@ -302,7 +306,7 @@
     <section id="home">
         <div class="home-content">
             <div class="gold-ornament">— ✦ —</div>
-            <div class="home-number">50</div>
+            <div class="home-number">70</div>
             <div class="home-divider"></div>
             <h1 class="home-name">Maria Cecília Ferreira</h1>
             <p class="home-subtitle">Uma noite de gala · 14 de Setembro de 2026</p>
@@ -363,7 +367,7 @@
             <p class="section-sub-dark">— Detalhes da celebração —</p>
             <div class="festa-single">
                 <div class="festa-icon">🥂</div>
-                <h3>Jantar de Gala · 50 Anos</h3>
+                <h3>Jantar de Gala · 70 Anos</h3>
                 <div class="festa-detail">
                     <p><strong>Data:</strong> 14 de Setembro de 2026</p>
                     <p><strong>Horário:</strong> 20:00</p>
@@ -457,7 +461,7 @@
     <footer>
         <div class="footer-name">Maria Cecília</div>
         <p>Feito com <span class="heart">♥</span> para celebrar uma vida extraordinária</p>
-        <p style="margin-top:0.5rem;opacity:0.4;font-size:0.78rem;letter-spacing:2px">14 de Setembro de 2026 · 50 Anos</p>
+        <p style="margin-top:0.5rem;opacity:0.4;font-size:0.78rem;letter-spacing:2px">14 de Setembro de 2026 · 70 Anos</p>
     </footer>
 
     <script>
