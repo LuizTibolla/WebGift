@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro · Festa Galáxia 🚀</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --space:     #020818;
+            --space2:    #060d28;
+            --space3:    #0a1540;
+            --blue:      #1a6bff;
+            --blue-l:    #4d9eff;
+            --cyan:      #00e5ff;
+            --cyan-d:    #00b2cc;
+            --purple:    #7c3aed;
+            --purple-l:  #a855f7;
+            --star:      #ffd700;
+            --star-l:    #fff176;
+            --white:     #e8f4ff;
+            --gray:      #7090b0;
+            --gray-l:    #a0c0e0;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Exo 2',sans-serif;color:var(--white);background:var(--space);overflow-x:hidden}
+
+        /* STAR FIELD */
+        body::before{
+            content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+            background-image:
+                radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
+                radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 40% 30%, rgba(255,255,255,0.9) 0%, transparent 100%),
+                radial-gradient(1px 1px at 55% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+                radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.8) 0%, transparent 100%),
+                radial-gradient(1px 1px at 92% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 5%  90%, rgba(255,255,255,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 100%),
+                radial-gradient(2px 2px at 30% 10%, rgba(0,229,255,0.5) 0%, transparent 100%),
+                radial-gradient(2px 2px at 75% 40%, rgba(168,85,247,0.4) 0%, transparent 100%),
+                radial-gradient(2px 2px at 15% 70%, rgba(255,215,0,0.4) 0%, transparent 100%);
+        }
+
+        /* NAV */
+        nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(2,8,24,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,229,255,0.2);padding:0.9rem 0}
+        nav ul{list-style:none;display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;padding:0 2rem}
+        nav a{text-decoration:none;color:var(--gray-l);font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;transition:all 0.3s;font-family:'Orbitron',sans-serif}
+        nav a:hover{color:var(--cyan);text-shadow:0 0 10px rgba(0,229,255,0.5)}
+
+        section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 2rem;position:relative}
+        .section-content{max-width:1100px;width:100%;position:relative;z-index:1}
+
+        /* HOME */
+        #home{text-align:center;overflow:hidden}
+        #home::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(26,107,255,0.12) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 30% 70%,rgba(124,58,237,0.1) 0%,transparent 50%)}
+
+        /* Orbiting planet */
+        .planet-orbit{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(0,229,255,0.06);animation:orbit 20s linear infinite}
+        .planet{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:2.5rem;filter:drop-shadow(0 0 10px rgba(0,229,255,0.3))}
+
+        .home-content{position:relative;z-index:2}
+
+        .rocket-anim{font-size:4rem;display:block;margin-bottom:1rem;animation:rocketLaunch 2s ease-in-out infinite}
+        @keyframes rocketLaunch{0%,100%{transform:translateY(0) rotate(0deg)}30%{transform:translateY(-15px) rotate(-5deg)}70%{transform:translateY(-8px) rotate(5deg)}}
+
+        .home-mission{
+            font-family:'Orbitron',sans-serif;font-size:0.72rem;letter-spacing:5px;
+            color:var(--cyan);margin-bottom:1.5rem;
+            text-shadow:0 0 15px rgba(0,229,255,0.5);
+        }
+        .home-name{
+            font-family:'Orbitron',sans-serif;
+            font-size:clamp(2.5rem,8vw,7rem);font-weight:900;
+            color:var(--white);letter-spacing:0.05em;line-height:1;margin-bottom:1rem;
+            text-shadow:0 0 40px rgba(26,107,255,0.6), 0 0 80px rgba(0,229,255,0.2);
+        }
+        .home-age-ring{
+            display:inline-flex;align-items:center;justify-content:center;
+            width:140px;height:140px;border-radius:50%;margin:1rem auto;
+            border:2px solid var(--cyan);
+            background:radial-gradient(ellipse, rgba(0,229,255,0.1) 0%, transparent 70%);
+            box-shadow:0 0 30px rgba(0,229,255,0.2), inset 0 0 30px rgba(0,229,255,0.05);
+            position:relative;
+        }
+        .home-age-ring::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(0,229,255,0.2)}
+        .home-age-ring .age-num{font-family:'Orbitron',sans-serif;font-size:3.5rem;font-weight:900;color:var(--cyan);text-shadow:0 0 20px rgba(0,229,255,0.8);line-height:1}
+        .home-date{font-size:0.88rem;color:var(--gray-l);letter-spacing:3px;margin-top:1rem}
+        .home-tags{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+        .htag{padding:0.4rem 1rem;border-radius:4px;font-size:0.75rem;font-family:'Orbitron',sans-serif;font-weight:400;letter-spacing:1px}
+        .ht-c{background:rgba(0,229,255,0.1);color:var(--cyan);border:1px solid rgba(0,229,255,0.3)}
+        .ht-p{background:rgba(168,85,247,0.1);color:var(--purple-l);border:1px solid rgba(168,85,247,0.3)}
+        .ht-s{background:rgba(255,215,0,0.1);color:var(--star);border:1px solid rgba(255,215,0,0.3)}
+
+        .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite}
+        .scroll-indicator::after{content:'↓';font-size:1.5rem;color:var(--cyan);opacity:0.6}
+
+        /* SOBRE */
+        #sobre{background:var(--space2)}
+        .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+        .sobre-img{height:500px;border-radius:8px;overflow:hidden;background:var(--space3);border:1px solid rgba(0,229,255,0.2);box-shadow:0 0 40px rgba(0,229,255,0.08)}
+        .sobre-img img{width:100%;height:100%;object-fit:cover}
+        .sobre-img .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:6rem;opacity:0.2}
+
+        .mission-badge{display:inline-block;font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,229,255,0.4);padding:0.4rem 1rem;border-radius:4px;margin-bottom:1.2rem;background:rgba(0,229,255,0.06)}
+        .sobre-text h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;color:var(--white);margin-bottom:1.5rem;line-height:1.2}
+        .sobre-text h2 span{color:var(--cyan)}
+        .sobre-text p{font-size:0.98rem;line-height:1.9;color:var(--gray-l);margin-bottom:1rem;font-weight:300}
+        .data-panel{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+        .dp{flex:1;min-width:80px;text-align:center;padding:1rem;border:1px solid;border-radius:4px}
+        .dp-c{background:rgba(0,229,255,0.06);border-color:rgba(0,229,255,0.25)}
+        .dp-p{background:rgba(168,85,247,0.06);border-color:rgba(168,85,247,0.25)}
+        .dp-s{background:rgba(255,215,0,0.06);border-color:rgba(255,215,0,0.25)}
+        .dp .e{font-size:1.5rem;display:block;margin-bottom:0.3rem}
+        .dp .n{font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:700;color:var(--cyan)}
+        .dp-s .n{color:var(--star)}
+        .dp-p .n{color:var(--purple-l)}
+        .dp .l{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+
+        /* GALERIA */
+        #galeria{background:var(--space)}
+        .sg-label{font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);margin-bottom:0.8rem;display:block}
+        .sg-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;color:var(--white);margin-bottom:2.5rem;line-height:1.1}
+        .sg-title span{color:var(--cyan)}
+        .gallery-main{height:460px;position:relative;overflow:hidden;border:1px solid rgba(0,229,255,0.2);box-shadow:0 0 40px rgba(0,229,255,0.06)}
+        .carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.9s ease}
+        .carousel-slide.active{opacity:1}
+        .carousel-slide img{width:100%;height:100%;object-fit:cover}
+        .carousel-slide.placeholder-slide{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--space),var(--space3));font-size:5rem}
+        .carousel-counter{position:absolute;top:1rem;right:1.2rem;z-index:5;background:rgba(2,8,24,0.88);color:var(--cyan);font-family:'Orbitron',sans-serif;font-size:0.72rem;letter-spacing:2px;padding:0.3rem 0.9rem;border:1px solid rgba(0,229,255,0.3)}
+        .carousel-button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(2,8,24,0.88);color:var(--cyan);border:1px solid rgba(0,229,255,0.3);width:48px;height:48px;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:10}
+        .carousel-button:hover{background:var(--cyan);color:var(--space);border-color:var(--cyan)}
+        .carousel-button.prev{left:1rem}
+        .carousel-button.next{right:1rem}
+        .carousel-indicators{display:flex;gap:0.6rem;margin-top:1.5rem}
+        .carousel-indicator{height:2px;width:24px;background:rgba(0,229,255,0.15);cursor:pointer;transition:all 0.3s}
+        .carousel-indicator.active{background:var(--cyan);width:48px;box-shadow:0 0 8px rgba(0,229,255,0.5)}
+
+        /* FESTA */
+        #festa{background:var(--space2)}
+        .sf-label{font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--purple-l);display:block;margin-bottom:0.8rem}
+        .sf-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;color:var(--white);margin-bottom:2.5rem;line-height:1.1}
+        .sf-title span{color:var(--purple-l)}
+        .festa-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+        .festa-card{padding:2.5rem;border:1px solid;transition:all 0.3s;position:relative;overflow:hidden}
+        .festa-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transform:scaleX(0);transition:transform 0.4s}
+        .festa-card:hover::before{transform:scaleX(1)}
+        .fc-c{background:rgba(0,229,255,0.04);border-color:rgba(0,229,255,0.2)}
+        .fc-c:hover{background:rgba(0,229,255,0.07);border-color:rgba(0,229,255,0.4)}
+        .fc-p{background:rgba(168,85,247,0.04);border-color:rgba(168,85,247,0.2)}
+        .fc-p:hover{background:rgba(168,85,247,0.07);border-color:rgba(168,85,247,0.4)}
+        .festa-card .icon{font-size:2.5rem;margin-bottom:1.2rem}
+        .festa-card h3{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:600;color:var(--cyan);margin-bottom:1.5rem;letter-spacing:0.05em}
+        .fc-p h3{color:var(--purple-l)}
+        .festa-detail p{font-size:0.9rem;line-height:2.2;color:var(--gray-l)}
+        .festa-detail strong{color:var(--white);font-weight:600}
+        .route-button{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;padding:0.7rem 1.6rem;border:1px solid;text-decoration:none;font-family:'Orbitron',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s}
+        .fc-c .route-button{border-color:var(--cyan);color:var(--cyan)}
+        .fc-c .route-button:hover{background:var(--cyan);color:var(--space);box-shadow:0 0 20px rgba(0,229,255,0.3)}
+        .fc-p .route-button{border-color:var(--purple-l);color:var(--purple-l)}
+        .fc-p .route-button:hover{background:var(--purple-l);color:var(--white)}
+
+        /* COUNTDOWN */
+        #countdown{background:var(--space3);text-align:center}
+        #countdown::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,229,255,0.06) 0%,transparent 70%)}
+        .countdown-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+        .countdown-rocket{font-size:3rem;margin-bottom:0.5rem}
+        .countdown-title{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:600;color:var(--cyan);letter-spacing:3px;margin-bottom:2.5rem;text-shadow:0 0 15px rgba(0,229,255,0.4)}
+        .countdown-timer{display:flex;gap:0;justify-content:center;flex-wrap:wrap;border:1px solid rgba(0,229,255,0.15)}
+        .time-unit{text-align:center;flex:1;min-width:100px;padding:2.5rem 1.5rem;border-right:1px solid rgba(0,229,255,0.1)}
+        .time-unit:last-child{border-right:none}
+        .time-unit .num{font-family:'Orbitron',sans-serif;font-size:3.5rem;font-weight:900;color:var(--cyan);line-height:1;text-shadow:0 0 20px rgba(0,229,255,0.4)}
+        .time-unit .lbl{font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-top:0.5rem}
+
+        /* PRESENTES */
+        #presentes{background:var(--space)}
+        .gp-label{font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--star);display:block;margin-bottom:0.8rem}
+        .gp-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;color:var(--white);margin-bottom:2rem;line-height:1.1}
+        .gp-title span{color:var(--star)}
+        .presentes-intro{font-size:0.95rem;color:var(--gray-l);line-height:1.8;margin-bottom:2.5rem;max-width:560px;font-weight:300}
+        .sort-bar{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin-bottom:2rem}
+        .sort-label{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);font-family:'Orbitron',sans-serif}
+        .sort-btn{background:transparent;border:1px solid rgba(255,255,255,0.1);color:var(--gray-l);padding:0.45rem 1.1rem;font-size:0.72rem;letter-spacing:1px;font-family:'Exo 2',sans-serif;cursor:pointer;transition:all 0.25s}
+        .sort-btn:hover,.sort-btn.active{border-color:var(--cyan);color:var(--cyan)}
+        .gift-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:rgba(0,229,255,0.08)}
+        .gift-card{background:var(--space);transition:background 0.3s}
+        .gift-card:hover{background:var(--space2)}
+        .gift-image{height:180px;overflow:hidden;background:var(--space2)}
+        .gift-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;filter:brightness(0.9)}
+        .gift-card:hover .gift-image img{transform:scale(1.05);filter:brightness(1)}
+        .gift-content{padding:1.3rem}
+        .gift-content h3{font-family:'Orbitron',sans-serif;font-size:0.95rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;letter-spacing:0.02em}
+        .gift-price{font-size:0.9rem;color:var(--cyan);margin-bottom:0.5rem;letter-spacing:1px}
+        .gift-content p{font-size:0.85rem;color:var(--gray);line-height:1.6;margin-bottom:1rem;font-weight:300}
+        .gift-button{width:100%;padding:0.7rem;background:transparent;border:1px solid rgba(0,229,255,0.3);color:var(--cyan);font-family:'Exo 2',sans-serif;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+        .gift-button:hover{background:var(--cyan);color:var(--space);border-color:var(--cyan);box-shadow:0 0 15px rgba(0,229,255,0.3)}
+
+        /* CONFIRMAÇÃO */
+        #confirmacao{background:var(--space2)}
+        .confirm-wrapper{max-width:540px}
+        .cc-label{font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:0.8rem}
+        .cc-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--white);margin-bottom:1rem;line-height:1.1}
+        .cc-title span{color:var(--cyan)}
+        .confirm-form{margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+        .form-group label{display:block;font-family:'Orbitron',sans-serif;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:0.5rem}
+        .form-group input,.form-group select{width:100%;padding:0.9rem 1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(0,229,255,0.2);color:var(--white);font-family:'Exo 2',sans-serif;font-size:0.95rem;outline:none;transition:border-color 0.3s}
+        .form-group input:focus,.form-group select:focus{border-color:var(--cyan)}
+        .form-group select option{background:var(--space2)}
+        .confirm-btn{margin-top:0.5rem;padding:1rem;width:100%;background:var(--cyan);border:none;color:var(--space);font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+        .confirm-btn:hover{background:var(--blue-l);box-shadow:0 0 25px rgba(0,229,255,0.3)}
+        .confirm-success{display:none;padding:1.5rem;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.3);margin-top:1rem}
+        .confirm-success p{color:var(--cyan);font-family:'Orbitron',sans-serif;font-size:0.9rem;letter-spacing:2px}
+
+        /* MODAL */
+        .modal-overlay{display:none;position:fixed;inset:0;z-index:9000;background:rgba(2,8,24,0.92);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+        .modal-overlay.active{display:flex}
+        .modal-content{background:var(--space2);border:1px solid rgba(0,229,255,0.3);max-width:440px;width:90%;padding:2.5rem;position:relative;animation:fadeInUp 0.3s ease}
+        .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--gray)}
+        .modal-close:hover{color:var(--cyan)}
+        .modal-header{margin-bottom:1.5rem;border-bottom:1px solid rgba(0,229,255,0.15);padding-bottom:1.5rem}
+        .modal-header h3{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:600;color:var(--white)}
+        .modal-price{color:var(--cyan);font-size:1rem;margin-top:0.3rem;letter-spacing:1px}
+        .modal-name-label{display:block;font-family:'Orbitron',sans-serif;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:0.5rem}
+        .modal-name-input{width:100%;padding:0.9rem 1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(0,229,255,0.2);color:var(--white);font-family:'Exo 2',sans-serif;font-size:0.95rem;outline:none;transition:border-color 0.3s;margin-bottom:0.4rem}
+        .modal-name-input:focus{border-color:var(--cyan)}
+        .name-error{color:var(--purple-l);font-size:0.82rem;display:none;margin-bottom:1rem}
+        .payment-buttons{display:flex;flex-direction:column;gap:0.7rem;margin-top:1.5rem}
+        .payment-option{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid rgba(0,229,255,0.2);text-decoration:none;color:var(--white);cursor:pointer;transition:all 0.3s}
+        .payment-option:hover{border-color:var(--cyan);background:rgba(0,229,255,0.06)}
+        .payment-icon{font-size:1.4rem}
+        .payment-info{flex:1}
+        .payment-info strong{display:block;font-size:0.9rem;color:var(--white)}
+        .payment-info span{font-size:0.8rem;color:var(--gray)}
+        .payment-arrow{color:var(--cyan)}
+
+        /* FOOTER */
+        footer{background:var(--space);border-top:1px solid rgba(0,229,255,0.1);text-align:center;padding:2.5rem 2rem}
+        .footer-name{font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;color:var(--cyan);text-shadow:0 0 20px rgba(0,229,255,0.4);margin-bottom:0.4rem;letter-spacing:0.1em}
+        footer p{color:var(--gray);font-size:0.78rem;letter-spacing:1px}
+        .heart{color:var(--purple-l)}
+
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+        @keyframes orbit{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+        @media(max-width:768px){
+            .sobre-grid,.festa-grid{grid-template-columns:1fr;gap:2rem}
+            .sobre-img{height:300px}
+            .gallery-main{height:280px}
+            nav ul{gap:1.2rem}
+            nav a{font-size:0.65rem;letter-spacing:1.5px}
+            section{padding:5rem 1.5rem}
+            .planet-orbit{width:300px;height:300px}
+            .countdown-timer{border:none}
+            .time-unit{border:1px solid rgba(0,229,255,0.1);margin-bottom:0.5rem}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Pedro</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#festa">Missão</a></li>
+            <li><a href="#presentes">Presentes</a></li>
+            <!-- <li><a href="#confirmacao">Confirmar</a></li> -->
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="planet-orbit"><div class="planet">🪐</div></div>
+        <div class="home-content">
+            <span class="rocket-anim">🚀</span>
+            <p class="home-mission">◆ MISSÃO ANIVERSÁRIO ◆</p>
+            <h1 class="home-name">PEDRO</h1>
+            <div class="home-age-ring"><span class="age-num">9</span></div>
+            <p class="home-date">🛸 22 de Agosto de 2026</p>
+            <div class="home-tags">
+                <span class="htag ht-c">🚀 Astronauta</span>
+                <span class="htag ht-p">🌌 Galáxia</span>
+                <span class="htag ht-s">⭐ 9 Anos</span>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="sobre">
+        <div class="section-content">
+            <div class="sobre-grid">
+                <div class="sobre-img"><div class="ph">👦</div></div>
+                <div class="sobre-text">
+                    <span class="mission-badge">◆ ARQUIVO DO ASTRONAUTA</span>
+                    <h2>Pedro: <span>9 anos</span> explorando o universo</h2>
+                    <p>Desde os 4 anos, Pedro sabe quantas estrelas tem na Via Láctea (ou quase!) e sonha em ser o primeiro menino a pisar em Marte. Com seu telescópio, ele já mapeou boa parte do céu da vizinhança.</p>
+                    <p>Curioso, analítico e com uma imaginação que não tem limite, ele cresceu fascinado pelo espaço — e esse ano a festa vai ser digna de uma missão espacial!</p>
+                    <p>Base de controle para todos os convidados: confirme presença e prepare-se para lançamento! 🚀🌌</p>
+                    <div class="data-panel">
+                        <div class="dp dp-c"><span class="e">🚀</span><div class="n">9</div><div class="l">Anos</div></div>
+                        <div class="dp dp-s"><span class="e">⭐</span><div class="n">∞</div><div class="l">Estrelas</div></div>
+                        <div class="dp dp-p"><span class="e">🪐</span><div class="n">8</div><div class="l">Planetas</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="section-content">
+            <span class="sg-label">◆ Registros da missão</span>
+            <h2 class="sg-title">Galeria <span>espacial</span></h2>
+            <div class="gallery-main">
+                <div class="carousel-counter"><span id="currentSlide">1</span> / 6</div>
+                <div class="carousel-slide active placeholder-slide">🚀</div>
+                <div class="carousel-slide placeholder-slide">🌌</div>
+                <div class="carousel-slide placeholder-slide">🪐</div>
+                <div class="carousel-slide placeholder-slide">⭐</div>
+                <div class="carousel-slide placeholder-slide">🛸</div>
+                <div class="carousel-slide placeholder-slide">🌠</div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="festa">
+        <div class="section-content">
+            <span class="sf-label">◆ Coordenadas da missão</span>
+            <h2 class="sf-title">A <span>Missão</span> Festa</h2>
+            <div class="festa-grid">
+                <div class="festa-card fc-c">
+                    <div class="icon">🚀</div>
+                    <h3>Base de Lançamento</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 22 de Agosto de 2026</p>
+                        <p><strong>Horário:</strong> 14:00</p>
+                        <p><strong>Local:</strong> Espaço Galáxia Kids</p>
+                        <p><strong>Endereço:</strong> Rua das Estrelas, 900</p>
+                        <p style="margin-top:0.8rem;font-size:0.85rem;color:var(--gray)">T-minus... prepare-se! 🛸</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+das+Estrelas,+900" target="_blank" class="route-button">◆ Coordenadas</a>
+                </div>
+                <div class="festa-card fc-p">
+                    <div class="icon">🌌</div>
+                    <h3>Protocolo da Missão</h3>
+                    <div class="festa-detail">
+                        <p><strong>Tema:</strong> Exploração Espacial</p>
+                        <p><strong>Dress code:</strong> Astronautas!</p>
+                        <p><strong>Atividades:</strong> Planetário + jogos</p>
+                        <p><strong>Duração:</strong> 14h às 18h</p>
+                        <p style="margin-top:0.8rem;font-size:0.85rem;color:var(--gray)">Simulador de gravidade zero! 🪐</p>
+                    </div>
+                    <a href="https://wa.me/5515998514536" target="_blank" class="route-button">◆ Comunicar Base</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown">
+        <div class="section-content">
+            <div class="countdown-inner">
+                <div class="countdown-rocket">🚀</div>
+                <p class="countdown-title">◆ CONTAGEM REGRESSIVA ◆</p>
+                <div class="countdown-timer">
+                    <div class="time-unit"><div class="num" id="days">00</div><div class="lbl">Dias</div></div>
+                    <div class="time-unit"><div class="num" id="hours">00</div><div class="lbl">Horas</div></div>
+                    <div class="time-unit"><div class="num" id="minutes">00</div><div class="lbl">Min</div></div>
+                    <div class="time-unit"><div class="num" id="seconds">00</div><div class="lbl">Seg</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="presentes">
+        <div class="section-content">
+            <span class="gp-label">◆ Suprimentos da missão</span>
+            <h2 class="gp-title">Lista de <span>Presentes</span></h2>
+            <p class="presentes-intro">Sua presença já é combustível suficiente para a missão! Mas se quiser presentear o Pedro, aqui estão os equipamentos que todo astronauta precisa. 🚀⭐</p>
+            <div class="sort-bar">
+                <span class="sort-label">Ordenar:</span>
+                <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+                <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor → Maior</button>
+                <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior → Menor</button>
+            </div>
+            <div class="gift-options"></div>
+        </div>
+    </section>
+
+    <!-- <section id="confirmacao">
+        <div class="section-content">
+            <div class="confirm-wrapper">
+                <span class="cc-label">◆ Registro de tripulação</span>
+                <h2 class="cc-title">Confirme <span>presença</span></h2>
+                <p style="color:var(--gray-l);font-size:0.9rem;line-height:1.8;font-weight:300">Prazo para registro: <strong style="color:var(--cyan)">12/08/2026</strong>. A tripulação aguarda confirmação! 🚀</p>
+                <form class="confirm-form" id="confirmForm" onsubmit="handleConfirm(event)">
+                    <div class="form-group"><label>Identificação</label><input type="text" id="confirmName" placeholder="Seu nome, tripulante" required></div>
+                    <div class="form-group"><label>Tripulantes adicionais</label>
+                        <select id="confirmGuests">
+                            <option value="0">Apenas eu</option>
+                            <option value="1">+ 1 tripulante</option>
+                            <option value="2">+ 2 tripulantes</option>
+                            <option value="3">Equipe completa 🚀</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Status da missão</label>
+                        <select id="confirmAttend">
+                            <option value="sim">🚀 CONFIRMADO. Estarei lá!</option>
+                            <option value="nao">📡 Missão abortada</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">◆ Confirmar Missão</button>
+                </form>
+                <div class="confirm-success" id="confirmSuccess"><p>◆ MISSÃO CONFIRMADA. Até 22/08! 🚀</p></div>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header"><h3 id="modalGiftName">Suprimento</h3><div class="modal-price" id="modalGiftPrice">R$ 0,00</div></div>
+            <label class="modal-name-label">Identificação do tripulante:</label>
+            <input class="modal-name-input" type="text" id="guestName" placeholder="Seu nome">
+            <p class="name-error" id="nameError">⚠ Informe sua identificação</p>
+            <div class="payment-buttons">
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('pix')"><div class="payment-icon">💳</div><div class="payment-info"><strong>Pagar com PIX</strong><span>Transferência instantânea</span></div><div class="payment-arrow">→</div></a>
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('card')"><div class="payment-icon">💰</div><div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div><div class="payment-arrow">→</div></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-name">PEDRO 🚀</div>
+        <p>Feito com <span class="heart">♥</span> para o maior astronauta de 9 anos</p>
+        <p style="margin-top:0.4rem;opacity:0.35;font-size:0.72rem;letter-spacing:3px">22 · VIII · 2026 · 9 ANOS</p>
+    </footer>
+
+    <script>
+    let currentSlideIndex=0,autoPlayInterval;
+    function changeSlide(dir){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=(currentSlideIndex+dir+slides.length)%slides.length;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function goToSlide(idx){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=idx;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function startAutoPlay(){autoPlayInterval=setInterval(()=>changeSlide(1),4500)}
+    function stopAutoPlay(){clearInterval(autoPlayInterval)}
+    function resetAutoPlay(){stopAutoPlay();startAutoPlay()}
+    document.addEventListener('DOMContentLoaded',()=>{startAutoPlay();const gm=document.querySelector('.gallery-main');gm.addEventListener('mouseenter',stopAutoPlay);gm.addEventListener('mouseleave',startAutoPlay);let tx=0;gm.addEventListener('touchstart',e=>tx=e.changedTouches[0].screenX,{passive:true});gm.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50)changeSlide(d>0?1:-1)},{passive:true})});
+    const eventDate=new Date('2026-08-22T14:00:00');
+    function updateCountdown(){const diff=eventDate-new Date();if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');return}document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0')}
+    setInterval(updateCountdown,1000);updateCountdown();
+    const PRESENTES=[
+        {nome:'Telescópio Infantil',preco:'R$ 350,00',descricao:'Para explorar estrelas e planetas do quintal.',imagem:'img/presentes/telescopio.jpg',pix:'#',cartao:'#'},
+        {nome:'Kit Astronauta',preco:'R$ 220,00',descricao:'Capacete, luvas e terno espacial para brincar.',imagem:'img/presentes/astronauta.jpg',pix:'#',cartao:'#'},
+        {nome:'Lego Espacial',preco:'R$ 380,00',descricao:'Set da NASA com foguete e base lunar.',imagem:'img/presentes/lego.jpg',pix:'#',cartao:'#'},
+        {nome:'Planetário Portátil',preco:'R$ 180,00',descricao:'Projetor de estrelas para o quarto.',imagem:'img/presentes/planetario.jpg',pix:'#',cartao:'#'},
+        {nome:'Enciclopédia do Espaço',preco:'R$ 120,00',descricao:'Guia ilustrado do universo para crianças.',imagem:'img/presentes/enciclopedia.jpg',pix:'#',cartao:'#'},
+        {nome:'Drone Iniciante',preco:'R$ 450,00',descricao:'Mini drone para explorar o espaço aéreo.',imagem:'img/presentes/drone.jpg',pix:'#',cartao:'#'},
+    ];
+    let cpix='',ccard='';
+    function precoParaNum(p){return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim())}
+    function renderPresentes(lista){document.querySelector('.gift-options').innerHTML=lista.map(p=>`<div class="gift-card"><div class="gift-image"><img src="${p.imagem}" alt="${p.nome}" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;background:var(--space2)\'>🎁</div>'"></div><div class="gift-content"><h3>${p.nome}</h3><div class="gift-price">${p.preco}</div><p>${p.descricao}</p><button class="gift-button" onclick="openModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">◆ SUPRIMENTO</button></div></div>`).join('')}
+    function ordenarPresentes(ordem){const lista=[...PRESENTES];if(ordem==='asc')lista.sort((a,b)=>precoParaNum(a.preco)-precoParaNum(b.preco));if(ordem==='desc')lista.sort((a,b)=>precoParaNum(b.preco)-precoParaNum(a.preco));document.querySelectorAll('.sort-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.ordem===ordem));renderPresentes(lista)}
+    document.addEventListener('DOMContentLoaded',()=>renderPresentes(PRESENTES));
+    function openModal(name,price,pix,card){cpix=pix;ccard=card;document.getElementById('modalGiftName').textContent=name;document.getElementById('modalGiftPrice').textContent=price;document.getElementById('guestName').value='';document.getElementById('nameError').style.display='none';document.getElementById('paymentModal').classList.add('active');document.body.style.overflow='hidden'}
+    function closeModal(){document.getElementById('paymentModal').classList.remove('active');document.body.style.overflow=''}
+    function handlePayment(type){const name=document.getElementById('guestName').value.trim();if(!name||name.length<3){document.getElementById('nameError').style.display='block';return}document.getElementById('nameError').style.display='none';window.open(type==='pix'?cpix:ccard,'_blank','noopener,noreferrer');setTimeout(closeModal,800)}
+    document.getElementById('paymentModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+    function handleConfirm(e){e.preventDefault();document.getElementById('confirmForm').style.display='none';document.getElementById('confirmSuccess').style.display='block'}
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+    </script>
+</body>
+</html>

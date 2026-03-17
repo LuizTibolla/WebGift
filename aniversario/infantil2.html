@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isabella · Festa de Princesa 👑</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose:      #e8739a;
+            --rose-d:    #c94d78;
+            --rose-pale: #fce8f0;
+            --gold:      #e8c84a;
+            --gold-d:    #c9a420;
+            --purple:    #b060d0;
+            --purple-p:  #f0e0fa;
+            --sky:       #80c8f0;
+            --sky-pale:  #e0f4ff;
+            --cream:     #fffaf8;
+            --white:     #ffffff;
+            --text:      #3a1840;
+            --text-light:#9060a0;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Quicksand',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+
+        /* MAGIC STARS */
+        .star{position:fixed;pointer-events:none;z-index:0;animation:twinkle 3s ease-in-out infinite;font-size:1rem;opacity:0}
+        @keyframes twinkle{0%,100%{opacity:0;transform:scale(0.5)}50%{opacity:0.4;transform:scale(1)}}
+
+        /* NAV */
+        nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,250,248,0.97);backdrop-filter:blur(14px);border-bottom:2px solid var(--rose-pale);padding:0.9rem 0}
+        nav ul{list-style:none;display:flex;justify-content:center;gap:2.2rem;flex-wrap:wrap;padding:0 2rem}
+        nav a{text-decoration:none;color:var(--text-light);font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;font-weight:600;transition:all 0.3s}
+        nav a:hover{color:var(--rose-d)}
+
+        section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 2rem;position:relative}
+        .section-content{max-width:1100px;width:100%;position:relative;z-index:1}
+
+        /* HOME */
+        #home{
+            background:linear-gradient(160deg,#2a0840 0%,#5a1060 40%,#8a2070 70%,#c94d78 100%);
+            text-align:center;overflow:hidden;color:var(--white);
+        }
+        #home::before{
+            content:'';position:absolute;inset:0;
+            background:url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='white' fill-opacity='0.15'/%3E%3C/svg%3E") repeat;
+        }
+
+        /* Castle silhouette */
+        #home::after{
+            content:'🏰';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+            font-size:12rem;opacity:0.05;z-index:0;line-height:1;
+        }
+
+        .home-content{position:relative;z-index:2}
+
+        .crown-big{font-size:5rem;animation:crownFloat 3s ease-in-out infinite;display:block;margin-bottom:1rem}
+        @keyframes crownFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(5deg)}}
+
+        .home-name{
+            font-family:'Cinzel',serif;font-size:clamp(2.5rem,8vw,6rem);
+            font-weight:700;color:var(--white);letter-spacing:0.05em;line-height:1;margin-bottom:0.8rem;
+            text-shadow:0 0 40px rgba(232,200,74,0.4);
+        }
+        .home-title{
+            font-family:'Cinzel',serif;font-size:clamp(1rem,3vw,2rem);
+            color:var(--gold);letter-spacing:0.15em;margin-bottom:1.5rem;
+            text-shadow:0 0 20px rgba(232,200,74,0.5);
+        }
+        .home-age{
+            display:inline-flex;align-items:center;gap:0.5rem;
+            font-family:'Cinzel',serif;
+            background:linear-gradient(135deg,var(--gold),#fff8d0);
+            color:var(--text);padding:0.6rem 2rem;border-radius:50px;
+            font-size:1.1rem;font-weight:600;letter-spacing:0.1em;
+            box-shadow:0 0 30px rgba(232,200,74,0.4);margin-bottom:1.5rem;
+        }
+        .home-date{font-size:0.9rem;color:rgba(255,255,255,0.7);letter-spacing:3px}
+        .home-magic{font-size:1.5rem;letter-spacing:0.5rem;margin-top:1.5rem;opacity:0.6}
+
+        .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite}
+        .scroll-indicator::after{content:'↓';font-size:1.8rem;color:var(--gold);opacity:0.7}
+
+        /* SOBRE */
+        #sobre{background:var(--white)}
+        .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+        .sobre-img{height:520px;border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;overflow:hidden;background:linear-gradient(135deg,var(--rose-pale),var(--purple-p));box-shadow:0 20px 60px rgba(180,80,120,0.2);border:4px solid var(--rose-pale)}
+        .sobre-img img{width:100%;height:100%;object-fit:cover}
+        .sobre-img .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:6rem;opacity:0.3}
+
+        .sobre-crown{font-size:2.5rem;margin-bottom:0.5rem;display:block}
+        .sobre-text h2{font-family:'Cinzel',serif;font-size:clamp(1.8rem,3.5vw,3rem);color:var(--text);margin-bottom:1.5rem;line-height:1.2}
+        .sobre-text h2 span{color:var(--rose-d)}
+        .sobre-text p{font-size:1rem;line-height:1.9;color:var(--text-light);margin-bottom:1rem}
+        .magic-facts{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+        .mf{flex:1;min-width:80px;text-align:center;padding:1rem;border-radius:16px}
+        .mf-r{background:var(--rose-pale);border:2px solid var(--rose)}
+        .mf-g{background:#fffde0;border:2px solid var(--gold)}
+        .mf-p{background:var(--purple-p);border:2px solid var(--purple)}
+        .mf .e{font-size:1.8rem;display:block;margin-bottom:0.2rem}
+        .mf .n{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;color:var(--text)}
+        .mf .l{font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-light)}
+
+        /* GALERIA */
+        #galeria{background:linear-gradient(160deg,#2a0840,#5a1060,#8a2070)}
+        .g-label{display:inline-block;background:var(--gold);color:var(--text);font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:50px;margin-bottom:0.8rem}
+        .g-title{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,4rem);color:var(--white);margin-bottom:2.5rem;line-height:1;text-shadow:0 0 30px rgba(232,200,74,0.3)}
+        .g-title span{color:var(--gold)}
+
+        .gallery-main{height:460px;position:relative;overflow:hidden;border-radius:20px;border:2px solid rgba(232,200,74,0.3);box-shadow:0 0 40px rgba(232,200,74,0.1)}
+        .carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.9s ease}
+        .carousel-slide.active{opacity:1}
+        .carousel-slide img{width:100%;height:100%;object-fit:cover}
+        .carousel-slide.placeholder-slide{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2a0840,#5a1060);font-size:5rem}
+        .carousel-counter{position:absolute;top:1rem;right:1.2rem;z-index:5;background:rgba(42,8,64,0.85);color:var(--gold);font-size:0.78rem;font-weight:700;padding:0.3rem 0.9rem;border-radius:50px;border:1px solid rgba(232,200,74,0.4)}
+        .carousel-button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(42,8,64,0.85);color:var(--gold);border:1px solid rgba(232,200,74,0.4);width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:10}
+        .carousel-button:hover{background:var(--gold);color:var(--text)}
+        .carousel-button.prev{left:1rem}
+        .carousel-button.next{right:1rem}
+        .carousel-indicators{display:flex;gap:0.5rem;margin-top:1.5rem;justify-content:center}
+        .carousel-indicator{width:8px;height:8px;border-radius:50%;background:rgba(232,200,74,0.25);cursor:pointer;transition:all 0.3s}
+        .carousel-indicator.active{background:var(--gold);transform:scale(1.4)}
+
+        /* FESTA */
+        #festa{background:var(--cream)}
+        .f-title{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,4rem);color:var(--text);margin-bottom:2.5rem;line-height:1}
+        .f-title span{color:var(--rose-d)}
+        .festa-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+        .festa-card{padding:2.5rem;border-radius:20px;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden}
+        .festa-card:hover{transform:translateY(-5px)}
+        .fc-rose{background:var(--rose-pale);border:2px solid var(--rose)}
+        .fc-rose:hover{box-shadow:0 15px 40px rgba(200,80,120,0.2)}
+        .fc-purple{background:var(--purple-p);border:2px solid var(--purple)}
+        .fc-purple:hover{box-shadow:0 15px 40px rgba(160,80,200,0.2)}
+        .festa-card .icon{font-size:2.5rem;margin-bottom:1rem}
+        .festa-card h3{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--text);margin-bottom:1.2rem}
+        .festa-detail p{font-size:0.95rem;line-height:2.2;color:var(--text-light)}
+        .festa-detail strong{color:var(--text);font-weight:700}
+        .route-button{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;padding:0.7rem 1.6rem;border-radius:50px;text-decoration:none;font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s}
+        .fc-rose .route-button{background:var(--rose-d);color:var(--white)}
+        .fc-purple .route-button{background:var(--purple);color:var(--white)}
+        .route-button:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,0.15)}
+
+        /* COUNTDOWN */
+        #countdown{background:linear-gradient(135deg,#2a0840,#8a2070);text-align:center;color:var(--white)}
+        .countdown-inner{max-width:700px;margin:0 auto;position:relative;z-index:1}
+        .countdown-crown{font-size:3rem;margin-bottom:0.5rem}
+        .countdown-title{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:600;color:var(--gold);margin-bottom:2.5rem;text-shadow:0 0 20px rgba(232,200,74,0.3)}
+        .countdown-timer{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .time-unit{text-align:center;min-width:100px;background:rgba(255,255,255,0.08);border-radius:16px;padding:2rem 1.5rem;border:1px solid rgba(232,200,74,0.3)}
+        .time-unit .num{font-family:'Cinzel',serif;font-size:3.5rem;font-weight:700;color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(232,200,74,0.3)}
+        .time-unit .lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:0.4rem}
+
+        /* PRESENTES */
+        #presentes{background:var(--white)}
+        .p-label{display:inline-block;background:var(--rose-d);color:var(--white);font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:50px;margin-bottom:0.8rem}
+        .p-title{font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:2rem;line-height:1}
+        .p-title span{color:var(--rose-d)}
+        .presentes-intro{font-size:1rem;color:var(--text-light);line-height:1.8;margin-bottom:2.5rem;max-width:560px}
+        .sort-bar{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin-bottom:2rem}
+        .sort-label{font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-light)}
+        .sort-btn{background:var(--cream);border:2px solid transparent;color:var(--text);padding:0.45rem 1.1rem;border-radius:50px;font-size:0.8rem;font-family:'Quicksand',sans-serif;font-weight:700;cursor:pointer;transition:all 0.25s}
+        .sort-btn:hover,.sort-btn.active{background:var(--rose-d);color:var(--white)}
+        .gift-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}
+        .gift-card{background:var(--white);border:2px solid var(--rose-pale);border-radius:16px;overflow:hidden;transition:all 0.3s}
+        .gift-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(200,80,120,0.12);border-color:var(--rose)}
+        .gift-image{height:180px;overflow:hidden;background:var(--rose-pale)}
+        .gift-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+        .gift-card:hover .gift-image img{transform:scale(1.06)}
+        .gift-content{padding:1.3rem}
+        .gift-content h3{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text);margin-bottom:0.3rem}
+        .gift-price{font-size:0.95rem;color:var(--rose-d);font-weight:700;margin-bottom:0.5rem}
+        .gift-content p{font-size:0.86rem;color:var(--text-light);line-height:1.6;margin-bottom:1rem}
+        .gift-button{width:100%;padding:0.7rem;background:var(--rose-d);border:none;color:var(--white);font-family:'Quicksand',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:10px;transition:all 0.3s}
+        .gift-button:hover{background:var(--rose)}
+
+        /* CONFIRMAÇÃO */
+        #confirmacao{background:linear-gradient(160deg,var(--rose-pale),var(--purple-p))}
+        .c-title{font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:1rem;line-height:1}
+        .c-title span{color:var(--rose-d)}
+        .confirm-wrapper{max-width:540px}
+        .confirm-form{margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+        .form-group label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.5rem}
+        .form-group input,.form-group select{width:100%;padding:0.9rem 1rem;background:var(--white);border:2px solid var(--rose-pale);color:var(--text);font-family:'Quicksand',sans-serif;font-size:0.95rem;border-radius:10px;outline:none;transition:border-color 0.3s}
+        .form-group input:focus,.form-group select:focus{border-color:var(--rose-d)}
+        .confirm-btn{margin-top:0.5rem;padding:1rem;width:100%;background:var(--rose-d);border:none;color:var(--white);font-family:'Quicksand',sans-serif;font-size:0.88rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:12px;transition:all 0.3s}
+        .confirm-btn:hover{background:var(--purple);transform:translateY(-2px);box-shadow:0 8px 25px rgba(200,80,120,0.35)}
+        .confirm-success{display:none;padding:1.5rem;background:rgba(255,255,255,0.8);border:2px solid var(--rose);border-radius:12px;margin-top:1rem;text-align:center}
+        .confirm-success p{color:var(--rose-d);font-family:'Cinzel',serif;font-size:1.1rem}
+
+        /* MODAL */
+        .modal-overlay{display:none;position:fixed;inset:0;z-index:9000;background:rgba(58,24,64,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+        .modal-overlay.active{display:flex}
+        .modal-content{background:var(--white);border-radius:20px;border:2px solid var(--rose-pale);max-width:440px;width:90%;padding:2.5rem;position:relative;animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+        .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-light)}
+        .modal-header{margin-bottom:1.5rem;border-bottom:2px solid var(--rose-pale);padding-bottom:1.5rem}
+        .modal-header h3{font-family:'Cinzel',serif;font-size:1.3rem;color:var(--text)}
+        .modal-price{color:var(--rose-d);font-size:1.1rem;font-weight:700;margin-top:0.3rem}
+        .modal-name-label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.5rem}
+        .modal-name-input{width:100%;padding:0.9rem 1rem;border:2px solid var(--rose-pale);background:var(--cream);font-family:'Quicksand',sans-serif;font-size:0.95rem;color:var(--text);border-radius:10px;outline:none;transition:border-color 0.3s;margin-bottom:0.4rem}
+        .modal-name-input:focus{border-color:var(--rose-d)}
+        .name-error{color:var(--rose-d);font-size:0.82rem;display:none;margin-bottom:1rem}
+        .payment-buttons{display:flex;flex-direction:column;gap:0.8rem;margin-top:1.5rem}
+        .payment-option{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:2px solid var(--rose-pale);border-radius:12px;text-decoration:none;color:var(--text);cursor:pointer;transition:all 0.3s}
+        .payment-option:hover{border-color:var(--rose-d);background:var(--rose-pale)}
+        .payment-icon{font-size:1.5rem}
+        .payment-info{flex:1}
+        .payment-info strong{display:block;font-size:0.9rem;font-weight:700}
+        .payment-info span{font-size:0.8rem;color:var(--text-light)}
+        .payment-arrow{color:var(--rose-d)}
+
+        /* FOOTER */
+        footer{background:#2a0840;text-align:center;padding:2.5rem 2rem}
+        .footer-name{font-family:'Cinzel',serif;font-size:2rem;font-weight:700;color:var(--gold);text-shadow:0 0 20px rgba(232,200,74,0.3);margin-bottom:0.4rem}
+        footer p{color:rgba(255,255,255,0.35);font-size:0.82rem}
+        .heart{color:var(--rose)}
+
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes popIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
+        @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+
+        @media(max-width:768px){
+            .sobre-grid,.festa-grid{grid-template-columns:1fr;gap:2rem}
+            .sobre-img{height:300px;border-radius:16px}
+            .gallery-main{height:280px}
+            nav ul{gap:1rem}
+            section{padding:5rem 1.5rem}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Isabella</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#festa">A Festa</a></li>
+            <li><a href="#presentes">Presentes</a></li>
+            <!-- <li><a href="#confirmacao">Confirmar</a></li> -->
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="home-content">
+            <span class="crown-big">👑</span>
+            <p class="home-title">A Princesa</p>
+            <h1 class="home-name">Isabella</h1>
+            <div class="home-age">✨ 5 Anos ✨</div>
+            <p class="home-date">15 de Maio de 2026</p>
+            <div class="home-magic">⭐ 🌸 💫 🌸 ⭐</div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="sobre">
+        <div class="section-content">
+            <div class="sobre-grid">
+                <div class="sobre-img"><div class="ph">👧</div></div>
+                <div class="sobre-text">
+                    <span class="sobre-crown">👑</span>
+                    <h2>Isabella: <span>a nossa pequena princesa</span> faz 5 anos!</h2>
+                    <p>Ela chegou ao mundo como uma princesa de verdade — com seu sorriso encantador, seus olhos cheios de magia e uma risada que ilumina qualquer castelo.</p>
+                    <p>Em seus 5 anos, ela já conquistou todos os corações com sua doçura, criatividade e aquele jeito único de ver o mundo como um lugar mágico e cheio de possibilidades.</p>
+                    <p>E para celebrar esse momento tão especial, preparamos uma festa digna de realeza! Você está convidado(a) para fazer parte deste dia encantado. 🏰✨</p>
+                    <div class="magic-facts">
+                        <div class="mf mf-r"><span class="e">👑</span><div class="n">5</div><div class="l">Anos</div></div>
+                        <div class="mf mf-g"><span class="e">✨</span><div class="n">∞</div><div class="l">Magia</div></div>
+                        <div class="mf mf-p"><span class="e">💜</span><div class="n">1</div><div class="l">Festa real</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="section-content">
+            <span class="g-label">📸 Galeria</span>
+            <h2 class="g-title">Momentos <span>mágicos</span></h2>
+            <div class="gallery-main">
+                <div class="carousel-counter"><span id="currentSlide">1</span> / 6</div>
+                <div class="carousel-slide active placeholder-slide">👧</div>
+                <div class="carousel-slide placeholder-slide">👑</div>
+                <div class="carousel-slide placeholder-slide">🌸</div>
+                <div class="carousel-slide placeholder-slide">✨</div>
+                <div class="carousel-slide placeholder-slide">🏰</div>
+                <div class="carousel-slide placeholder-slide">💜</div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="festa">
+        <div class="section-content">
+            <h2 class="f-title">A <span>Festa Real</span> 🏰</h2>
+            <div class="festa-grid">
+                <div class="festa-card fc-rose">
+                    <div class="icon">🏰</div>
+                    <h3>O Grande Baile</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 15 de Maio de 2026</p>
+                        <p><strong>Horário:</strong> 15:00</p>
+                        <p><strong>Local:</strong> Espaço Castelo Encantado</p>
+                        <p><strong>Endereço:</strong> Av. das Princesas, 300</p>
+                        <p style="margin-top:0.8rem;font-size:0.88rem;color:var(--text-light)">Venha caracterizado! 👑🌸</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+das+Princesas,+300" target="_blank" class="route-button">📍 Como Chegar</a>
+                </div>
+                <div class="festa-card fc-purple">
+                    <div class="icon">✨</div>
+                    <h3>Detalhes Mágicos</h3>
+                    <div class="festa-detail">
+                        <p><strong>Tema:</strong> Princesas & Castelos</p>
+                        <p><strong>Dress code:</strong> Princesas e cavaleiros!</p>
+                        <p><strong>Atividades:</strong> Pintura, brincadeiras</p>
+                        <p><strong>Duração:</strong> 15h às 19h</p>
+                        <p style="margin-top:0.8rem;font-size:0.88rem;color:var(--text-light)">Espaço temático decorado! 🌸</p>
+                    </div>
+                    <a href="https://wa.me/5515998514536" target="_blank" class="route-button">💬 Mais Infos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown">
+        <div class="section-content">
+            <div class="countdown-inner">
+                <div class="countdown-crown">👑✨👑</div>
+                <p class="countdown-title">O grande baile começa em...</p>
+                <div class="countdown-timer">
+                    <div class="time-unit"><div class="num" id="days">00</div><div class="lbl">Dias</div></div>
+                    <div class="time-unit"><div class="num" id="hours">00</div><div class="lbl">Horas</div></div>
+                    <div class="time-unit"><div class="num" id="minutes">00</div><div class="lbl">Min</div></div>
+                    <div class="time-unit"><div class="num" id="seconds">00</div><div class="lbl">Seg</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="presentes">
+        <div class="section-content">
+            <span class="p-label">🎁 Lista Real</span>
+            <h2 class="p-title">Presentes da <span>Princesa</span></h2>
+            <p class="presentes-intro">Sua presença já é o maior presente! Mas se quiser mimar a Isabella, aqui estão sugestões dignas de uma princesa. 👑💕</p>
+            <div class="sort-bar">
+                <span class="sort-label">Ordenar:</span>
+                <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+                <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor → Maior</button>
+                <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior → Menor</button>
+            </div>
+            <div class="gift-options"></div>
+        </div>
+    </section>
+
+    <!-- <section id="confirmacao">
+        <div class="section-content">
+            <div class="confirm-wrapper">
+                <h2 class="c-title">Você <span>vem ao baile?</span> 🏰</h2>
+                <p style="color:var(--text-light);font-size:0.95rem;line-height:1.8;margin-bottom:0.5rem">Confirme até <strong>05/05/2026</strong> para garantirmos sua vaga no castelo! 👑</p>
+                <form class="confirm-form" id="confirmForm" onsubmit="handleConfirm(event)">
+                    <div class="form-group"><label>Seu nome</label><input type="text" id="confirmName" placeholder="Como se chama, nobre visitante?" required></div>
+                    <div class="form-group"><label>Crianças que virão</label>
+                        <select id="confirmGuests">
+                            <option value="0">Só adultos</option>
+                            <option value="1">1 criança</option>
+                            <option value="2">2 crianças</option>
+                            <option value="3">3+ crianças 👨‍👩‍👧‍👦</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Confirmação</label>
+                        <select id="confirmAttend">
+                            <option value="sim">👑 Sim! Estaremos no baile!</option>
+                            <option value="nao">😢 Infelizmente não poderei ir</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">✨ Confirmar Presença!</button>
+                </form>
+                <div class="confirm-success" id="confirmSuccess"><p>👑 Confirmado! Até o grande baile! 🏰</p></div>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header"><h3 id="modalGiftName">Presente</h3><div class="modal-price" id="modalGiftPrice">R$ 0,00</div></div>
+            <label class="modal-name-label">Seu nome (para a princesa saber!):</label>
+            <input class="modal-name-input" type="text" id="guestName" placeholder="Seu nome">
+            <p class="name-error" id="nameError">⚠️ Por favor, informe seu nome</p>
+            <div class="payment-buttons">
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('pix')"><div class="payment-icon">💳</div><div class="payment-info"><strong>Pagar com PIX</strong><span>Rápido e fácil</span></div><div class="payment-arrow">→</div></a>
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('card')"><div class="payment-icon">💰</div><div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div><div class="payment-arrow">→</div></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-name">👑 Isabella 👑</div>
+        <p>Feito com <span class="heart">♥</span> para o baile mais mágico do ano</p>
+        <p style="margin-top:0.4rem;opacity:0.3;font-size:0.78rem">15 de Maio de 2026 · 5 Anos</p>
+    </footer>
+
+    <script>
+    let currentSlideIndex=0,autoPlayInterval;
+    function changeSlide(dir){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=(currentSlideIndex+dir+slides.length)%slides.length;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function goToSlide(idx){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=idx;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function startAutoPlay(){autoPlayInterval=setInterval(()=>changeSlide(1),4000)}
+    function stopAutoPlay(){clearInterval(autoPlayInterval)}
+    function resetAutoPlay(){stopAutoPlay();startAutoPlay()}
+    document.addEventListener('DOMContentLoaded',()=>{startAutoPlay();const gm=document.querySelector('.gallery-main');gm.addEventListener('mouseenter',stopAutoPlay);gm.addEventListener('mouseleave',startAutoPlay);let tx=0;gm.addEventListener('touchstart',e=>tx=e.changedTouches[0].screenX,{passive:true});gm.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50)changeSlide(d>0?1:-1)},{passive:true})});
+    const eventDate=new Date('2026-05-15T15:00:00');
+    function updateCountdown(){const diff=eventDate-new Date();if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');return}document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0')}
+    setInterval(updateCountdown,1000);updateCountdown();
+    const PRESENTES=[
+        {nome:'Kit Fantasia Princesa',preco:'R$ 180,00',descricao:'Vestido, coroa e varinha mágica.',imagem:'img/presentes/fantasia.jpg',pix:'#',cartao:'#'},
+        {nome:'Castelo de Brinquedo',preco:'R$ 280,00',descricao:'Castelo com personagens e acessórios.',imagem:'img/presentes/castelo.jpg',pix:'#',cartao:'#'},
+        {nome:'Kit Artes & Pintura',preco:'R$ 120,00',descricao:'Telas, tintas e pincéis infantis.',imagem:'img/presentes/artes.jpg',pix:'#',cartao:'#'},
+        {nome:'Livros de Histórias',preco:'R$ 100,00',descricao:'Coleção de contos de fadas ilustrados.',imagem:'img/presentes/livros.jpg',pix:'#',cartao:'#'},
+        {nome:'Boneca de Princesa',preco:'R$ 160,00',descricao:'Boneca articulada com roupas e acessórios.',imagem:'img/presentes/boneca.jpg',pix:'#',cartao:'#'},
+        {nome:'Kit Maquiagem Infantil',preco:'R$ 90,00',descricao:'Maquiagem segura e lavável para crianças.',imagem:'img/presentes/maquiagem.jpg',pix:'#',cartao:'#'},
+    ];
+    let cpix='',ccard='';
+    function precoParaNum(p){return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim())}
+    function renderPresentes(lista){document.querySelector('.gift-options').innerHTML=lista.map(p=>`<div class="gift-card"><div class="gift-image"><img src="${p.imagem}" alt="${p.nome}" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;background:var(--rose-pale)\'>🎁</div>'"></div><div class="gift-content"><h3>${p.nome}</h3><div class="gift-price">${p.preco}</div><p>${p.descricao}</p><button class="gift-button" onclick="openModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">Presentear 👑</button></div></div>`).join('')}
+    function ordenarPresentes(ordem){const lista=[...PRESENTES];if(ordem==='asc')lista.sort((a,b)=>precoParaNum(a.preco)-precoParaNum(b.preco));if(ordem==='desc')lista.sort((a,b)=>precoParaNum(b.preco)-precoParaNum(a.preco));document.querySelectorAll('.sort-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.ordem===ordem));renderPresentes(lista)}
+    document.addEventListener('DOMContentLoaded',()=>renderPresentes(PRESENTES));
+    function openModal(name,price,pix,card){cpix=pix;ccard=card;document.getElementById('modalGiftName').textContent=name;document.getElementById('modalGiftPrice').textContent=price;document.getElementById('guestName').value='';document.getElementById('nameError').style.display='none';document.getElementById('paymentModal').classList.add('active');document.body.style.overflow='hidden'}
+    function closeModal(){document.getElementById('paymentModal').classList.remove('active');document.body.style.overflow=''}
+    function handlePayment(type){const name=document.getElementById('guestName').value.trim();if(!name||name.length<3){document.getElementById('nameError').style.display='block';return}document.getElementById('nameError').style.display='none';window.open(type==='pix'?cpix:ccard,'_blank','noopener,noreferrer');setTimeout(closeModal,800)}
+    document.getElementById('paymentModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+    function handleConfirm(e){e.preventDefault();document.getElementById('confirmForm').style.display='none';document.getElementById('confirmSuccess').style.display='block'}
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+    </script>
+</body>
+</html>

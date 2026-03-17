@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davi · Festa dos Dinossauros 🦕</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦕</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green:     #4caf50;
+            --green-d:   #2e7d32;
+            --green-p:   #e8f5e9;
+            --orange:    #ff6d00;
+            --orange-l:  #ff9e40;
+            --orange-p:  #fff3e0;
+            --brown:     #795548;
+            --brown-p:   #efebe9;
+            --yellow:    #ffd600;
+            --dino-dark: #1b2a1b;
+            --cream:     #fffef8;
+            --white:     #ffffff;
+            --text:      #1a2e1a;
+            --text-light:#5a7a5a;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+
+        /* DINO FOOTPRINTS PATTERN */
+        body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='30' cy='35' rx='8' ry='10' fill='%234caf50' fill-opacity='0.04'/%3E%3Cellipse cx='15' cy='20' rx='4' ry='5' fill='%234caf50' fill-opacity='0.04'/%3E%3Cellipse cx='45' cy='15' rx='4' ry='5' fill='%234caf50' fill-opacity='0.04'/%3E%3C/svg%3E") repeat}
+
+        /* NAV */
+        nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(27,42,27,0.97);backdrop-filter:blur(14px);border-bottom:3px solid var(--green-d);padding:0.9rem 0}
+        nav ul{list-style:none;display:flex;justify-content:center;gap:2.2rem;flex-wrap:wrap;padding:0 2rem}
+        nav a{text-decoration:none;color:rgba(255,255,255,0.7);font-size:0.82rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;transition:all 0.3s}
+        nav a:hover{color:var(--yellow)}
+
+        section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 2rem;position:relative}
+        .section-content{max-width:1100px;width:100%;position:relative;z-index:1}
+
+        /* HOME */
+        #home{
+            background:linear-gradient(160deg, var(--dino-dark) 0%, #1a3a1a 50%, #2d5a1a 100%);
+            text-align:center;overflow:hidden;color:var(--white);
+        }
+        #home::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(76,175,80,0.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 30%,rgba(255,109,0,0.1) 0%,transparent 50%)}
+
+        /* Dino silhouette bg */
+        .home-dino-bg{position:absolute;bottom:0;right:0;font-size:20rem;opacity:0.04;line-height:1;z-index:0;transform:scaleX(-1)}
+
+        .home-content{position:relative;z-index:2}
+
+        .dino-emoji{font-size:5rem;display:block;margin-bottom:0.5rem;animation:dinoWalk 1.5s ease-in-out infinite alternate}
+        @keyframes dinoWalk{from{transform:rotate(-8deg) translateY(0)}to{transform:rotate(8deg) translateY(-10px)}}
+
+        .home-roar{
+            font-family:'Boogaloo',sans-serif;
+            font-size:clamp(1.2rem,3vw,2rem);
+            color:var(--orange-l);letter-spacing:0.3em;margin-bottom:1rem;
+        }
+        .home-name{
+            font-family:'Boogaloo',sans-serif;
+            font-size:clamp(3rem,9vw,7.5rem);color:var(--white);line-height:1;
+            text-shadow:4px 4px 0 var(--green-d), 6px 6px 0 rgba(0,0,0,0.3);
+            margin-bottom:0.5rem;letter-spacing:0.02em;
+        }
+        .home-age-badge{
+            display:inline-block;
+            background:linear-gradient(135deg,var(--orange),var(--orange-l));
+            color:var(--white);font-family:'Boogaloo',sans-serif;
+            font-size:clamp(1.2rem,3vw,2rem);letter-spacing:0.1em;
+            padding:0.6rem 2.5rem;border-radius:50px;margin:0.8rem 0;
+            box-shadow:0 6px 20px rgba(255,109,0,0.4),4px 4px 0 var(--orange);
+            border:3px solid rgba(255,255,255,0.2);
+        }
+        .home-date{font-size:1rem;color:rgba(255,255,255,0.6);letter-spacing:2px;margin-top:1rem}
+        .home-tags{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+        .htag{padding:0.45rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;border:2px solid}
+        .ht-g{background:rgba(76,175,80,0.2);color:var(--green);border-color:var(--green)}
+        .ht-o{background:rgba(255,109,0,0.2);color:var(--orange-l);border-color:var(--orange-l)}
+        .ht-y{background:rgba(255,214,0,0.2);color:var(--yellow);border-color:var(--yellow)}
+
+        .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite}
+        .scroll-indicator::after{content:'↓';font-size:1.8rem;color:var(--yellow);opacity:0.7}
+
+        /* SOBRE */
+        #sobre{background:var(--white)}
+        .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+        .sobre-img-wrap{position:relative}
+        .sobre-img{height:500px;border-radius:16px;overflow:hidden;background:var(--green-p);border:4px solid var(--green);box-shadow:8px 8px 0 var(--green-d)}
+        .sobre-img img{width:100%;height:100%;object-fit:cover}
+        .sobre-img .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:6rem;opacity:0.3}
+        .dino-sticker{position:absolute;top:-1.5rem;right:-1.5rem;font-size:3rem;background:var(--orange);width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 var(--orange);border:3px solid rgba(255,255,255,0.3);animation:dinoWalk 2s ease-in-out infinite alternate}
+        .sobre-chip{display:inline-block;background:var(--orange);color:var(--white);font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:6px;margin-bottom:1.2rem}
+        .sobre-text h2{font-family:'Boogaloo',sans-serif;font-size:clamp(2rem,4vw,3.2rem);color:var(--text);line-height:1.1;margin-bottom:1.3rem;letter-spacing:0.02em}
+        .sobre-text h2 em{color:var(--orange);font-style:normal}
+        .sobre-text p{font-size:1rem;line-height:1.9;color:var(--text-light);margin-bottom:1rem}
+        .dino-stats{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+        .ds{flex:1;min-width:80px;text-align:center;padding:1rem;border-radius:12px;border:3px solid}
+        .ds-g{background:var(--green-p);border-color:var(--green)}
+        .ds-o{background:var(--orange-p);border-color:var(--orange)}
+        .ds-b{background:var(--brown-p);border-color:var(--brown)}
+        .ds .e{font-size:1.8rem;display:block;margin-bottom:0.2rem}
+        .ds .n{font-family:'Boogaloo',sans-serif;font-size:1.8rem;color:var(--text)}
+        .ds .l{font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-light)}
+
+        /* GALERIA */
+        #galeria{background:var(--dino-dark)}
+        .dg-label{display:inline-block;background:var(--orange);color:var(--white);font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:50px;margin-bottom:0.8rem}
+        .dg-title{font-family:'Boogaloo',sans-serif;font-size:clamp(2rem,5vw,4.5rem);color:var(--white);margin-bottom:2.5rem;line-height:1;text-shadow:3px 3px 0 var(--green-d)}
+        .dg-title span{color:var(--yellow)}
+        .gallery-main{height:460px;position:relative;overflow:hidden;border-radius:12px;border:3px solid var(--green-d);box-shadow:6px 6px 0 var(--green-d)}
+        .carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.8s ease}
+        .carousel-slide.active{opacity:1}
+        .carousel-slide img{width:100%;height:100%;object-fit:cover}
+        .carousel-slide.placeholder-slide{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dino-dark),#1a3a1a);font-size:5rem}
+        .carousel-counter{position:absolute;top:1rem;right:1.2rem;z-index:5;background:var(--orange);color:var(--white);font-size:0.8rem;font-weight:700;padding:0.3rem 0.9rem;border-radius:50px}
+        .carousel-button{position:absolute;top:50%;transform:translateY(-50%);background:var(--green-d);color:var(--white);border:3px solid var(--green);width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:10}
+        .carousel-button:hover{background:var(--orange);border-color:var(--orange)}
+        .carousel-button.prev{left:1rem}
+        .carousel-button.next{right:1rem}
+        .carousel-indicators{display:flex;gap:0.5rem;margin-top:1.5rem;justify-content:center}
+        .carousel-indicator{width:10px;height:10px;border-radius:50%;background:rgba(76,175,80,0.25);cursor:pointer;transition:all 0.3s}
+        .carousel-indicator.active{background:var(--yellow);transform:scale(1.4)}
+
+        /* FESTA */
+        #festa{background:var(--green-p)}
+        .ff-title{font-family:'Boogaloo',sans-serif;font-size:clamp(2rem,5vw,4rem);color:var(--text);margin-bottom:2.5rem;line-height:1;text-shadow:2px 2px 0 rgba(0,0,0,0.08)}
+        .ff-title span{color:var(--orange)}
+        .festa-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+        .festa-card{padding:2.5rem;border-radius:12px;transition:transform 0.3s,box-shadow 0.3s;border:3px solid}
+        .festa-card:hover{transform:translateY(-5px)}
+        .fc-g{background:var(--white);border-color:var(--green)}
+        .fc-g:hover{box-shadow:6px 6px 0 var(--green)}
+        .fc-o{background:var(--white);border-color:var(--orange)}
+        .fc-o:hover{box-shadow:6px 6px 0 var(--orange)}
+        .festa-card .icon{font-size:2.5rem;margin-bottom:1rem}
+        .festa-card h3{font-family:'Boogaloo',sans-serif;font-size:1.6rem;color:var(--text);margin-bottom:1.2rem;letter-spacing:0.02em}
+        .festa-detail p{font-size:0.95rem;line-height:2.2;color:var(--text-light)}
+        .festa-detail strong{color:var(--text);font-weight:700}
+        .route-button{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;padding:0.7rem 1.6rem;border-radius:50px;text-decoration:none;font-size:0.8rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s;border:3px solid}
+        .fc-g .route-button{background:var(--green-d);color:var(--white);border-color:var(--green-d)}
+        .fc-o .route-button{background:var(--orange);color:var(--white);border-color:var(--orange)}
+        .route-button:hover{transform:scale(1.06);box-shadow:4px 4px 0 rgba(0,0,0,0.2)}
+
+        /* COUNTDOWN */
+        #countdown{background:var(--orange);text-align:center;color:var(--white)}
+        #countdown::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.08) 0%,transparent 60%)}
+        .countdown-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+        .countdown-dino{font-size:3rem;margin-bottom:0.5rem}
+        .countdown-title{font-family:'Boogaloo',sans-serif;font-size:2rem;letter-spacing:0.05em;margin-bottom:2.5rem;text-shadow:3px 3px 0 rgba(0,0,0,0.2)}
+        .countdown-timer{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .time-unit{text-align:center;min-width:100px;background:rgba(255,255,255,0.15);border-radius:12px;padding:2rem 1.5rem;border:3px solid rgba(255,255,255,0.3)}
+        .time-unit .num{font-family:'Boogaloo',sans-serif;font-size:4rem;line-height:1;text-shadow:3px 3px 0 rgba(0,0,0,0.15)}
+        .time-unit .lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:0.3rem}
+
+        /* PRESENTES */
+        #presentes{background:var(--white)}
+        .gp-label{display:inline-block;background:var(--green-d);color:var(--white);font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:50px;margin-bottom:0.8rem}
+        .gp-title{font-family:'Boogaloo',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:2rem;line-height:1}
+        .gp-title span{color:var(--orange)}
+        .presentes-intro{font-size:1rem;color:var(--text-light);line-height:1.8;margin-bottom:2.5rem;max-width:560px}
+        .sort-bar{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin-bottom:2rem}
+        .sort-label{font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-light)}
+        .sort-btn{background:var(--cream);border:3px solid transparent;color:var(--text);padding:0.45rem 1.1rem;border-radius:50px;font-size:0.8rem;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;transition:all 0.25s}
+        .sort-btn:hover,.sort-btn.active{background:var(--orange);color:var(--white);border-color:var(--orange)}
+        .gift-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}
+        .gift-card{background:var(--white);border:3px solid var(--green-p);border-radius:12px;overflow:hidden;transition:all 0.3s}
+        .gift-card:hover{transform:translateY(-5px);box-shadow:6px 6px 0 var(--green);border-color:var(--green)}
+        .gift-image{height:180px;overflow:hidden;background:var(--green-p)}
+        .gift-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+        .gift-card:hover .gift-image img{transform:scale(1.06)}
+        .gift-content{padding:1.3rem}
+        .gift-content h3{font-family:'Boogaloo',sans-serif;font-size:1.2rem;color:var(--text);margin-bottom:0.3rem}
+        .gift-price{font-size:0.95rem;color:var(--orange);font-weight:700;margin-bottom:0.5rem}
+        .gift-content p{font-size:0.86rem;color:var(--text-light);line-height:1.6;margin-bottom:1rem}
+        .gift-button{width:100%;padding:0.7rem;background:var(--green-d);border:none;color:var(--white);font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:8px;transition:all 0.3s}
+        .gift-button:hover{background:var(--orange)}
+
+        /* CONFIRMAÇÃO */
+        #confirmacao{background:var(--dino-dark);color:var(--white)}
+        .confirm-wrapper{max-width:540px}
+        .cc-title{font-family:'Boogaloo',sans-serif;font-size:clamp(2rem,5vw,4rem);margin-bottom:0.5rem;line-height:1;letter-spacing:0.02em}
+        .cc-title span{color:var(--yellow)}
+        .confirm-form{margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+        .form-group label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.5rem}
+        .form-group input,.form-group select{width:100%;padding:0.9rem 1rem;background:rgba(255,255,255,0.08);border:2px solid rgba(76,175,80,0.4);color:var(--white);font-family:'Nunito',sans-serif;font-size:0.95rem;border-radius:8px;outline:none;transition:border-color 0.3s}
+        .form-group input:focus,.form-group select:focus{border-color:var(--green)}
+        .form-group select option{background:var(--dino-dark)}
+        .confirm-btn{margin-top:0.5rem;padding:1rem;width:100%;background:var(--orange);border:none;color:var(--white);font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:10px;transition:all 0.3s;box-shadow:0 6px 20px rgba(255,109,0,0.4)}
+        .confirm-btn:hover{background:var(--green-d);transform:translateY(-2px)}
+        .confirm-success{display:none;padding:1.5rem;background:rgba(76,175,80,0.15);border:2px solid var(--green);border-radius:10px;margin-top:1rem;text-align:center}
+        .confirm-success p{color:var(--yellow);font-family:'Boogaloo',sans-serif;font-size:1.2rem;letter-spacing:0.05em}
+
+        /* MODAL */
+        .modal-overlay{display:none;position:fixed;inset:0;z-index:9000;background:rgba(27,42,27,0.88);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+        .modal-overlay.active{display:flex}
+        .modal-content{background:var(--white);border-radius:16px;border:3px solid var(--green);max-width:440px;width:90%;padding:2.5rem;position:relative;animation:fadeInUp 0.3s ease}
+        .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-light)}
+        .modal-header{margin-bottom:1.5rem;border-bottom:3px solid var(--green-p);padding-bottom:1.5rem}
+        .modal-header h3{font-family:'Boogaloo',sans-serif;font-size:1.5rem;color:var(--text)}
+        .modal-price{color:var(--orange);font-size:1.1rem;font-weight:700;margin-top:0.3rem}
+        .modal-name-label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.5rem}
+        .modal-name-input{width:100%;padding:0.9rem 1rem;border:2px solid var(--green-p);background:var(--cream);font-family:'Nunito',sans-serif;font-size:0.95rem;color:var(--text);border-radius:8px;outline:none;transition:border-color 0.3s;margin-bottom:0.4rem}
+        .modal-name-input:focus{border-color:var(--green)}
+        .name-error{color:var(--orange);font-size:0.82rem;display:none;margin-bottom:1rem}
+        .payment-buttons{display:flex;flex-direction:column;gap:0.8rem;margin-top:1.5rem}
+        .payment-option{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:2px solid var(--green-p);border-radius:10px;text-decoration:none;color:var(--text);cursor:pointer;transition:all 0.3s}
+        .payment-option:hover{border-color:var(--green);background:var(--green-p)}
+        .payment-icon{font-size:1.5rem}
+        .payment-info{flex:1}
+        .payment-info strong{display:block;font-size:0.9rem;font-weight:700}
+        .payment-info span{font-size:0.8rem;color:var(--text-light)}
+        .payment-arrow{color:var(--orange)}
+
+        /* FOOTER */
+        footer{background:var(--green-d);text-align:center;padding:2.5rem 2rem}
+        .footer-name{font-family:'Boogaloo',sans-serif;font-size:2.5rem;color:var(--yellow);text-shadow:3px 3px 0 var(--green-d);margin-bottom:0.4rem;letter-spacing:0.05em}
+        footer p{color:rgba(255,255,255,0.5);font-size:0.82rem}
+        .heart{color:var(--orange)}
+
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+
+        @media(max-width:768px){
+            .sobre-grid,.festa-grid{grid-template-columns:1fr;gap:2rem}
+            .sobre-img{height:300px}
+            .gallery-main{height:280px}
+            nav ul{gap:1rem}
+            section{padding:5rem 1.5rem}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Davi</a></li>
+            <li><a href="#galeria">Fotos</a></li>
+            <li><a href="#festa">A Festa</a></li>
+            <li><a href="#presentes">Presentes</a></li>
+            <!-- <li><a href="#confirmacao">Confirmar</a></li> -->
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="home-dino-bg">🦕</div>
+        <div class="home-content">
+            <span class="dino-emoji">🦖</span>
+            <p class="home-roar">ROAAAR! 🦕</p>
+            <h1 class="home-name">Davi</h1>
+            <div class="home-age-badge">🦕 7 ANOS! 🦕</div>
+            <p class="home-date">🗓️ 10 de Julho de 2026</p>
+            <div class="home-tags">
+                <span class="htag ht-g">🦖 Dinossauros</span>
+                <span class="htag ht-o">🎂 7 Anos</span>
+                <span class="htag ht-y">⚡ Aventura!</span>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="sobre">
+        <div class="section-content">
+            <div class="sobre-grid">
+                <div class="sobre-img-wrap">
+                    <div class="sobre-img"><div class="ph">👦</div></div>
+                    <div class="dino-sticker">🦖</div>
+                </div>
+                <div class="sobre-text">
+                    <span class="sobre-chip">🦕 O Aniversariante</span>
+                    <h2>Davi: <em>7 anos</em> de pura aventura!</h2>
+                    <p>Desde que aprendeu a falar, a palavra favorita do Davi é DINOSSAURO. Ele sabe os nomes de todos, onde viviam, o que comiam — e como eles faziam barulho!</p>
+                    <p>Curioso, animado e com uma imaginação sem limites, ele transforma qualquer brincadeira em uma grande aventura pré-histórica. Sete anos de descobertas incríveis!</p>
+                    <p>Por isso, a festa não podia ser diferente: dinos por todos os lados, muita diversão e aquela energia que só o Davi tem! Você está convidado para essa aventura! 🦕</p>
+                    <div class="dino-stats">
+                        <div class="ds ds-g"><span class="e">🦖</span><div class="n">7</div><div class="l">Anos</div></div>
+                        <div class="ds ds-o"><span class="e">⚡</span><div class="n">∞</div><div class="l">Energia</div></div>
+                        <div class="ds ds-b"><span class="e">🦕</span><div class="n">150+</div><div class="l">Dinos</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="section-content">
+            <span class="dg-label">📸 Galeria</span>
+            <h2 class="dg-title">Memórias da <span>Aventura</span></h2>
+            <div class="gallery-main">
+                <div class="carousel-counter"><span id="currentSlide">1</span> / 6</div>
+                <div class="carousel-slide active placeholder-slide">🦖</div>
+                <div class="carousel-slide placeholder-slide">🦕</div>
+                <div class="carousel-slide placeholder-slide">⚡</div>
+                <div class="carousel-slide placeholder-slide">🎂</div>
+                <div class="carousel-slide placeholder-slide">🌿</div>
+                <div class="carousel-slide placeholder-slide">🎉</div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="festa">
+        <div class="section-content">
+            <h2 class="ff-title">A <span>Festa</span> dos Dinos! 🦕</h2>
+            <div class="festa-grid">
+                <div class="festa-card fc-g">
+                    <div class="icon">🦕</div>
+                    <h3>Festa dos Dinossauros</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 10 de Julho de 2026</p>
+                        <p><strong>Horário:</strong> 14:00</p>
+                        <p><strong>Local:</strong> Espaço Aventura Kids</p>
+                        <p><strong>Endereço:</strong> Rua da Selva, 700</p>
+                        <p style="margin-top:0.8rem;font-size:0.88rem;color:var(--text-light)">Prepare-se para RUGIR! 🦖</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Selva,+700" target="_blank" class="route-button">📍 Como Chegar</a>
+                </div>
+                <div class="festa-card fc-o">
+                    <div class="icon">⚡</div>
+                    <h3>Detalhes da Aventura</h3>
+                    <div class="festa-detail">
+                        <p><strong>Tema:</strong> Mundo dos Dinossauros</p>
+                        <p><strong>Atividades:</strong> Escavação de fósseis!</p>
+                        <p><strong>Dress code:</strong> Explorer / Aventureiro</p>
+                        <p><strong>Duração:</strong> 14h às 18h</p>
+                        <p style="margin-top:0.8rem;font-size:0.88rem;color:var(--text-light)">Brincadeiras temáticas! 🦕</p>
+                    </div>
+                    <a href="https://wa.me/5515998514536" target="_blank" class="route-button">💬 Mais Infos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown">
+        <div class="section-content">
+            <div class="countdown-inner">
+                <div class="countdown-dino">🦖 ⏰ 🦕</div>
+                <p class="countdown-title">A AVENTURA COMEÇA EM...</p>
+                <div class="countdown-timer">
+                    <div class="time-unit"><div class="num" id="days">00</div><div class="lbl">Dias</div></div>
+                    <div class="time-unit"><div class="num" id="hours">00</div><div class="lbl">Horas</div></div>
+                    <div class="time-unit"><div class="num" id="minutes">00</div><div class="lbl">Min</div></div>
+                    <div class="time-unit"><div class="num" id="seconds">00</div><div class="lbl">Seg</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="presentes">
+        <div class="section-content">
+            <span class="gp-label">🎁 Presentes</span>
+            <h2 class="gp-title">Lista do <span>Explorador</span></h2>
+            <p class="presentes-intro">Sua presença já é uma aventura! Mas se quiser presentear o Davi, aqui estão sugestões dignas de um explorador de 7 anos. 🦕⚡</p>
+            <div class="sort-bar">
+                <span class="sort-label">Ordenar:</span>
+                <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+                <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor → Maior</button>
+                <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior → Menor</button>
+            </div>
+            <div class="gift-options"></div>
+        </div>
+    </section>
+
+    <!-- <section id="confirmacao">
+        <div class="section-content">
+            <div class="confirm-wrapper">
+                <h2 class="cc-title">Vai <span>rugir</span> com a gente? 🦖</h2>
+                <p style="color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.8;margin-bottom:0.5rem">Confirme até <strong style="color:var(--yellow)">30/06/2026</strong> para garantir seu lugar na aventura! 🦕</p>
+                <form class="confirm-form" id="confirmForm" onsubmit="handleConfirm(event)">
+                    <div class="form-group"><label>Seu nome</label><input type="text" id="confirmName" placeholder="Seu nome, explorador!" required></div>
+                    <div class="form-group"><label>Crianças na aventura</label>
+                        <select id="confirmGuests">
+                            <option value="0">Só adultos</option>
+                            <option value="1">+ 1 criança</option>
+                            <option value="2">+ 2 crianças</option>
+                            <option value="3">Toda a turma! 🦖</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Confirmação</label>
+                        <select id="confirmAttend">
+                            <option value="sim">🦕 ROAAR! Estarei lá!</option>
+                            <option value="nao">😢 Infelizmente não consigo</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">🦖 Confirmar Aventura!</button>
+                </form>
+                <div class="confirm-success" id="confirmSuccess"><p>🦕 ROAAR! Confirmado! Até dia 10! 🦖</p></div>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header"><h3 id="modalGiftName">Presente</h3><div class="modal-price" id="modalGiftPrice">R$ 0,00</div></div>
+            <label class="modal-name-label">Seu nome (para o Davi saber!):</label>
+            <input class="modal-name-input" type="text" id="guestName" placeholder="Seu nome">
+            <p class="name-error" id="nameError">⚠️ Coloca seu nome, explorador!</p>
+            <div class="payment-buttons">
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('pix')"><div class="payment-icon">💳</div><div class="payment-info"><strong>Pagar com PIX</strong><span>Rápido e fácil</span></div><div class="payment-arrow">→</div></a>
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('card')"><div class="payment-icon">💰</div><div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div><div class="payment-arrow">→</div></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-name">🦖 Davi 🦕</div>
+        <p>Feito com <span class="heart">♥</span> para a maior aventura dos 7 anos</p>
+        <p style="margin-top:0.4rem;opacity:0.3;font-size:0.78rem">10 de Julho de 2026 · 7 Anos</p>
+    </footer>
+
+    <script>
+    let currentSlideIndex=0,autoPlayInterval;
+    function changeSlide(dir){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=(currentSlideIndex+dir+slides.length)%slides.length;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function goToSlide(idx){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=idx;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function startAutoPlay(){autoPlayInterval=setInterval(()=>changeSlide(1),4000)}
+    function stopAutoPlay(){clearInterval(autoPlayInterval)}
+    function resetAutoPlay(){stopAutoPlay();startAutoPlay()}
+    document.addEventListener('DOMContentLoaded',()=>{startAutoPlay();const gm=document.querySelector('.gallery-main');gm.addEventListener('mouseenter',stopAutoPlay);gm.addEventListener('mouseleave',startAutoPlay);let tx=0;gm.addEventListener('touchstart',e=>tx=e.changedTouches[0].screenX,{passive:true});gm.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50)changeSlide(d>0?1:-1)},{passive:true})});
+    const eventDate=new Date('2026-07-10T14:00:00');
+    function updateCountdown(){const diff=eventDate-new Date();if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');return}document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0')}
+    setInterval(updateCountdown,1000);updateCountdown();
+    const PRESENTES=[
+        {nome:'Kit Dinossauros',preco:'R$ 180,00',descricao:'Coleção de miniaturas realistas de dinos.',imagem:'img/presentes/dinos.jpg',pix:'#',cartao:'#'},
+        {nome:'Lego Jurássico',preco:'R$ 320,00',descricao:'Set de montagem temático de dinossauros.',imagem:'img/presentes/lego.jpg',pix:'#',cartao:'#'},
+        {nome:'Livro de Dinossauros',preco:'R$ 90,00',descricao:'Enciclopédia ilustrada para crianças.',imagem:'img/presentes/livro.jpg',pix:'#',cartao:'#'},
+        {nome:'Jogo Explorador',preco:'R$ 140,00',descricao:'Jogo de tabuleiro de aventura pré-histórica.',imagem:'img/presentes/jogo.jpg',pix:'#',cartao:'#'},
+        {nome:'Escavação Fósseis',preco:'R$ 110,00',descricao:'Kit científico para escavar fósseis.',imagem:'img/presentes/fosseis.jpg',pix:'#',cartao:'#'},
+        {nome:'Mochila Aventureiro',preco:'R$ 160,00',descricao:'Mochila temática com acessórios de explorador.',imagem:'img/presentes/mochila.jpg',pix:'#',cartao:'#'},
+    ];
+    let cpix='',ccard='';
+    function precoParaNum(p){return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim())}
+    function renderPresentes(lista){document.querySelector('.gift-options').innerHTML=lista.map(p=>`<div class="gift-card"><div class="gift-image"><img src="${p.imagem}" alt="${p.nome}" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;background:var(--green-p)\'>🎁</div>'"></div><div class="gift-content"><h3>${p.nome}</h3><div class="gift-price">${p.preco}</div><p>${p.descricao}</p><button class="gift-button" onclick="openModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">Presentear 🦕</button></div></div>`).join('')}
+    function ordenarPresentes(ordem){const lista=[...PRESENTES];if(ordem==='asc')lista.sort((a,b)=>precoParaNum(a.preco)-precoParaNum(b.preco));if(ordem==='desc')lista.sort((a,b)=>precoParaNum(b.preco)-precoParaNum(a.preco));document.querySelectorAll('.sort-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.ordem===ordem));renderPresentes(lista)}
+    document.addEventListener('DOMContentLoaded',()=>renderPresentes(PRESENTES));
+    function openModal(name,price,pix,card){cpix=pix;ccard=card;document.getElementById('modalGiftName').textContent=name;document.getElementById('modalGiftPrice').textContent=price;document.getElementById('guestName').value='';document.getElementById('nameError').style.display='none';document.getElementById('paymentModal').classList.add('active');document.body.style.overflow='hidden'}
+    function closeModal(){document.getElementById('paymentModal').classList.remove('active');document.body.style.overflow=''}
+    function handlePayment(type){const name=document.getElementById('guestName').value.trim();if(!name||name.length<3){document.getElementById('nameError').style.display='block';return}document.getElementById('nameError').style.display='none';window.open(type==='pix'?cpix:ccard,'_blank','noopener,noreferrer');setTimeout(closeModal,800)}
+    document.getElementById('paymentModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+    function handleConfirm(e){e.preventDefault();document.getElementById('confirmForm').style.display='none';document.getElementById('confirmSuccess').style.display='block'}
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+    </script>
+</body>
+</html>

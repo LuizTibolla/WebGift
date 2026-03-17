@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentina · 1 Aninho 🎈</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎈</text></svg>">
+    <meta name="description" content="Valentina está completando 1 aninho! Venha celebrar essa data tão especial.">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink:      #f2a7c3;
+            --pink-d:    #e07aaa;
+            --pink-pale: #fde8f2;
+            --lilac:     #c9a8e0;
+            --lilac-pale:#f0e8fa;
+            --mint:      #a8ddd1;
+            --mint-pale: #e4f7f3;
+            --yellow:    #fde68a;
+            --peach:     #fcd5b0;
+            --cream:     #fffaf6;
+            --white:     #ffffff;
+            --text:      #4a3050;
+            --text-light:#9b80a8;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+
+        /* BUBBLES BG */
+        body::before {
+            content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(242,167,195,0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(201,168,224,0.10) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(168,221,209,0.10) 0%, transparent 40%);
+        }
+
+        /* NAV */
+        nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,250,246,0.96);backdrop-filter:blur(14px);border-bottom:2px solid var(--pink-pale);padding:0.9rem 0}
+        nav ul{list-style:none;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;padding:0 2rem}
+        nav a{text-decoration:none;color:var(--text-light);font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;font-weight:600;transition:all 0.3s}
+        nav a:hover{color:var(--pink-d)}
+
+        section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 2rem;position:relative}
+        .section-content{max-width:1100px;width:100%;position:relative;z-index:1}
+
+        /* FLOATING BALLOONS */
+        .balloon{position:absolute;font-size:3rem;animation:floatBalloon 5s ease-in-out infinite;pointer-events:none;opacity:0.5;z-index:1}
+        .b1{left:4%;top:15%;animation-delay:0s}
+        .b2{right:6%;top:20%;animation-delay:1s;font-size:2.5rem}
+        .b3{left:8%;bottom:20%;animation-delay:2s;font-size:2rem}
+        .b4{right:10%;bottom:25%;animation-delay:0.5s}
+        .b5{left:30%;top:10%;animation-delay:1.8s;font-size:2rem}
+        .b6{right:25%;bottom:15%;animation-delay:3s;font-size:2.5rem}
+
+        /* HOME */
+        #home{background:linear-gradient(160deg,#fde8f2 0%,#f0e8fa 50%,#e4f7f3 100%);text-align:center;overflow:hidden;min-height:100vh}
+        .home-content{position:relative;z-index:2}
+
+        .home-photo-wrap{
+            width:200px;height:200px;border-radius:50%;
+            margin:0 auto 2rem;
+            background:linear-gradient(135deg,var(--pink),var(--lilac));
+            padding:5px;
+            box-shadow:0 0 0 8px var(--pink-pale), 0 0 0 12px var(--lilac-pale);
+            animation:popIn 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+        .home-photo-wrap img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+        .home-photo-wrap .photo-placeholder{
+            width:100%;height:100%;border-radius:50%;
+            display:flex;align-items:center;justify-content:center;
+            background:linear-gradient(135deg,#fde8f2,#f0e8fa);
+            font-size:5rem;
+        }
+
+        .home-age{
+            display:inline-flex;align-items:baseline;gap:0.3rem;
+            font-family:'Baloo 2',sans-serif;font-size:clamp(4rem,12vw,9rem);font-weight:800;
+            line-height:1;margin-bottom:0.5rem;
+            background:linear-gradient(135deg,var(--pink-d),var(--lilac));
+            -webkit-background-clip:text;background-clip:text;color:transparent;
+        }
+        .home-age small{font-size:0.35em;font-weight:700;color:var(--text-light)}
+
+        .home-name{
+            font-family:'Baloo 2',sans-serif;font-size:clamp(2rem,6vw,4.5rem);
+            font-weight:700;color:var(--text);margin-bottom:0.8rem;line-height:1.1;
+        }
+        .home-date{font-size:1rem;color:var(--text-light);font-weight:600;margin-bottom:1.5rem}
+
+        .home-tags{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
+        .tag{
+            padding:0.5rem 1.2rem;border-radius:50px;font-size:0.85rem;font-weight:700;
+            display:inline-flex;align-items:center;gap:0.4rem;
+        }
+        .tag-p{background:var(--pink-pale);color:var(--pink-d);border:2px solid var(--pink)}
+        .tag-l{background:var(--lilac-pale);color:#9060c0;border:2px solid var(--lilac)}
+        .tag-m{background:var(--mint-pale);color:#3a9e8e;border:2px solid var(--mint)}
+
+        .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite}
+        .scroll-indicator::after{content:'↓';font-size:1.8rem;color:var(--pink-d);opacity:0.6}
+
+        /* SOBRE */
+        #sobre{background:var(--white)}
+        .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+        .sobre-img-col{position:relative}
+        .sobre-main-img{
+            height:500px;border-radius:24px;overflow:hidden;
+            background:linear-gradient(135deg,var(--pink-pale),var(--lilac-pale));
+            box-shadow:0 20px 60px rgba(200,130,180,0.2);
+        }
+        .sobre-main-img img{width:100%;height:100%;object-fit:cover}
+        .sobre-main-img .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:6rem;opacity:0.3}
+
+        .sticker-1{
+            position:absolute;top:-1rem;right:-1rem;
+            background:var(--yellow);color:var(--text);
+            font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1rem;
+            padding:0.6rem 1.2rem;border-radius:50px;
+            transform:rotate(8deg);
+            box-shadow:3px 3px 0 #e8b800;
+            border:2px solid #e8b800;
+        }
+        .sticker-2{
+            position:absolute;bottom:-1rem;left:-1rem;
+            background:var(--mint);color:var(--text);
+            font-family:'Baloo 2',sans-serif;font-weight:800;font-size:0.9rem;
+            padding:0.5rem 1rem;border-radius:50px;
+            transform:rotate(-5deg);
+            box-shadow:3px 3px 0 #7abfb2;
+            border:2px solid #7abfb2;
+        }
+
+        .sobre-badge{
+            display:inline-flex;align-items:center;gap:0.5rem;
+            background:var(--pink-pale);color:var(--pink-d);
+            font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+            padding:0.4rem 1rem;border-radius:50px;border:2px solid var(--pink);margin-bottom:1.2rem;
+        }
+        .sobre-text h2{
+            font-family:'Baloo 2',sans-serif;font-size:clamp(2rem,4vw,3rem);
+            font-weight:800;color:var(--text);margin-bottom:1.5rem;line-height:1.2;
+        }
+        .sobre-text h2 em{color:var(--pink-d);font-style:normal}
+        .sobre-text p{font-size:1rem;line-height:1.9;color:var(--text-light);margin-bottom:1rem}
+
+        .mini-stats{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+        .mini-stat{
+            flex:1;min-width:80px;text-align:center;padding:1rem 0.8rem;
+            border-radius:16px;border:2px solid transparent;
+        }
+        .ms-p{background:var(--pink-pale);border-color:var(--pink)}
+        .ms-l{background:var(--lilac-pale);border-color:var(--lilac)}
+        .ms-m{background:var(--mint-pale);border-color:var(--mint)}
+        .mini-stat .e{font-size:1.8rem;display:block;margin-bottom:0.2rem}
+        .mini-stat .n{font-family:'Baloo 2',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text)}
+        .mini-stat .l{font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-light)}
+
+        /* GALERIA */
+        #galeria{background:linear-gradient(160deg,var(--pink-pale),var(--lilac-pale))}
+        .section-tag-i{
+            display:inline-block;background:var(--pink-d);color:var(--white);
+            font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+            padding:0.3rem 0.9rem;border-radius:50px;margin-bottom:0.8rem;
+        }
+        .section-heading-i{
+            font-family:'Baloo 2',sans-serif;font-size:clamp(2rem,5vw,4rem);
+            font-weight:800;color:var(--text);margin-bottom:2.5rem;line-height:1;
+        }
+        .section-heading-i span{color:var(--pink-d)}
+
+        .gallery-main{height:460px;position:relative;overflow:hidden;border-radius:20px;box-shadow:0 20px 50px rgba(200,130,180,0.2)}
+        .carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.8s ease}
+        .carousel-slide.active{opacity:1}
+        .carousel-slide img{width:100%;height:100%;object-fit:cover}
+        .carousel-slide.placeholder-slide{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--pink-pale),var(--lilac-pale));font-size:5rem}
+        .carousel-counter{position:absolute;top:1rem;right:1.2rem;z-index:5;background:rgba(255,255,255,0.9);color:var(--pink-d);font-size:0.78rem;font-weight:700;padding:0.3rem 0.9rem;border-radius:50px;border:2px solid var(--pink)}
+        .carousel-button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);color:var(--text);border:2px solid var(--pink);width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:10}
+        .carousel-button:hover{background:var(--pink-d);color:var(--white);border-color:var(--pink-d)}
+        .carousel-button.prev{left:1rem}
+        .carousel-button.next{right:1rem}
+        .carousel-indicators{display:flex;gap:0.5rem;margin-top:1.5rem;justify-content:center}
+        .carousel-indicator{width:10px;height:10px;border-radius:50%;background:rgba(224,122,170,0.25);cursor:pointer;transition:all 0.3s}
+        .carousel-indicator.active{background:var(--pink-d);transform:scale(1.4)}
+
+        /* FESTA */
+        #festa{background:var(--cream)}
+        .festa-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+        .festa-card{
+            padding:2.5rem;border-radius:20px;transition:transform 0.3s,box-shadow 0.3s;
+        }
+        .festa-card:hover{transform:translateY(-5px)}
+        .festa-card.fc-pink{background:var(--pink-pale);border:2px solid var(--pink)}
+        .festa-card.fc-pink:hover{box-shadow:0 12px 40px rgba(242,167,195,0.3)}
+        .festa-card.fc-lilac{background:var(--lilac-pale);border:2px solid var(--lilac)}
+        .festa-card.fc-lilac:hover{box-shadow:0 12px 40px rgba(201,168,224,0.3)}
+        .festa-card .icon{font-size:2.5rem;margin-bottom:1rem}
+        .festa-card h3{font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:1.2rem}
+        .festa-detail p{font-size:0.95rem;line-height:2.2;color:var(--text-light)}
+        .festa-detail strong{color:var(--text);font-weight:700}
+        .route-button{
+            display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;
+            background:var(--pink-d);color:var(--white);padding:0.7rem 1.6rem;
+            border-radius:50px;text-decoration:none;font-size:0.8rem;font-weight:700;
+            letter-spacing:1px;text-transform:uppercase;transition:all 0.3s;
+        }
+        .fc-lilac .route-button{background:#9060c0}
+        .route-button:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,0.15)}
+
+        /* COUNTDOWN */
+        #countdown{background:linear-gradient(135deg,var(--pink-d),var(--lilac));text-align:center;color:var(--white)}
+        #countdown::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='2' fill='white' fill-opacity='0.08'/%3E%3C/svg%3E") repeat}
+        .countdown-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+        .countdown-emoji{font-size:3rem;margin-bottom:0.5rem}
+        .countdown-title{font-family:'Baloo 2',sans-serif;font-size:1.8rem;font-weight:700;margin-bottom:2.5rem}
+        .countdown-timer{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .time-unit{text-align:center;min-width:100px;background:rgba(255,255,255,0.2);border-radius:16px;padding:2rem 1.5rem;border:2px solid rgba(255,255,255,0.3);backdrop-filter:blur(4px)}
+        .time-unit .num{font-family:'Baloo 2',sans-serif;font-size:3.5rem;font-weight:800;line-height:1}
+        .time-unit .lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:0.3rem}
+
+        /* PRESENTES */
+        #presentes{background:var(--white)}
+        .presentes-intro{font-size:1rem;color:var(--text-light);line-height:1.8;margin-bottom:2.5rem;max-width:560px}
+        .sort-bar{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin-bottom:2rem}
+        .sort-label{font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-light)}
+        .sort-btn{background:var(--cream);border:2px solid transparent;color:var(--text);padding:0.45rem 1.1rem;border-radius:50px;font-size:0.8rem;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;transition:all 0.25s}
+        .sort-btn:hover,.sort-btn.active{background:var(--pink-d);color:var(--white);border-color:var(--pink-d)}
+        .gift-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}
+        .gift-card{background:var(--white);border:2px solid var(--pink-pale);border-radius:16px;overflow:hidden;transition:all 0.3s}
+        .gift-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(200,130,180,0.15);border-color:var(--pink)}
+        .gift-image{height:180px;overflow:hidden;background:var(--pink-pale)}
+        .gift-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+        .gift-card:hover .gift-image img{transform:scale(1.06)}
+        .gift-content{padding:1.3rem}
+        .gift-content h3{font-family:'Baloo 2',sans-serif;font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:0.3rem}
+        .gift-price{font-size:0.95rem;color:var(--pink-d);font-weight:700;margin-bottom:0.5rem}
+        .gift-content p{font-size:0.86rem;color:var(--text-light);line-height:1.6;margin-bottom:1rem}
+        .gift-button{width:100%;padding:0.7rem;background:var(--pink-d);border:none;color:var(--white);font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:10px;transition:all 0.3s}
+        .gift-button:hover{background:var(--pink)}
+
+        /* CONFIRMACAO */
+        #confirmacao{background:linear-gradient(160deg,var(--mint-pale),var(--lilac-pale))}
+        .confirm-wrapper{max-width:540px}
+        .confirm-form{margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+        .form-group label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.5rem}
+        .form-group input,.form-group select{width:100%;padding:0.9rem 1rem;background:var(--white);border:2px solid var(--pink-pale);color:var(--text);font-family:'Nunito',sans-serif;font-size:0.95rem;border-radius:10px;outline:none;transition:border-color 0.3s}
+        .form-group input:focus,.form-group select:focus{border-color:var(--pink-d)}
+        .confirm-btn{margin-top:0.5rem;padding:1rem;width:100%;background:var(--pink-d);border:none;color:var(--white);font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:12px;transition:all 0.3s}
+        .confirm-btn:hover{background:var(--pink);transform:translateY(-2px);box-shadow:0 8px 25px rgba(224,122,170,0.4)}
+        .confirm-success{display:none;padding:1.5rem;background:rgba(255,255,255,0.7);border:2px solid var(--pink);border-radius:12px;margin-top:1rem;text-align:center}
+        .confirm-success p{color:var(--pink-d);font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:700}
+
+        /* MODAL */
+        .modal-overlay{display:none;position:fixed;inset:0;z-index:9000;background:rgba(74,48,80,0.7);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+        .modal-overlay.active{display:flex}
+        .modal-content{background:var(--white);border-radius:20px;border:2px solid var(--pink-pale);max-width:440px;width:90%;padding:2.5rem;position:relative;animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+        .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-light)}
+        .modal-header{margin-bottom:1.5rem;border-bottom:2px solid var(--pink-pale);padding-bottom:1.5rem}
+        .modal-header h3{font-family:'Baloo 2',sans-serif;font-size:1.4rem;font-weight:700;color:var(--text)}
+        .modal-price{color:var(--pink-d);font-size:1.1rem;font-weight:700;margin-top:0.3rem}
+        .modal-name-label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.5rem}
+        .modal-name-input{width:100%;padding:0.9rem 1rem;border:2px solid var(--pink-pale);background:var(--cream);font-family:'Nunito',sans-serif;font-size:0.95rem;color:var(--text);border-radius:10px;outline:none;transition:border-color 0.3s;margin-bottom:0.4rem}
+        .modal-name-input:focus{border-color:var(--pink-d)}
+        .name-error{color:var(--pink-d);font-size:0.82rem;display:none;margin-bottom:1rem}
+        .payment-buttons{display:flex;flex-direction:column;gap:0.8rem;margin-top:1.5rem}
+        .payment-option{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:2px solid var(--pink-pale);border-radius:12px;text-decoration:none;color:var(--text);cursor:pointer;transition:all 0.3s}
+        .payment-option:hover{border-color:var(--pink-d);background:var(--pink-pale)}
+        .payment-icon{font-size:1.5rem}
+        .payment-info{flex:1}
+        .payment-info strong{display:block;font-size:0.9rem;font-weight:700;color:var(--text)}
+        .payment-info span{font-size:0.8rem;color:var(--text-light)}
+        .payment-arrow{color:var(--pink-d);font-size:1.2rem}
+
+        /* FOOTER */
+        footer{background:var(--text);text-align:center;padding:2.5rem 2rem}
+        .footer-name{font-family:'Baloo 2',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--pink),var(--lilac));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:0.4rem}
+        footer p{color:rgba(255,255,255,0.4);font-size:0.82rem}
+        .heart{color:var(--pink)}
+
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes popIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
+        @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+        @keyframes floatBalloon{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}}
+
+        @media(max-width:768px){
+            .sobre-grid,.festa-grid{grid-template-columns:1fr;gap:2rem}
+            .sobre-main-img{height:320px}
+            .gallery-main{height:280px}
+            nav ul{gap:1rem}
+            section{padding:5rem 1.5rem}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Valentina</a></li>
+            <li><a href="#galeria">Fotos</a></li>
+            <li><a href="#festa">A Festa</a></li>
+            <li><a href="#presentes">Presentes</a></li>
+            <!-- <li><a href="#confirmacao">Confirmar</a></li> -->
+        </ul>
+    </nav>
+
+    <section id="home">
+        <span class="balloon b1">🎈</span>
+        <span class="balloon b2">🎀</span>
+        <span class="balloon b3">🎊</span>
+        <span class="balloon b4">🎈</span>
+        <span class="balloon b5">⭐</span>
+        <span class="balloon b6">🎁</span>
+        <div class="home-content">
+            <div class="home-photo-wrap">
+                <div class="photo-placeholder">👶</div>
+            </div>
+            <div class="home-age">1 <small>aninho!</small></div>
+            <h1 class="home-name">Valentina Silva</h1>
+            <p class="home-date">🗓️ 20 de Abril de 2026</p>
+            <div class="home-tags">
+                <span class="tag tag-p">🎈 1 Ano</span>
+                <span class="tag tag-l">✨ Mesversário</span>
+                <span class="tag tag-m">🎂 Festa de Bebê</span>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="sobre">
+        <div class="section-content">
+            <div class="sobre-grid">
+                <div class="sobre-img-col">
+                    <div class="sobre-main-img"><div class="ph">👶</div></div>
+                    <div class="sticker-1">1 aninho! 🎂</div>
+                    <div class="sticker-2">💕 Ela chegou!</div>
+                </div>
+                <div class="sobre-text">
+                    <span class="sobre-badge">🎀 A Aniversariante</span>
+                    <h2>Valentina: <em>365 dias</em> de pura alegria!</h2>
+                    <p>Há um ano, o mundo ficou mais colorido, mais barulhento e — definitivamente — muito mais feliz. Valentina chegou trazendo aquele sorriso que derrete qualquer coração.</p>
+                    <p>Em 12 meses, ela aprendeu a sorrir, engatinhar, dar os primeiros passos e conquistar a todos com sua personalidade encantadora. Cada dia foi uma nova descoberta!</p>
+                    <p>E agora chegou a hora de comemorar esse primeiro ano incrível. Queremos você junto com a gente para celebrar a maior alegria da nossa vida! 🎈</p>
+                    <div class="mini-stats">
+                        <div class="mini-stat ms-p"><span class="e">🎂</span><div class="n">1</div><div class="l">Aninho</div></div>
+                        <div class="mini-stat ms-l"><span class="e">💕</span><div class="n">365</div><div class="l">Dias</div></div>
+                        <div class="mini-stat ms-m"><span class="e">😄</span><div class="n">∞</div><div class="l">Amor</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="section-content">
+            <span class="section-tag-i">📸 Galeria</span>
+            <h2 class="section-heading-i">Memórias <span>fofas</span></h2>
+            <div class="gallery-main">
+                <div class="carousel-counter"><span id="currentSlide">1</span> / 6</div>
+                <div class="carousel-slide active placeholder-slide">👶</div>
+                <div class="carousel-slide placeholder-slide">🌸</div>
+                <div class="carousel-slide placeholder-slide">🎈</div>
+                <div class="carousel-slide placeholder-slide">💕</div>
+                <div class="carousel-slide placeholder-slide">🌟</div>
+                <div class="carousel-slide placeholder-slide">🎀</div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+                <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="festa">
+        <div class="section-content">
+            <span class="section-tag-i">🎉 O Evento</span>
+            <h2 class="section-heading-i">A <span>Festa!</span></h2>
+            <div class="festa-grid">
+                <div class="festa-card fc-pink">
+                    <div class="icon">🎂</div>
+                    <h3>Festa do 1º Aninho</h3>
+                    <div class="festa-detail">
+                        <p><strong>Data:</strong> 20 de Abril de 2026</p>
+                        <p><strong>Horário:</strong> 14:00</p>
+                        <p><strong>Local:</strong> Espaço Kids Encantado</p>
+                        <p><strong>Endereço:</strong> Rua das Flores, 500</p>
+                        <p style="margin-top:0.8rem;font-size:0.88rem;color:var(--text-light)">Venha com a criança! 👶🎈</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+das+Flores,+500" target="_blank" class="route-button">📍 Como Chegar</a>
+                </div>
+                <div class="festa-card fc-lilac">
+                    <div class="icon">🎀</div>
+                    <h3>Detalhes da Festa</h3>
+                    <div class="festa-detail">
+                        <p><strong>Tema:</strong> Jardim Encantado</p>
+                        <p><strong>Buffet:</strong> Incluso para crianças</p>
+                        <p><strong>Dress code:</strong> Temático (opcional)</p>
+                        <p><strong>Duração:</strong> 14h às 18h</p>
+                        <p style="margin-top:0.8rem;font-size:0.88rem;color:var(--text-light)">Espaço kids disponível! 🌸</p>
+                    </div>
+                    <a href="https://wa.me/5515998514536" target="_blank" class="route-button">💬 Mais Infos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown">
+        <div class="section-content">
+            <div class="countdown-inner">
+                <div class="countdown-emoji">🎈🎂🎈</div>
+                <p class="countdown-title">Faltam para o grande dia!</p>
+                <div class="countdown-timer">
+                    <div class="time-unit"><div class="num" id="days">00</div><div class="lbl">Dias</div></div>
+                    <div class="time-unit"><div class="num" id="hours">00</div><div class="lbl">Horas</div></div>
+                    <div class="time-unit"><div class="num" id="minutes">00</div><div class="lbl">Min</div></div>
+                    <div class="time-unit"><div class="num" id="seconds">00</div><div class="lbl">Seg</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="presentes">
+        <div class="section-content">
+            <span class="section-tag-i">🎁 Presentes</span>
+            <h2 class="section-heading-i">Lista de <span>Presentes</span></h2>
+            <p class="presentes-intro">Sua presença já é tudo para nós! Mas se quiser presentear a Valentina, aqui estão algumas sugestões perfeitas para a idade dela. 💕</p>
+            <div class="sort-bar">
+                <span class="sort-label">Ordenar:</span>
+                <button class="sort-btn active" data-ordem="original" onclick="ordenarPresentes('original')">Padrão</button>
+                <button class="sort-btn" data-ordem="asc" onclick="ordenarPresentes('asc')">Menor → Maior</button>
+                <button class="sort-btn" data-ordem="desc" onclick="ordenarPresentes('desc')">Maior → Menor</button>
+            </div>
+            <div class="gift-options"></div>
+        </div>
+    </section>
+
+    <!-- <section id="confirmacao">
+        <div class="section-content">
+            <div class="confirm-wrapper">
+                <span class="section-tag-i">✅ RSVP</span>
+                <h2 class="section-heading-i" style="margin-top:0.8rem">Você <span>vem</span>?</h2>
+                <p style="color:var(--text-light);font-size:0.95rem;line-height:1.8;margin-bottom:0.5rem">Confirme até <strong>10/04/2026</strong> para garantirmos tudo certinho! 🎀</p>
+                <form class="confirm-form" id="confirmForm" onsubmit="handleConfirm(event)">
+                    <div class="form-group"><label>Seu nome</label><input type="text" id="confirmName" placeholder="Como você se chama?" required></div>
+                    <div class="form-group"><label>Quantas crianças vêm?</label>
+                        <select id="confirmGuests">
+                            <option value="0">Só eu (adulto)</option>
+                            <option value="1">Eu + 1 criança</option>
+                            <option value="2">Eu + 2 crianças</option>
+                            <option value="3">Família toda 👨‍👩‍👧‍👦</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Confirmação</label>
+                        <select id="confirmAttend">
+                            <option value="sim">🎉 Sim! Estaremos lá!</option>
+                            <option value="nao">😢 Infelizmente não consigo</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">🎈 Confirmar Presença!</button>
+                </form>
+                <div class="confirm-success" id="confirmSuccess"><p>🎉 Oba! Confirmado! Até dia 20! 🎈</p></div>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header"><h3 id="modalGiftName">Presente</h3><div class="modal-price" id="modalGiftPrice">R$ 0,00</div></div>
+            <label class="modal-name-label">Seu nome (para a Valentina saber!):</label>
+            <input class="modal-name-input" type="text" id="guestName" placeholder="Seu nome">
+            <p class="name-error" id="nameError">⚠️ Coloca seu nome aí! 😊</p>
+            <div class="payment-buttons">
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('pix')"><div class="payment-icon">💳</div><div class="payment-info"><strong>Pagar com PIX</strong><span>Rápido e fácil</span></div><div class="payment-arrow">→</div></a>
+                <a href="javascript:void(0)" class="payment-option" onclick="handlePayment('card')"><div class="payment-icon">💰</div><div class="payment-info"><strong>Pagar com Cartão</strong><span>Crédito ou débito</span></div><div class="payment-arrow">→</div></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-name">Valentina Silva 🎈</div>
+        <p>Feito com <span class="heart">♥</span> para celebrar 1 aninho de amor</p>
+        <p style="margin-top:0.4rem;opacity:0.3;font-size:0.78rem">20 de Abril de 2026 · 1 Aninho</p>
+    </footer>
+
+    <script>
+    let currentSlideIndex=0,autoPlayInterval;
+    function changeSlide(dir){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=(currentSlideIndex+dir+slides.length)%slides.length;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function goToSlide(idx){const slides=document.querySelectorAll('.carousel-slide'),indicators=document.querySelectorAll('.carousel-indicator');slides.forEach(s=>s.classList.remove('active'));indicators.forEach(i=>i.classList.remove('active'));currentSlideIndex=idx;slides[currentSlideIndex].classList.add('active');if(indicators[currentSlideIndex])indicators[currentSlideIndex].classList.add('active');document.getElementById('currentSlide').textContent=currentSlideIndex+1;resetAutoPlay()}
+    function startAutoPlay(){autoPlayInterval=setInterval(()=>changeSlide(1),4000)}
+    function stopAutoPlay(){clearInterval(autoPlayInterval)}
+    function resetAutoPlay(){stopAutoPlay();startAutoPlay()}
+    document.addEventListener('DOMContentLoaded',()=>{startAutoPlay();const gm=document.querySelector('.gallery-main');gm.addEventListener('mouseenter',stopAutoPlay);gm.addEventListener('mouseleave',startAutoPlay);let tx=0;gm.addEventListener('touchstart',e=>tx=e.changedTouches[0].screenX,{passive:true});gm.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50)changeSlide(d>0?1:-1)},{passive:true})});
+    const eventDate=new Date('2026-04-20T14:00:00');
+    function updateCountdown(){const diff=eventDate-new Date();if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');return}document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0')}
+    setInterval(updateCountdown,1000);updateCountdown();
+    const PRESENTES=[
+        {nome:'Kit Banho Bebê',preco:'R$ 180,00',descricao:'Produtos suaves e seguros para bebês.',imagem:'img/presentes/kit_banho.jpg',pix:'#',cartao:'#'},
+        {nome:'Andador Musical',preco:'R$ 250,00',descricao:'Para os primeiros passos com música!',imagem:'img/presentes/andador.jpg',pix:'#',cartao:'#'},
+        {nome:'Livros de Pano',preco:'R$ 120,00',descricao:'Coleção de livrinhos sensoriais.',imagem:'img/presentes/livros.jpg',pix:'#',cartao:'#'},
+        {nome:'Conjunto Roupinhas',preco:'R$ 160,00',descricao:'Looks fofíssimos para o primeiro ano.',imagem:'img/presentes/roupas.jpg',pix:'#',cartao:'#'},
+        {nome:'Brinquedos Pedagógicos',preco:'R$ 200,00',descricao:'Estimulam o desenvolvimento da criança.',imagem:'img/presentes/brinquedos.jpg',pix:'#',cartao:'#'},
+        {nome:'Caderneta de Memórias',preco:'R$ 140,00',descricao:'Para guardar cada momento especial.',imagem:'img/presentes/caderneta.jpg',pix:'#',cartao:'#'},
+    ];
+    let cpix='',ccard='';
+    function precoParaNum(p){return parseFloat(p.replace('R$','').replace(/\./g,'').replace(',','.').trim())}
+    function renderPresentes(lista){document.querySelector('.gift-options').innerHTML=lista.map(p=>`<div class="gift-card"><div class="gift-image"><img src="${p.imagem}" alt="${p.nome}" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;background:var(--pink-pale)\'>🎁</div>'"></div><div class="gift-content"><h3>${p.nome}</h3><div class="gift-price">${p.preco}</div><p>${p.descricao}</p><button class="gift-button" onclick="openModal('${p.nome}','${p.preco}','${p.pix}','${p.cartao}')">Presentear 🎁</button></div></div>`).join('')}
+    function ordenarPresentes(ordem){const lista=[...PRESENTES];if(ordem==='asc')lista.sort((a,b)=>precoParaNum(a.preco)-precoParaNum(b.preco));if(ordem==='desc')lista.sort((a,b)=>precoParaNum(b.preco)-precoParaNum(a.preco));document.querySelectorAll('.sort-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.ordem===ordem));renderPresentes(lista)}
+    document.addEventListener('DOMContentLoaded',()=>renderPresentes(PRESENTES));
+    function openModal(name,price,pix,card){cpix=pix;ccard=card;document.getElementById('modalGiftName').textContent=name;document.getElementById('modalGiftPrice').textContent=price;document.getElementById('guestName').value='';document.getElementById('nameError').style.display='none';document.getElementById('paymentModal').classList.add('active');document.body.style.overflow='hidden'}
+    function closeModal(){document.getElementById('paymentModal').classList.remove('active');document.body.style.overflow=''}
+    function handlePayment(type){const name=document.getElementById('guestName').value.trim();if(!name||name.length<3){document.getElementById('nameError').style.display='block';return}document.getElementById('nameError').style.display='none';window.open(type==='pix'?cpix:ccard,'_blank','noopener,noreferrer');setTimeout(closeModal,800)}
+    document.getElementById('paymentModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+    function handleConfirm(e){e.preventDefault();document.getElementById('confirmForm').style.display='none';document.getElementById('confirmSuccess').style.display='block'}
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+    </script>
+</body>
+</html>
