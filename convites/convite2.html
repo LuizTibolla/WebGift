@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isabela & Marcos · Convite de Casamento</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖤</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black:   #080608;
+            --dark:    #110d10;
+            --dark2:   #1a141a;
+            --wine:    #5c0a28;
+            --gold:    #c8963c;
+            --gold-l:  #e8c070;
+            --gold-p:  rgba(200,150,60,0.12);
+            --border:  rgba(200,150,60,0.2);
+            --white:   #f2eae0;
+            --gray:    #8a7870;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body {
+            font-family:'Outfit', sans-serif;
+            background:var(--black);
+            color:var(--white);
+            min-height:100vh;
+            display:flex; flex-direction:column; align-items:center;
+        }
+
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+        @keyframes glow     { 0%,100%{box-shadow:0 0 20px rgba(200,150,60,0.1)} 50%{box-shadow:0 0 40px rgba(200,150,60,0.25)} }
+
+        .invite-wrap {
+            width:100%; max-width:480px;
+            padding:0 0 3rem;
+            display:flex; flex-direction:column; align-items:center;
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            width:100%; min-height:260px;
+            background:linear-gradient(160deg, var(--wine) 0%, var(--dark) 60%, var(--black) 100%);
+            display:flex; flex-direction:column; align-items:center; justify-content:center;
+            padding:3rem 2rem; text-align:center; position:relative; overflow:hidden;
+        }
+        .hero-banner::before {
+            content:''; position:absolute; inset:0;
+            background:radial-gradient(ellipse at 50% 0%, rgba(200,150,60,0.12) 0%, transparent 60%);
+        }
+        .hero-banner::after {
+            content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+            background:linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .hero-eyebrow {
+            font-size:0.65rem; letter-spacing:5px; text-transform:uppercase;
+            color:var(--gold); margin-bottom:1.5rem; position:relative; z-index:1;
+        }
+        .hero-names {
+            font-family:'IM Fell English', serif; font-style:italic;
+            font-size:clamp(2.8rem, 11vw, 4.5rem); font-weight:400;
+            color:var(--white); line-height:1.05; position:relative; z-index:1;
+        }
+        .hero-amp { color:var(--gold); font-size:0.7em; display:block; margin:-0.2rem 0; }
+        .hero-date {
+            font-size:0.75rem; letter-spacing:4px; text-transform:uppercase;
+            color:var(--gold-l); opacity:0.8; margin-top:1.2rem; position:relative; z-index:1;
+        }
+
+        /* BODY CONTENT */
+        .body-content {
+            width:100%; padding:2rem 1.5rem 0;
+            display:flex; flex-direction:column; gap:0;
+        }
+
+        /* INFO ROWS */
+        .info-row {
+            display:flex; align-items:flex-start; gap:1.2rem;
+            padding:1.3rem 1.5rem; background:var(--dark2);
+            border-bottom:1px solid rgba(255,255,255,0.04);
+            animation:fadeInUp 0.8s ease both;
+        }
+        .info-row:first-child { border-top:1px solid var(--border); }
+        .info-row:last-child  { border-bottom:1px solid var(--border); }
+        .ir-icon { font-size:1.3rem; flex-shrink:0; margin-top:0.1rem; }
+        .ir-label { font-size:0.62rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:0.25rem; }
+        .ir-value { font-family:'IM Fell English', serif; font-size:1.1rem; color:var(--white); line-height:1.3; }
+        .ir-sub   { font-size:0.78rem; color:var(--gray); margin-top:0.15rem; }
+
+        /* COUNTDOWN */
+        .countdown-wrap {
+            width:100%; padding:2rem 1.5rem 0;
+            animation:fadeInUp 0.8s ease 0.2s both;
+        }
+        .cd-label {
+            font-size:0.62rem; letter-spacing:4px; text-transform:uppercase;
+            color:var(--gold); text-align:center; margin-bottom:1rem;
+        }
+        .cd-timer { display:flex; }
+        .cd-unit {
+            flex:1; text-align:center; padding:1.5rem 0.5rem;
+            background:var(--dark2); border:1px solid var(--border);
+            border-right:none; position:relative;
+        }
+        .cd-unit:last-child { border-right:1px solid var(--border); }
+        .cd-unit .num {
+            font-family:'IM Fell English', serif;
+            font-size:2.5rem; color:var(--gold-l); line-height:1;
+        }
+        .cd-unit .lbl {
+            font-size:0.55rem; letter-spacing:2px; text-transform:uppercase;
+            color:var(--gray); margin-top:0.3rem; display:block;
+        }
+
+        /* BUTTONS */
+        .btns-wrap {
+            width:100%; padding:1.5rem 1.5rem 0;
+            display:flex; flex-direction:column; gap:0.8rem;
+            animation:fadeInUp 0.8s ease 0.3s both;
+        }
+        .btn-map {
+            display:flex; align-items:center; justify-content:center; gap:0.7rem;
+            padding:1rem; background:var(--gold); color:var(--black);
+            text-decoration:none; font-size:0.75rem; font-weight:600;
+            letter-spacing:2.5px; text-transform:uppercase; transition:all 0.3s;
+        }
+        .btn-map:hover { background:var(--gold-l); transform:translateY(-2px); box-shadow:0 8px 25px rgba(200,150,60,0.3); }
+
+        /* RSVP */
+        .rsvp-wrap {
+            width:100%; padding:2rem 1.5rem 0;
+            animation:fadeInUp 0.8s ease 0.4s both;
+        }
+        .rsvp-head {
+            text-align:center; margin-bottom:1.5rem;
+            border-top:1px solid var(--border); padding-top:1.5rem;
+        }
+        .rsvp-head h2 {
+            font-family:'IM Fell English', serif; font-style:italic;
+            font-size:1.8rem; color:var(--white);
+        }
+        .rsvp-head p { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-top:0.4rem; }
+        .rsvp-form { display:flex; flex-direction:column; gap:0.7rem; }
+        .r-input, .r-select {
+            padding:0.85rem 1rem; background:var(--dark2);
+            border:1px solid var(--border); color:var(--white);
+            font-family:'Outfit', sans-serif; font-size:0.9rem;
+            outline:none; transition:border-color 0.3s; width:100%;
+        }
+        .r-input::placeholder { color:var(--gray); }
+        .r-input:focus, .r-select:focus { border-color:var(--gold); }
+        .r-select option { background:var(--dark2); }
+        .r-btn {
+            padding:1rem; background:transparent;
+            border:1px solid var(--gold); color:var(--gold);
+            font-family:'Outfit', sans-serif; font-size:0.75rem; font-weight:500;
+            letter-spacing:3px; text-transform:uppercase; cursor:pointer;
+            transition:all 0.3s; margin-top:0.3rem;
+        }
+        .r-btn:hover { background:var(--gold); color:var(--black); }
+        .rsvp-ok {
+            display:none; text-align:center; padding:1.5rem;
+            border:1px solid var(--border); background:var(--gold-p);
+        }
+        .rsvp-ok p {
+            font-family:'IM Fell English', serif; font-style:italic;
+            font-size:1.2rem; color:var(--gold-l);
+        }
+
+        /* FOOTER */
+        .footer-brand {
+            margin-top:3rem; padding-top:1.5rem;
+            border-top:1px solid rgba(255,255,255,0.05);
+            text-align:center; width:calc(100% - 3rem);
+            animation:fadeIn 1s ease 0.5s both;
+        }
+        .footer-brand p { font-size:0.62rem; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.2); }
+        .footer-brand span { color:var(--gold); }
+
+        @media(max-width:480px) {
+            .body-content { padding:1.5rem 1rem 0; }
+            .countdown-wrap, .btns-wrap, .rsvp-wrap { padding-left:1rem; padding-right:1rem; }
+            .footer-brand { width:calc(100% - 2rem); }
+        }
+    </style>
+</head>
+<body>
+    <div class="invite-wrap">
+
+        <div class="hero-banner">
+            <p class="hero-eyebrow">Convite de Casamento</p>
+            <h1 class="hero-names">
+                Isabela
+                <span class="hero-amp">&</span>
+                Marcos
+            </h1>
+            <p class="hero-date">21 de Março de 2026</p>
+        </div>
+
+        <div class="body-content">
+            <div class="info-row" style="animation-delay:0.05s">
+                <div class="ir-icon">🗓️</div>
+                <div><div class="ir-label">Data</div><div class="ir-value">Sábado, 21 de Março de 2026</div></div>
+            </div>
+            <div class="info-row" style="animation-delay:0.1s">
+                <div class="ir-icon">⛪</div>
+                <div><div class="ir-label">Cerimônia</div><div class="ir-value">Catedral São Paulo Apóstolo</div><div class="ir-sub">17:00 · Praça da Sé, s/n</div></div>
+            </div>
+            <div class="info-row" style="animation-delay:0.15s">
+                <div class="ir-icon">🥂</div>
+                <div><div class="ir-label">Recepção</div><div class="ir-value">Grand Ballroom Eventos</div><div class="ir-sub">19:30 · Av. Paulista, 1000</div></div>
+            </div>
+            <div class="info-row" style="animation-delay:0.2s">
+                <div class="ir-icon">🎩</div>
+                <div><div class="ir-label">Traje</div><div class="ir-value">Black Tie</div></div>
+            </div>
+        </div>
+
+        <div class="countdown-wrap">
+            <p class="cd-label">— Contagem regressiva —</p>
+            <div class="cd-timer">
+                <div class="cd-unit"><div class="num" id="days">00</div><span class="lbl">Dias</span></div>
+                <div class="cd-unit"><div class="num" id="hours">00</div><span class="lbl">Horas</span></div>
+                <div class="cd-unit"><div class="num" id="minutes">00</div><span class="lbl">Min</span></div>
+                <div class="cd-unit"><div class="num" id="seconds">00</div><span class="lbl">Seg</span></div>
+            </div>
+        </div>
+
+        <div class="btns-wrap">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+Paulista,+1000" target="_blank" class="btn-map">
+                <span>📍</span> Como Chegar
+            </a>
+        </div>
+
+        <!-- <div class="rsvp-wrap">
+            <div class="rsvp-head">
+                <h2>Confirme sua Presença</h2>
+                <p>Até 07 de Março de 2026</p>
+            </div>
+            <form class="rsvp-form" id="rsvpForm" onsubmit="handleRSVP(event)">
+                <input class="r-input" type="text" id="rsvpName" placeholder="Seu nome completo" required>
+                <select class="r-select" id="rsvpGuests">
+                    <option value="">Acompanhantes</option>
+                    <option value="0">Somente eu</option>
+                    <option value="1">+ 1 acompanhante</option>
+                    <option value="2">+ 2 acompanhantes</option>
+                    <option value="3">+ 3 ou mais</option>
+                </select>
+                <select class="r-select" id="rsvpAttend">
+                    <option value="">Confirmação</option>
+                    <option value="sim">✓ Confirmo presença</option>
+                    <option value="nao">✗ Não poderei ir</option>
+                </select>
+                <button type="submit" class="r-btn">Confirmar Presença</button>
+            </form>
+            <div class="rsvp-ok" id="rsvpSuccess"><p>Confirmado. Até lá. 🖤</p></div>
+        </div> -->
+
+        <div class="footer-brand">
+            <p>Convite Digital Premium · <a href="https://webgift.netlify.app" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;opacity:0.7;transition:opacity 0.3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Web<span style="color:var(--gold)">Gift</span></a></p>
+        </div>
+    </div>
+
+    <script>
+    const eventDate = new Date('2026-03-21T17:00:00');
+    function updateCountdown() {
+        const diff = eventDate - new Date();
+        if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00'); return; }
+        document.getElementById('days').textContent    = String(Math.floor(diff/86400000)).padStart(2,'0');
+        document.getElementById('hours').textContent   = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+        document.getElementById('minutes').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+        document.getElementById('seconds').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    }
+    setInterval(updateCountdown, 1000); updateCountdown();
+    function handleRSVP(e) { e.preventDefault(); document.getElementById('rsvpForm').style.display='none'; document.getElementById('rsvpSuccess').style.display='block'; }
+    </script>
+</body>
+</html>

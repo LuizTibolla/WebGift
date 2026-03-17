@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriela & Rafael · Convite de Casamento</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+    <meta name="description" content="Gabriela & Rafael — Você está convidado para o nosso casamento.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream:  #faf6ef;
+            --sand:   #ede5d8;
+            --sand2:  #d9cfc0;
+            --gold:   #b8965a;
+            --gold-l: #d4b07a;
+            --gold-p: rgba(184,150,90,0.15);
+            --dark:   #2a2218;
+            --text:   #3d3020;
+            --light:  #8a7a62;
+            --white:  #fffdf9;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+
+        body {
+            font-family:'Jost', sans-serif;
+            background:var(--cream);
+            color:var(--text);
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+
+        /* ===== ENVELOPE OPEN ANIMATION ===== */
+        @keyframes fadeInUp  { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+        @keyframes shimmer   { 0%,100%{opacity:0.6} 50%{opacity:1} }
+        @keyframes floatLine { 0%,100%{transform:scaleX(1)} 50%{transform:scaleX(0.85)} }
+
+        .card { animation: fadeInUp 1s ease both; }
+        .card:nth-child(2) { animation-delay:0.15s; }
+        .card:nth-child(3) { animation-delay:0.3s; }
+        .card:nth-child(4) { animation-delay:0.45s; }
+        .card:nth-child(5) { animation-delay:0.6s; }
+
+        /* ===== WRAPPER ===== */
+        .invite-wrap {
+            width:100%; max-width:480px;
+            padding:2rem 1.5rem 3rem;
+            display:flex; flex-direction:column; align-items:center; gap:0;
+        }
+
+        /* ===== TOP ORNAMENT ===== */
+        .top-ornament {
+            display:flex; flex-direction:column; align-items:center;
+            padding:3rem 0 2rem; width:100%;
+            animation:fadeIn 1.2s ease both;
+        }
+        .ornament-line {
+            width:1px; height:50px;
+            background:linear-gradient(180deg, transparent, var(--gold), transparent);
+            margin-bottom:1.2rem;
+        }
+        .ornament-diamond {
+            width:8px; height:8px; background:var(--gold);
+            transform:rotate(45deg); margin-bottom:1.2rem;
+            box-shadow:0 0 10px var(--gold-p);
+        }
+        .ornament-text {
+            font-size:0.68rem; letter-spacing:5px; text-transform:uppercase;
+            color:var(--gold); font-weight:400;
+        }
+
+        /* ===== NAMES ===== */
+        .names-block {
+            text-align:center; padding:1.5rem 2rem 2rem; width:100%;
+            animation:fadeInUp 1s ease 0.1s both;
+        }
+        .names-join {
+            font-family:'Cormorant Garamond', serif; font-style:italic;
+            font-size:clamp(3.2rem, 10vw, 5rem); font-weight:300;
+            color:var(--dark); line-height:1.1; letter-spacing:0.02em;
+        }
+        .names-join .amp {
+            color:var(--gold); font-size:0.75em; display:block;
+            margin:-0.3rem 0; line-height:1;
+        }
+        .invite-label {
+            font-size:0.72rem; letter-spacing:4px; text-transform:uppercase;
+            color:var(--light); margin-top:1.2rem; font-weight:400;
+        }
+
+        /* ===== DIVIDER ===== */
+        .divider {
+            display:flex; align-items:center; gap:1rem;
+            width:100%; padding:0 2rem; margin:0.5rem 0;
+            animation:fadeIn 1s ease 0.2s both;
+        }
+        .divider-line { flex:1; height:1px; background:var(--sand2); }
+        .divider-icon { color:var(--gold); font-size:0.9rem; opacity:0.7; }
+
+        /* ===== INFO CARDS ===== */
+        .info-section {
+            width:100%; padding:0 1.5rem;
+            display:flex; flex-direction:column; gap:1px;
+            animation:fadeInUp 1s ease 0.3s both;
+        }
+        .info-block {
+            background:var(--white); padding:1.4rem 1.8rem;
+            display:flex; align-items:center; gap:1.2rem;
+            border-left:2px solid transparent;
+            transition:border-color 0.3s;
+        }
+        .info-block:first-child { border-radius:4px 4px 0 0; }
+        .info-block:last-child  { border-radius:0 0 4px 4px; }
+        .info-block:hover { border-left-color:var(--gold); }
+        .info-icon {
+            font-size:1.4rem; flex-shrink:0;
+            width:36px; text-align:center;
+        }
+        .info-content {}
+        .info-label {
+            font-size:0.65rem; letter-spacing:3px; text-transform:uppercase;
+            color:var(--light); margin-bottom:0.25rem;
+        }
+        .info-value {
+            font-family:'Cormorant Garamond', serif;
+            font-size:1.15rem; font-weight:400; color:var(--dark);
+            line-height:1.3;
+        }
+        .info-sub {
+            font-size:0.78rem; color:var(--light); margin-top:0.15rem;
+        }
+
+        /* ===== COUNTDOWN ===== */
+        .countdown-section {
+            width:100%; padding:2rem 1.5rem;
+            animation:fadeInUp 1s ease 0.4s both;
+        }
+        .countdown-label {
+            text-align:center; font-size:0.68rem; letter-spacing:4px;
+            text-transform:uppercase; color:var(--light); margin-bottom:1.2rem;
+        }
+        .countdown-timer {
+            display:flex; gap:0; background:var(--white);
+            border:1px solid var(--sand);
+        }
+        .time-unit {
+            flex:1; text-align:center; padding:1.2rem 0.5rem;
+            border-right:1px solid var(--sand); position:relative;
+        }
+        .time-unit:last-child { border-right:none; }
+        .time-unit .num {
+            font-family:'Cormorant Garamond', serif;
+            font-size:2.2rem; font-weight:300; color:var(--dark); line-height:1;
+        }
+        .time-unit .lbl {
+            font-size:0.58rem; letter-spacing:2px; text-transform:uppercase;
+            color:var(--light); margin-top:0.3rem; display:block;
+        }
+
+        /* ===== MAP BUTTON ===== */
+        .map-btn {
+            display:flex; align-items:center; justify-content:center; gap:0.7rem;
+            width:calc(100% - 3rem); margin:0 1.5rem;
+            background:var(--gold); color:var(--white);
+            padding:1rem; text-decoration:none;
+            font-size:0.78rem; font-weight:500; letter-spacing:2.5px; text-transform:uppercase;
+            transition:all 0.3s; border:none; cursor:pointer;
+            animation:fadeInUp 1s ease 0.5s both;
+        }
+        .map-btn:hover { background:var(--dark); transform:translateY(-2px); box-shadow:0 8px 25px rgba(184,150,90,0.25); }
+
+        /* ===== RSVP ===== */
+        .rsvp-section {
+            width:100%; padding:2rem 1.5rem;
+            animation:fadeInUp 1s ease 0.6s both;
+        }
+        .rsvp-title {
+            text-align:center;
+            font-family:'Cormorant Garamond', serif; font-style:italic;
+            font-size:1.6rem; color:var(--dark); margin-bottom:0.5rem;
+        }
+        .rsvp-sub {
+            text-align:center; font-size:0.72rem; letter-spacing:2px;
+            text-transform:uppercase; color:var(--light); margin-bottom:1.5rem;
+        }
+        .rsvp-form { display:flex; flex-direction:column; gap:0.8rem; }
+        .rsvp-input {
+            padding:0.85rem 1rem; background:var(--white);
+            border:1px solid var(--sand); border-bottom:2px solid var(--sand2);
+            font-family:'Jost', sans-serif; font-size:0.9rem; color:var(--text);
+            outline:none; transition:border-color 0.3s; width:100%;
+        }
+        .rsvp-input:focus { border-color:var(--gold); }
+        .rsvp-select {
+            padding:0.85rem 1rem; background:var(--white);
+            border:1px solid var(--sand); border-bottom:2px solid var(--sand2);
+            font-family:'Jost', sans-serif; font-size:0.9rem; color:var(--text);
+            outline:none; transition:border-color 0.3s; width:100%; cursor:pointer;
+        }
+        .rsvp-btn {
+            padding:1rem; background:transparent;
+            border:1px solid var(--gold); color:var(--gold);
+            font-family:'Jost', sans-serif; font-size:0.78rem;
+            font-weight:500; letter-spacing:3px; text-transform:uppercase;
+            cursor:pointer; transition:all 0.3s; margin-top:0.3rem;
+        }
+        .rsvp-btn:hover { background:var(--gold); color:var(--white); }
+        .rsvp-success {
+            display:none; text-align:center; padding:1.5rem;
+            background:var(--gold-p); border:1px solid rgba(184,150,90,0.3);
+        }
+        .rsvp-success p {
+            font-family:'Cormorant Garamond', serif; font-style:italic;
+            font-size:1.2rem; color:var(--gold);
+        }
+
+        /* ===== BOTTOM ORNAMENT ===== */
+        .bottom-ornament {
+            display:flex; flex-direction:column; align-items:center;
+            padding:2.5rem 0; width:100%;
+            animation:fadeIn 1s ease 0.7s both;
+        }
+        .made-with {
+            font-size:0.65rem; letter-spacing:3px; text-transform:uppercase;
+            color:var(--sand2); margin-bottom:1.5rem;
+        }
+        .made-with span { color:var(--gold-l); }
+        .bottom-line { width:1px; height:40px; background:linear-gradient(180deg, var(--gold), transparent); }
+        .brand {
+            font-family:'Cormorant Garamond', serif; font-style:italic;
+            font-size:1rem; color:var(--light); margin-top:0.8rem;
+            letter-spacing:0.05em;
+        }
+        .brand span { color:var(--gold); }
+
+        @media(max-width:480px) {
+            .invite-wrap { padding:1.5rem 1rem 2.5rem; }
+            .info-block { padding:1.2rem 1.3rem; }
+            .map-btn { width:calc(100% - 2rem); margin:0 1rem; }
+            .rsvp-section { padding:1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="invite-wrap">
+
+        <!-- TOP ORNAMENT -->
+        <div class="top-ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+            <p class="ornament-text">Convite de Casamento</p>
+        </div>
+
+        <!-- NAMES -->
+        <div class="names-block card">
+            <h1 class="names-join">
+                Gabriela
+                <span class="amp">&</span>
+                Rafael
+            </h1>
+            <p class="invite-label">Você está convidado para celebrar conosco</p>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="divider card">
+            <div class="divider-line"></div>
+            <span class="divider-icon">✦</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- INFO BLOCKS -->
+        <div class="info-section card">
+            <div class="info-block">
+                <div class="info-icon">🗓️</div>
+                <div class="info-content">
+                    <div class="info-label">Data</div>
+                    <div class="info-value">Sábado, 14 de Novembro de 2026</div>
+                </div>
+            </div>
+            <div class="info-block">
+                <div class="info-icon">⛪</div>
+                <div class="info-content">
+                    <div class="info-label">Cerimônia</div>
+                    <div class="info-value">Igreja Nossa Senhora das Graças</div>
+                    <div class="info-sub">17:30 · Rua das Flores, 200</div>
+                </div>
+            </div>
+            <div class="info-block">
+                <div class="info-icon">🥂</div>
+                <div class="info-content">
+                    <div class="info-label">Recepção</div>
+                    <div class="info-value">Espaço Villa Jardim</div>
+                    <div class="info-sub">19:30 · Alameda dos Ipês, 850</div>
+                </div>
+            </div>
+            <div class="info-block">
+                <div class="info-icon">👗</div>
+                <div class="info-content">
+                    <div class="info-label">Traje</div>
+                    <div class="info-value">Social / Black tie</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN -->
+        <div class="countdown-section card">
+            <p class="countdown-label">— Faltam —</p>
+            <div class="countdown-timer">
+                <div class="time-unit"><div class="num" id="days">00</div><span class="lbl">Dias</span></div>
+                <div class="time-unit"><div class="num" id="hours">00</div><span class="lbl">Horas</span></div>
+                <div class="time-unit"><div class="num" id="minutes">00</div><span class="lbl">Min</span></div>
+                <div class="time-unit"><div class="num" id="seconds">00</div><span class="lbl">Seg</span></div>
+            </div>
+        </div>
+
+        <!-- MAP BUTTON -->
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Alameda+dos+Ipês,+850" target="_blank" class="map-btn card">
+            <span>📍</span> Como Chegar à Recepção
+        </a>
+
+        <!-- DIVIDER -->
+        <div class="divider card" style="margin-top:2rem">
+            <div class="divider-line"></div>
+            <span class="divider-icon">✦</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- RSVP -->
+        <!-- <div class="rsvp-section card">
+            <h2 class="rsvp-title">Confirme sua Presença</h2>
+            <p class="rsvp-sub">Até 01 de Novembro de 2026</p>
+            <form class="rsvp-form" id="rsvpForm" onsubmit="handleRSVP(event)">
+                <input class="rsvp-input" type="text" id="rsvpName" placeholder="Seu nome completo" required>
+                <select class="rsvp-select" id="rsvpGuests">
+                    <option value="">Número de acompanhantes</option>
+                    <option value="0">Somente eu</option>
+                    <option value="1">+ 1 acompanhante</option>
+                    <option value="2">+ 2 acompanhantes</option>
+                    <option value="3">+ 3 ou mais</option>
+                </select>
+                <select class="rsvp-select" id="rsvpAttend">
+                    <option value="">Confirmação</option>
+                    <option value="sim">✓ Confirmo presença</option>
+                    <option value="nao">✗ Não poderei comparecer</option>
+                </select>
+                <button type="submit" class="rsvp-btn">Confirmar</button>
+            </form>
+            <div class="rsvp-success" id="rsvpSuccess">
+                <p>Obrigado! Até lá. 💍</p>
+            </div>
+        </div> -->
+
+        <!-- BOTTOM -->
+        <div class="bottom-ornament">
+            <p class="made-with">Criado com <span>♥</span> pela <a href="https://webgift.netlify.app" target="_blank" rel="noopener" style="color:var(--gold-l);text-decoration:none;transition:opacity 0.3s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">WebGift</a></p>
+        </div>
+
+    </div>
+
+    <script>
+    const eventDate = new Date('2026-11-14T17:30:00');
+    function updateCountdown() {
+        const diff = eventDate - new Date();
+        if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00'); return; }
+        document.getElementById('days').textContent    = String(Math.floor(diff/86400000)).padStart(2,'0');
+        document.getElementById('hours').textContent   = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+        document.getElementById('minutes').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+        document.getElementById('seconds').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    }
+    setInterval(updateCountdown, 1000); updateCountdown();
+    function handleRSVP(e) {
+        e.preventDefault();
+        document.getElementById('rsvpForm').style.display = 'none';
+        document.getElementById('rsvpSuccess').style.display = 'block';
+    }
+    </script>
+</body>
+</html>
